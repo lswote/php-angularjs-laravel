@@ -1,0 +1,12 @@
+#view-team-roster-multi-modal .error{
+	font-size: 18px;
+}
+#view-team-roster-multi-modal .input-section{
+	padding-top: 20px;
+}
+#view-team-roster-multi-modal .input-section table{
+	width: 100%;
+}
+#view-team-roster-multi-modal .input-section table th{
+	text-align: left;		 
+}

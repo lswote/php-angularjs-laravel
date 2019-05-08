@@ -1,0 +1,126 @@
+#rsvp{
+    position: relative;
+    top: 30px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 800px;
+}
+#rsvp .title{
+    padding-right: 20px;
+    color: #2979ff;
+    font-size: 28px;
+}
+#rsvp div.challenge{
+    text-align: left;
+    display: inline;
+}
+#rsvp .challenge-div{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#rsvp .challenge table{
+    padding-top: 20px;
+    width: 70%;
+    margin-left:auto; 
+    margin-right:auto;
+}
+#rsvp .column1{
+    width: 50%;
+}
+#rsvp .column2{
+    width: 50%;
+}
+#rsvp .column3{
+    padding: 10px 0 0 0;
+    text-align: left;
+    width: 6%;
+}
+#rsvp .column4{
+    padding: 10px 0 0 0;
+    margin: 10px 0 0 0;
+    text-align: left;
+}
+#rsvp .column5{
+    text-align: left;
+    padding-top: 10px;
+}
+#rsvp .column6{
+    padding: 0 0 0 0;
+}
+#rsvp .confirmation-challenge-message{
+    margin-top: 20px;
+}
+#rsvp .submit-button { 
+    height: 40px;
+    width: 135px;
+    padding: 0 0;
+    margin-top: 20px;
+}
+#rsvp img{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+    margin-bottom: 30px;
+}
+#rsvp .event-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+#rsvp .event-info .item{
+    width: 16.5%;
+    min-width: 100px;
+    margin-bottom: 10px;
+}
+#rsvp .event-info .item span{
+    word-wrap: break-word;
+}
+#rsvp .event-info .item .label{
+    display: block;
+    color: #273238;
+    font-size: 18px;
+    font-weight: 600;
+}
+#rsvp form .indicate-availablity{
+    color: #6c6f7b;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+#rsvp form .radio-buttons div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#rsvp form .radio-buttons div label, #rsvp form .radio-buttons td label{
+    width: 25%;
+    min-width: 100px;
+}
+#rsvp form .radio-buttons div label input, #rsvp form .radio-buttons td input{
+    width: 25px;
+}
+#rsvp button{
+    width: 100%;
+    margin-top: 50px;
+}
+#rsvp .confirmation-message, #rsvp .error-message{
+    font-style: italic;
+    text-align: center;
+}
+#rsvp .error-message{
+    color: red;
+}
+#rsvp hr, #rsvp .rsvp_button{
+    display: block;
+    width: 80%;
+    margin: 0.5em auto 0.5em auto;
+    border: 1px inset;
+}

@@ -1,0 +1,31 @@
+<form id="add-event-leader-modal" ng-controller="addEventLeaderModalController" ng-submit="addEventLeader()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Event Leader
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="text" placeholder="Username" ng-model="addEventLeaderObject.username">
+            <span class="label">
+                USERNAME
+            </span>
+        </div>
+        <div class="error" ng-show="showAddEventLeaderErrors.username">
+            Required
+        </div>
+        <div class="error" ng-show="showAddEventLeaderErrors.usernameNotFound">
+            No user found with matching username
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

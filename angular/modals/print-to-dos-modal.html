@@ -1,0 +1,113 @@
+<form id="print-to-dos-modal" ng-controller="printToDosModalController" ng-submit="printToDos()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Print To Dos for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<div class="header">
+			<div class="from input-container">
+				<input type="number" step="0.1" min="{{minId}}" max="{{maxId}}" ng-model="minNum">
+				<span class="label">FROM</span>
+			</div>
+			<div class="input-container">
+				<input type="number" step="0.1" min="{{minId}}" max="{{maxId}}" ng-model="maxNum">
+				<span class="label">TO</span>
+			</div>
+			<div class="status select-container">
+				<select ng-model="taskFilter" required>
+					<option ng-value="" disabled selected>
+						Status
+					</option>
+					<option value="all">
+						All
+					</option>
+					<option value="complete">
+						Complete
+					</option>
+					<option value="!complete">
+						Not Complete
+					</option>
+					<option value="in-progress">
+						In-Progress
+					</option>
+				</select>
+				<span class="label">STATUS</span>
+			</div>
+			<select ng-model="startDate" required>
+				<option value="{{date}}" ng-repeat="date in dates">{{date}}</option>
+			</select>
+			<span class="label">TO</span>
+			<select ng-model="endDate" required>
+				<option value="{{date}}" ng-repeat="date in dates">{{date}}</option>
+			</select>
+        	<div class="size select-container">
+            	<select required ng-model="size">
+                	<option value="small">
+                    	8.5" x 11"
+                	</option>
+                	<option value="medium">
+                    	8.5" x 14"
+                	</option>
+                	<option value="large">
+                    	8.5" x 11" (2 Sheets)
+                	</option>
+            	</select>
+            	<span class="label">
+                	SIZE
+            	</span>
+        	</div>
+		</div>
+		<div class="to-dos">
+			<table>
+				<tr class="even">
+					<th>
+						ID
+					</th>
+					<th>
+						DESCRIPTION
+					</th>
+					<th>
+						STATUS
+					</th>
+					<th>
+						DUE
+					</th>
+					<th>
+						WHO
+					</th>
+					<th>
+						DAYS REMAINING
+					</th>
+				</tr>
+				<tr ng-repeat="task in tasks | filter: filterFn" ng-class-odd="'odd'" ng-class-even="'even'">
+					<td>
+						{{task.id}}
+					</td>
+					<td>
+						<span>{{task.description}}</span>
+					</td>
+					<td>
+						<span>{{task.status}}</span>
+					</td>
+					<td>
+						{{calculateDueDate(task) | date : 'M/d'}}
+					</td>
+					<td>
+						<span>{{task.assigned_user}}</span>
+					</td>
+					<td>
+						<span class="{{getColor(task)}}" ng-style="{color: getColor(task)}">{{calculateDaysRemaining(task)}}</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			PRINT
+		</button>
+	</div>
+</form>

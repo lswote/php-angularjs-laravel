@@ -1,0 +1,56 @@
+#edit-start-times-modal .error{
+    font-size: 18px;
+}
+#edit-start-times-modal .title{
+    margin-bottom: 0px;
+}
+#edit-start-times-modal .match-info{
+    justify-content: left;
+    width: 100%;
+    padding-left: 0;
+}
+#edit-start-times-modal table{
+    width: 100%;
+}
+#edit-start-times-modal td, #edit-start-times-modal th{
+    display: inline-block;
+    text-align: left;
+    text-transform: capitalize;
+    width: calc(20% - 5px);
+}
+#edit-start-times-modal td.time, #edit-start-times-modal th.time{
+    width: calc(40% - 5px);
+}
+#edit-start-times-modal td.error, #edit-start-times-modal th.error{
+    width: calc(10% - 5px);
+}
+#edit-start-times-modal .odd{
+    background-color: white;
+}
+#edit-start-times-modal .even{
+    background-color: #ebeff2;
+}
+#edit-start-times-modal .picker__box{
+	 display: inline-block;
+}
+#edit-start-times-modal .picker__list-item{
+	padding: 2px 65px;
+}
+#edit-start-times-modal .picker{
+	line-height: 1;
+}
+#edit-start-times-modal .odd{
+    background-color: white;
+}
+#edit-start-times-modal .even{
+    background-color: #ebeff2;
+}
+#edit-start-times-modal .picker__box{
+	 display: inline-block;
+}
+#edit-start-times-modal .picker__list-item{
+	padding: 2px 65px;
+}
+#edit-start-times-modal .picker{
+	line-height: 1;
+}

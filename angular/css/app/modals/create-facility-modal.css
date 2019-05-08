@@ -1,0 +1,6 @@
+#create-facility-modal .title{
+    margin-bottom: 20px;
+}
+#create-facility-modal input, #create-facility-modal select{
+    margin-top: 30px;
+}

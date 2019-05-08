@@ -1,0 +1,37 @@
+<form id="login-form">
+    <img class="logo" src="../images/TeamsRItlogo.png">
+    <h3>
+        Sign In
+    </h3>
+    <div>
+        <div class="input-container">
+            <input id="username" type="text" placeholder="USERNAME" ng-model="loginObject.username">
+            <span class="label">
+                USERNAME
+            </span>
+        </div>
+        <div class="input-container">
+            <input type="password" placeholder="PASSWORD" ng-model="loginObject.password">
+            <span class="label">
+                PASSWORD
+            </span>
+        </div>
+        <div class="buttons">
+            <button type="submit" ng-click="login()">
+                SIGN IN
+            </button>
+            <a href="/register" class="register" target="_self">
+                Register
+            </a>
+            <a href="/forgot-password" class="forgot-password" target="_self">
+                Forgot Password?
+            </a>
+        </div>
+        <div class="error" ng-show="loginFailed">
+            The credentials you entered are invalid.  Please try again
+        </div>
+    </div>
+    <div class="copyright">
+        Copyright&copy; 2018 TeamsRIt!
+    </div>
+</form>

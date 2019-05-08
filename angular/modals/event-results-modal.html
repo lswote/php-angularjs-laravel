@@ -1,0 +1,129 @@
+<form id="event-results-modal" ng-controller="eventResultsModalController" ng-submit="updateLineScores()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        {{eventResultsMode}} Results For {{selectedEvent.name}}
+    </div>
+    <div class="match-info">
+        <div ng-if="selectedEvent.event_type === 'social'">
+            {{selectedEvent.start_date_string}} &#8213; {{parseTime(selectedEvent.start_time)}}
+        </div>
+        <div ng-if="selectedEvent.event_type === 'league'">
+            <select ng-model="filters.roundDate">
+                <option value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                    {{formatDate(round.date)}}
+                </option>
+            </select>
+            <select class="match-filter" ng-model="filters.matchId">
+                <option value="" disabled selected>
+                    Match
+                </option>
+                <option value="">
+                    All
+                </option>
+                <option value="{{match.id}}" ng-repeat="match in matches" ng-show="match.date === filters.roundDate">
+                    {{match.team_one.name ? match.team_one.name : 'NA'}} vs. {{match.team_two.name ? match.team_two.name : 'NA'}}
+                </option>
+            </select>
+            <select ng-model="filters.lineId">
+                <option value="" disabled selected>
+                    Line
+                </option>
+                <option value="">
+                    All
+                </option>
+                <option value="{{line.id}}" ng-repeat="line in eventLines" ng-show="line.date === filters.roundDate && line.match_id == filters.matchId">
+                    {{line.round_match_line_number}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="input-section">
+        <div class="line" ng-class="{'not-last': $index !== (eventLines.length - 1)}" ng-repeat="line in eventLines track by $index"
+             ng-show="(!getEventLinesInProgress && eventLines.length > 0) && showLine(line)">
+            <div class="left" ng-class="{'doubles': line.line_type === 'doubles'}">
+                <div class="row-one">
+                    <span class="meta">
+                        <span class="label">
+                            {{line.line_type.toUpperCase()}} {{line.line_type === 'doubles' ? line.doubles_line_number : line.singles_line_number}}
+                        </span>
+                        <span class="time">
+                            {{line.start_time_formatted}}
+                        </span>
+                    </span>
+                    <div class="users" ng-show="line.line_type === 'doubles'">
+                        <select tabindex="-1">
+                            <option>
+                                {{line.pair_one.user_one.first_name}} {{line.pair_one.user_one.last_name}}
+                            </option>
+                        </select>
+                        <select class="second-user" tabindex="-1">
+                            <option>
+                                {{line.pair_one.user_two.first_name}} {{line.pair_one.user_two.last_name}}
+                            </option>
+                        </select>
+                    </div>
+                    <select class="users" tabindex="-1" ng-show="line.line_type === 'singles'">
+                        <option>
+                            {{line.pair_one.first_name}} {{line.pair_one.last_name}}
+                        </option>
+                    </select>
+                    <span class="vs">
+                        VS
+                    </span>
+                    <div class="users" ng-show="line.line_type === 'doubles'">
+                        <select tabindex="-1">
+                            <option>
+                                {{line.pair_two.user_one.first_name}} {{line.pair_two.user_one.last_name}}
+                            </option>
+                        </select>
+                        <select class="second-user" tabindex="-1">
+                            <option>
+                                {{line.pair_two.user_two.first_name}} {{line.pair_two.user_two.last_name}}
+                            </option>
+                        </select>
+                    </div>
+                    <select class="users" tabindex="-1" ng-show="line.line_type === 'singles'">
+                        <option>
+                            {{line.pair_two.first_name}} {{line.pair_two.last_name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="row-two">
+                    <span class="winner-label">
+                        WINNER
+                    </span>
+                    <input name="{{line.id}}" class="first" type="radio" tabindex="-1" ng-value="line.pair_one_id" ng-model="line.winning_pair_id">
+                    <input name="{{line.id}}" class="second" type="radio" tabindex="-1" ng-value="line.pair_two_id" ng-model="line.winning_pair_id">
+                </div>
+            </div>
+            <div class="right">
+                <div class="score" ng-repeat="score in line.line_scores">
+                    <input class="left-score" type="text" maxlength="2" placeholder="0" ng-model="score.pair_one_score">
+                    <span class="dash">
+                        -
+                    </span>
+                    <input class="right-score" type="text" maxlength="2" placeholder="0" ng-model="score.pair_two_score">
+                </div>
+            </div>
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getEventLinesInProgress">
+        <div class="no-results-found" ng-show="!getEventLinesInProgress && eventLines.length === 0 && eventLines.length === numOfLinesBeforeParse">
+            No lines found
+        </div>
+        <div class="no-results-found" ng-show="!getEventLinesInProgress && eventResultsMode === 'add' && eventLines.length === 0 &&
+                                               eventLines.length !== numOfLinesBeforeParse">
+            No lines with missing results found
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            SAVE RESULTS
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,38 @@
+#view-match-schedule-modal .title{
+    margin-bottom: 20px;
+}
+#view-match-schedule-modal .input-section{
+    text-align: left;
+}
+#view-match-schedule-modal .odd{
+    background-color: white;
+}
+#view-match-schedule-modal .even{
+    background-color: #ebeff2;
+}
+#view-match-schedule-modal .col-one{
+    width: 8%;
+}
+#view-match-schedule-modal .col-two{
+    width: 15%;
+}
+#view-match-schedule-modal .col-three{
+    width: 27%;
+}
+#view-match-schedule-modal .col-four{
+    width: 10%;
+}
+#view-match-schedule-modal .col-five{
+    width: 40%;
+}
+#view-match-schedule-modal .input-section table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#view-match-schedule-modal pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}

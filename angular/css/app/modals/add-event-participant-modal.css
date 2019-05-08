@@ -1,0 +1,34 @@
+#add-event-participant-modal .title{
+    margin-bottom: 20px;
+}
+#add-event-participant-modal input, #add-event-participant-modal select{
+    margin-top: 30px;
+}
+#add-event-participant-modal .found-participants{
+    position: relative;
+}
+#add-event-participant-modal .found-participant{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+}
+#add-event-participant-modal .found-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#add-event-participant-modal .found-participant .username{
+    color: #2879ff;
+    font-weight: 600;
+}
+#add-event-participant-modal .found-participant:hover .username, #add-event-participant-modal .found-participant:hover .selected{
+    color: white;
+}
+#add-event-participant-modal .found-participant .selected{
+    color: #626673;
+}
+#add-event-participant-modal .is-captain input{
+    margin-top: 15px;
+}

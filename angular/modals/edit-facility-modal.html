@@ -1,0 +1,79 @@
+<div id="edit-facility-modal" ng-controller="editFacilityModalController"">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="listing" ng-show="showView === 'listing'">
+		<div class="search">
+			<input type="text" placeholder="Search facilities" ng-model="searchTerm">
+		</div>
+		<div class="found-facilities" ng-show="!getFacilitiesInProgress && foundFacilities.length > 0">
+			<div class="found-facility" ng-class="{'not-last': $index !== (foundFacilities.length - 1)}" ng-repeat="facility in foundFacilities | orderBy: 'name'">
+				<i class="fa fa-building"></i>
+				{{facility.name}}
+				<i class="fa fa-pencil" ng-click="toggleView(facility)"></i>
+			</div>
+		</div>
+		<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getFacilitiesInProgress">
+		<div class="no-results-found" ng-show="!getFacilitiesInProgress && foundFacilities.length === 0">
+			No facilities found
+		</div>
+	</div>
+	<form ng-submit="update()" ng-show="showView === 'update-form'">
+		<div class="input-container">
+			<input type="text" ng-model="selectedFacility.name">
+			<span class="label">
+                Facility Name
+            </span>
+		</div>
+		<div class="input-container">
+			<input type="text" ng-model="selectedFacility.id" disabled>
+			<span class="label">
+                Facility ID
+            </span>
+		</div>
+        <typeahead class="item" items="facilities" name" title="name" model="parentName" ng-click="itemClick()" inputclass="search-parent" divclass="view-parent" label="Master Facility" required="true"/>
+		<div class="input-container">
+			<input type="text" ng-model="selectedFacility.address">
+			<span class="label">
+                Facility Address
+            </span>
+		</div>
+		<div class="input-container">
+			<input type="text" ng-model="selectedFacility.city">
+			<span class="label">
+                Facility City
+            </span>
+		</div>
+		<div class="input-container">
+            <select ng-model="selectedFacility.state" ng-options="state as state for state in states track by state"></select>
+			<span class="label">
+                Facility State
+            </span>
+		</div>
+		<div class="input-container">
+			<input class="zipcode" type="text" maxlength="5" ng-model="selectedFacility.zip">
+			<span class="label">
+                Facility Zip
+            </span>
+		</div>
+		<div class="input-container">
+			<input class="date" type="text" placeholder="Select Date" ng-model="selectedFacility.contract_expiration_date"
+                   pick-a-date="contractExpirationDateDisplay" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+			<span class="label">
+                Contract expiration
+            </span>
+		</div>
+        <div class="input-container">
+            <input type="text" maxlength="100" ng-model="selectedFacility.paypal_link">
+            <span class="label">
+                Paypal Payment Link
+            </span>
+        </div>
+		<div class="buttons">
+			<button class="cancel-button" type="button" ng-click="toggleView()">
+				CANCEL
+			</button>
+			<button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+				SAVE
+			</button>
+		</div>
+	</form>
+</div>

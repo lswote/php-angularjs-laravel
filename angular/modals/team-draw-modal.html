@@ -1,0 +1,51 @@
+<form id="team-draw-modal" ng-controller="teamDrawModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Team Draw
+    </div>
+    <div class="event-name">
+        {{selectedEvent.name}}&ensp;-&ensp;
+        <span ng-show="!allGroupAssignmentsComplete">
+            {{currentGroupSex ? capitalizeWords(currentGroupSex) : null}} Group #{{currentGroupNumber}}
+        </span>
+        <span ng-show="allGroupAssignmentsComplete">
+            All Assignments Complete
+        </span>
+    </div>
+    <div class="input-section">
+        <div ng-show="!allGroupAssignmentsComplete">
+            <button class="sort" ng-class="{'disabled': currentGroupAssignmentComplete || !currentGroupNumber}" ng-click="assignToTeams()"
+                    ng-disabled="currentGroupAssignmentComplete || !currentGroupNumber">
+                SORT
+            </button>
+            <div class="teams">
+                <div ng-repeat="spot in currentGroupSpots" ng-style="{'width': spotButtonWidthString}">
+                    <div class="assigned-participant">
+                        {{spot.user.first_name}} {{spot.user.last_name}}
+                    </div>
+                    <button type="button" ng-style="{'background-color': spot.event_teams.name}">
+                        {{spot.event_teams.name.toUpperCase()}}
+                    </button>
+                </div>
+            </div>
+            <div class="current-group-participants">
+                <div ng-repeat="participant in currentGroupParticipants" ng-style="{'width': spotButtonWidthString}">
+                    {{participant.first_name}} {{participant.last_name}}
+                </div>
+            </div>
+        </div>
+        <div class="all-group-assignments-complete" ng-show="allGroupAssignmentsComplete">
+            All group assignments have been completed
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress || !currentGroupNumber || !currentGroupAssignmentComplete}"
+                ng-click="allGroupAssignmentsComplete ? updateEventTeamsComplete() : updateEventTeams()"
+                ng-disabled="callInProgress || !currentGroupNumber || !currentGroupAssignmentComplete">
+            {{allGroupAssignmentsComplete ? 'FINISH' : 'NEXT GROUP'}}
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

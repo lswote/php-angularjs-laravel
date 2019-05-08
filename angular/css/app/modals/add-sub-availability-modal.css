@@ -1,0 +1,31 @@
+#add-sub-availability-modal .title{
+    margin-bottom: 20px;
+}
+#add-sub-availability-modal input, #add-sub-availability-modal select{
+    margin-top: 30px;
+}
+#add-sub-availability-modal .found-participants{
+    position: relative;
+}
+#add-sub-availability-modal .found-participant{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+}
+#add-sub-availability-modal .found-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#add-sub-availability-modal .found-participant .username{
+    color: #2879ff;
+    font-weight: 600;
+}
+#add-sub-availability-modal .found-participant:hover .username, #add-sub-availability-modal .found-participant:hover .selected{
+    color: white;
+}
+#add-sub-availability-modal .found-participant .selected{
+    color: #626673;
+}

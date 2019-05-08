@@ -1,0 +1,45 @@
+#withdraw-challenges-ladder-modal .error{
+    font-size: 18px;
+}
+#withdraw-challenges-ladder-modal .column1{
+    width: 26%;
+}
+#withdraw-challenges-ladder-modal .column2{
+    width: 6%;
+}
+#withdraw-challenges-ladder-modal .column3{
+    width: 26%;
+}
+#withdraw-challenges-ladder-modal .column4{
+    width: 26%;
+}
+#withdraw-challenges-ladder-modal .column5{
+    width: 10%;
+}
+#withdraw-challenges-ladder-modal .column6{
+    width: 6%;
+}
+#withdraw-challenges-ladder-modal button{
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#withdraw-challenges-ladder-modal {
+    padding-top: 20px;
+}
+#withdraw-challenges-ladder-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 8px 8px;
+}
+#withdraw-challenges-ladder-modal table th{
+    text-align: left;
+}
+#withdraw-challenges-ladder-modal label{
+    font-weight: bold;
+    padding-top: 20px;
+}
+#withdraw-challenges-ladder-modal .status{
+    font-weight: bold;
+}

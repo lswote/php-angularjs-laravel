@@ -1,0 +1,15 @@
+# Turn on .htaccess rewrites
+RewriteEngine On
+RewriteBase /
+
+# Prevents directory content from being listed
+Options -Indexes
+
+# Our rewrite rules
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^(.*) /index.html [NC,L]
+
+allow from all

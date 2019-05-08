@@ -1,0 +1,85 @@
+<form id="view-participants-ladder-modal" ng-controller="viewParticipantsLadderModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title event-name">
+        View Participants
+    </div>
+    <div>
+        View participants signed up for the event
+    </div>
+    <div class="search-section">
+        <table>
+            <tr>
+                <th id="participant-name">
+                    {{selectedEvent.name}}
+                </th>
+                <td class="search-box">
+                    <typeahead class="item" items="items" prompt="Start typing search value" title="name" model="name" inputclass="search-participant" divclass="view-participant" />
+                </td>
+                <td class="field-change">
+                    <select class="field-select" name="field_type" ng-model="field_type" ng-change="change_search_field()">
+                        <option ng-repeat="field_type_value in field_type_values" value="{{field_type_value[1]}}">{{field_type_value[0]}}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="input-section">
+        <table ng-show="!getParticipantsInProgress && participants.length > 0">
+            <tr>
+                <th>
+                    FIRST NAME
+                </th>
+                <th>
+                    LAST NAME
+                </th>
+                <th>
+                    GENDER
+                </th>
+                <th>
+                    EMAIL
+                </th>
+                <th>
+                    USERNAME
+                </th>
+                <th>
+                    PHONE
+                </th>
+                <th>
+                    STATUS
+                </th>
+            </tr>
+            <tr ng-repeat="participant in participants | orderBy: 'last_name'">
+                <td>
+                    {{participant.first_name}}
+                </td>
+                <td>
+                    {{participant.last_name}}
+                </td>
+                <td class="sex">
+                    {{participant.sex}}
+                </td>
+                <td>
+                    {{participant.email}}
+                </td>
+                <td>
+                    {{participant.username}}
+                </td>
+                <td>
+                    {{participant.phone}}
+                </td>
+                <td>
+                    {{participant.status}}
+                </td>
+            </tr>
+        </table>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getParticipantsInProgress">
+        <div class="no-results-found" ng-show="!getParticipantsInProgress && participants.length === 0">
+            No participants
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="button" ng-click="toggleModal()">
+            CLOSE
+        </button>
+    </div>
+</form>

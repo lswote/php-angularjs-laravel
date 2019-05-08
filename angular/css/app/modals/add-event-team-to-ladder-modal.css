@@ -1,0 +1,31 @@
+#add-event-team-to-ladder-modal .input-player1{
+    padding-top: 10px;
+}
+#add-event-team-to-ladder-modal .input-player2{
+    padding-top: 10px;
+}
+#add-event-team-to-ladder-modal .error{
+    font-size: 18px;
+}
+#add-event-team-to-ladder-modal .view-player{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#add-event-team-to-ladder-modal .view-player:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#add-event-team-to-ladder-modal .search-player{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#add-event-team-to-ladder-modal .button-box{
+    width: 100%;
+}

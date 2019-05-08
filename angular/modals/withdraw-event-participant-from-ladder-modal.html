@@ -1,0 +1,33 @@
+<form id='withdraw-event-participant-from-ladder-modal' ng-controller="withdrawEventParticipantFromLadderModalController" ng-submit="withdrawParticipantFromLadder()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Withdraw Participant From Ladder
+    </div>
+    <div class="input-section">
+        <div ng-show="show_participant">
+            <typeahead class="item" items="items" prompt="Start typing the name of the participant" title="name" model="name" ng-click="resetWithdrawEventParticipantFromLadderErrors()" inputclass="search-participant" divclass="view-participant" />
+        </div>
+        <div class="radio-buttons">
+            <div>
+                <input name="withdraw" ng-model="withdraw_type" type="radio" value="dropped" checked><label>Remove from ladder</label>
+            </div>
+            <div>
+                <input name="withdraw" ng-model="withdraw_type" type="radio" value="out"><label>Temporarily remove from ladder</label>
+           </div>
+        </div>
+        <div class="error" ng-show="showWithdrawEventParticipantFromLadderErrors.noParticipant">
+            Invalid participant
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit">
+            WITHDRAW PARTICIPANT
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

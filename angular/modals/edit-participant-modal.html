@@ -1,0 +1,65 @@
+<div id="edit-participant-modal" ng-controller="editParticipantModalController" ng-submit="search()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="listing" ng-show="showView === 'listing'">
+        <div class="search">
+            <input type="text" placeholder="Search participants" ng-model="searchTerm">
+        </div>
+        <div class="found-participants" ng-show="!getParticipantsInProgress && foundParticipants.length > 0">
+            <div class="found-participant" ng-class="{'not-last': $index !== (foundParticipants.length - 1)}"
+                 ng-repeat="participant in foundParticipants | orderBy: 'name' track by $index">
+                {{participant.first_name}} {{participant.last_name}} - {{participant.email}} - {{participant.username}}
+                <i class="fa fa-pencil" ng-click="toggleView(participant)"></i>
+            </div>
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getParticipantsInProgress">
+        <div class="no-results-found" ng-show="!getParticipantsInProgress && foundParticipants.length === 0">
+            No participants found
+        </div>
+    </div>
+    <form ng-submit="update()" ng-show="showView === 'update-form'">
+        <label>User Name</label><input disabled="true" type="text" ng-model="selectedParticipant.username"/>
+        <label>First Name</label><input type="text" ng-model="selectedParticipant.first_name"/>
+        <label>Last Name</label><input type="text" ng-model="selectedParticipant.last_name"/>
+        <label>Gender</label><select ng-model="selectedParticipant.sex">
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+        <label>Email</label><input type="text" ng-model="selectedParticipant.email"/>
+        <label>Phone</label><input class="phone" type="text" ng-model="selectedParticipant.phone"/>
+        <label>Room No.</label><input type="text" ng-model="selectedParticipant.room"/>
+        <label>Member/Resident Id</label><input type="text" ng-model="selectedParticipant.memberid"/>
+        <hr/>
+        <label>Active/Inactive</label><select ng-model="selectedParticipant.active" convert-to-number>
+          <option value="1">Active</option>
+          <option value="0">Inactive</option>
+        </select>
+        <label>Member/Guest</label><select ng-model="selectedParticipant.membership_type">
+          <option value="member">Member</option>
+          <option value="guest">Guest</option>
+        </select>
+        <label>Adult/Child</label><select ng-model="selectedParticipant.age_type">
+          <option value="adult">Adult</option>
+          <option value="child">Child</option>
+        </select>
+        <!-- TODO: What is alta? --!>
+        <label>ALTA Number</label><input type="text" ng-model="selectedParticipant.alta_number"/>
+        <!-- TODO: What is Email? --!>
+        <label>Email Y/N</label><select ng-model="selectedParticipant.receive_email" convert-to-number>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+        <label>USTA Number</label><input type="text" ng-model="selectedParticipant.usta_number"/>
+        <label>Affiliation</label><input type="text" ng-model="selectedParticipant.affiliation"/>
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleView()">
+                CANCEL
+            </button>
+            <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+                SAVE
+                <span ng-show="callSuccess">
+                    &#10004;
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

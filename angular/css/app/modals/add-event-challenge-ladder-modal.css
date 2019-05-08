@@ -1,0 +1,47 @@
+#add-event-challenge-ladder-modal .input-player1{
+    padding-top: 10px;
+}
+#add-event-challenge-ladder-modal .input-player2{
+    padding-top: 10px;
+}
+#add-event-challenge-ladder-modal .error{
+    font-size: 18px;
+}
+#add-event-challenge-ladder-modal .view-player{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#add-event-challenge-ladder-modal .view-player:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#add-event-challenge-ladder-modal .search-player{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#add-event-challenge-ladder-modal .input-section table{
+    width: 100%;
+    padding-top: 20px;
+}
+#add-event-challenge-ladder-modal .input-section table tr th{ 
+    padding-top: 20px;
+    vertical-align: top;
+    padding-bottom: 20px;
+}
+#add-event-challenge-ladder-modal .input-section table tr td{ 
+    padding-top: 20px;
+    vertical-align: top;
+    padding-bottom: 20px;
+}
+#add-event-challenge-ladder-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}a

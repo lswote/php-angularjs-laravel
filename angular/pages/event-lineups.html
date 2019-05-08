@@ -1,0 +1,124 @@
+<div ng-controller="eventLineupsController">
+    <div id="event-lineups" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Edit Lineups For {{event.name}}
+            </div>
+            <div class="filters">
+                <select ng-model="filters.gender">
+                    <option value="" disabled selected>
+                        Gender
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                    <option value="male">
+                        Male
+                    </option>
+                </select>
+                <select ng-model="filters.team">
+                    <option value="{{team}}" ng-repeat="team in teams">
+                        {{team}}
+                    </option>
+                </select>
+                <select class="date-filter" ng-model="filters.startDate" ng-show="event.eventType !== 'round robin'">
+                    <option class="type" value="{{date}}" ng-repeat="date in roundDates">
+                        {{formatDate(date)}}
+                    </option>
+                </select>
+                <span ng-show="event.eventType !== 'round robin'">
+                    to
+                </span>
+                <select class="date-filter" ng-model="filters.endDate" ng-show="event.eventType !== 'round robin'">
+                    <option class="type" value="{{date}}" ng-repeat="date in roundDates">
+                        {{formatDate(date)}}
+                    </option>
+                </select>
+            </div>
+            <div class="users">
+                <div class="header">
+                    <span class="name">
+                        NAME
+                    </span>
+                    <span class="group">
+                        GROUP
+                    </span>
+                    <span class="gender">
+                        GENDER
+                    </span>
+                    <span class="round modal-toggle" ng-repeat="date in shownRoundDates" ng-style="{'width': 'calc((100% - 435px) /' + shownRoundDates.length + ')'}"
+                          ng-click="toggleTeamRoundLineupModal(date, filters.team)" ng-show="event.eventType === 'round robin' ? date === event.startDate : true">
+                        {{event.eventType === 'round robin' ? 'All Rounds' : formatDate(date)}}
+                        <i class="fa fa-sort" title="{{event.ranked == 1 ? 'Default Assignment By Group Number' : 'Random Assignment'}}"
+                           ng-click="assignDefaultSpots(date); $event.stopPropagation()"></i>
+                        <span class="availability-count">
+                            ({{roundTeamUsersAvailable[date][filters.team]}} Avail.)
+                        </span>
+                    </span>
+                </div>
+                <div class="body">
+                    <div class="users-group" ng-repeat="user in foundUsers | orderBy: ['sex', 'group_number']">
+                        <span class="name">
+                            {{user.first_name}} {{user.last_name}}
+                            <span ng-show="user.is_sub === 1">
+                                (sub)
+                            </span>
+                        </span>
+                        <span class="group">
+                            {{user.group_number}}
+                        </span>
+                        <span class="gender">
+                            {{user.sex}}
+                        </span>
+                        <span class="round" ng-class="{'unavailable': usersAvailability[findEventTeamUserAvailabilityId(user.id, user.team_id, date)].status === 'unavailable'}"
+                              ng-repeat="date in shownRoundDates" ng-style="{'width': 'calc((100% - 435px) /' + shownRoundDates.length + ')'}"
+                              ng-show="event.eventType === 'round robin' ? date === event.startDate : true"
+                              ng-if="usersAvailability[findEventTeamUserAvailabilityId(user.id, user.team_id, date)]">
+                            <select ng-model="usersAvailability[findEventTeamUserAvailabilityId(user.id, user.team_id, date)].status"
+                                    ng-show="usersAvailability[findEventTeamUserAvailabilityId(user.id, user.team_id, date)].status !== 'unavailable'">
+                                <option value="available">
+                                    In
+                                </option>
+                                <option value="unavailable">
+                                    Out
+                                </option>
+                                <option value="{{line}}" ng-repeat="line in femaleLines"
+                                        ng-if="user.sex === 'female' && displayOption(line, date, findEventTeamUserAvailabilityId(user.id, user.team_id, date))">
+                                    {{line}}
+                                </option>
+                                <option value="{{line}}" ng-repeat="line in maleLines"
+                                        ng-if="user.sex === 'male' && displayOption(line, date, findEventTeamUserAvailabilityId(user.id, user.team_id, date))">
+                                    {{line}}
+                                </option>
+                            </select>
+                            <div class="error" ng-show="usersAvailability[findEventTeamUserAvailabilityId(user.id, user.team_id, date)]['tooFar']">
+                                Moved too far
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateLineups(true)" ng-disabled="callInProgress">
+                    Save And Exit
+                </button>
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateLineups()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

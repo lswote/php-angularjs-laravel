@@ -1,0 +1,42 @@
+<form id="upload-event-description-modal" ng-controller="uploadEventDescriptionModalController" ng-submit="uploadEventDescription()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Upload Event Description
+    </div>
+    <div class="input-section">
+        <div class="select-container">
+            <select ng-model="uploadEventDescriptionObject.type">
+                <option value="tennis">
+                    Tennis
+                </option>
+            </select>
+            <span class="label">
+                TYPE
+            </span>
+        </div>
+        <label ng-class="{'no-file-selected': uploadEventDescriptionObject.inputFileText === 'No file selected'}" class="file-input-container">
+            {{uploadEventDescriptionObject.inputFileText}}
+            <input id="file-input" type="file" accept="image/*">
+        </label>
+        <div class="error" ng-show="showUploadEventDescriptionErrors.file">
+            No file selected
+        </div>
+        <div class="error" ng-show="showUploadEventDescriptionErrors.fileType">
+            File type not supported
+        </div>
+        <div class="error" ng-show="showUploadEventDescriptionErrors.size">
+            File cannot be larger than 10MB
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

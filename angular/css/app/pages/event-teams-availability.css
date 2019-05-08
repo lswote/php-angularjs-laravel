@@ -1,0 +1,117 @@
+#event-teams-availability .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-teams-availability .filters{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-teams-availability .filters input, #event-teams-availability .filters select:not(.date-filter){
+    width: 19%;
+    margin-right: 30px;
+}
+#event-teams-availability .filters input{
+    height: 26px;
+}
+#event-teams-availability .filters select{
+    height: 40px;
+    text-transform: capitalize;
+}
+#event-teams-availability .filters .date-filter{
+    width: 12%;
+}
+#event-teams-availability .filters span{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#event-teams-availability .filters button{
+    position: absolute;
+    right: 30px;
+    height: 40px;
+    width: 180px;
+    line-height: 0.5;
+}
+#event-teams-availability .users, #event-teams-availability .user{
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+#event-teams-availability .users .header, #event-teams-availability .user .header{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+#event-teams-availability .users .header span, #event-teams-availability .user .header span{
+    color: #858790;
+}
+#event-teams-availability .users .header .name, #event-teams-availability .user .header .round{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-teams-availability .users .header .gender{
+    width: 100px;
+}
+#event-teams-availability .user .header .date{
+    width: 200px;
+}
+#event-teams-availability .user .header .narrow-date{
+    width: 150px;
+    text-align: center;
+}
+#event-teams-availability .user .header .narrow-status{
+    padding-left: 20px;
+}
+#event-teams-availability .users .header .round{
+    min-width: 135px;
+    text-align: center;
+}
+#event-teams-availability .users .header span, #event-teams-availability .users .users-group span,
+#event-teams-availability .user .header span, #event-teams-availability .user .users-group span{
+    display: inline-block;
+}
+#event-teams-availability .users .body{
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#event-teams-availability .users .users-group, #event-teams-availability .user .users-group > div{
+    width: 100%;
+    padding-top: 20px;
+    white-space: nowrap;
+}
+#event-teams-availability .users .users-group .name, #event-teams-availability .user .users-group .round{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-teams-availability .users .users-group .gender{
+    width: 100px;
+    text-transform: capitalize;
+}
+#event-teams-availability .user .users-group .date{
+    width: 200px
+}
+#event-teams-availability .user .users-group .narrow-date{
+    width: 150px;
+    text-align: center;
+}
+#event-teams-availability .users .users-group .round{
+    min-width: 135px;
+    text-align: center;
+}
+#event-teams-availability .users .users-group .round.unavailable select{
+    color: red;
+    font-weight: 600;
+}
+#event-teams-availability .user .users-group .status{
+    width: 200px;
+}
+#event-teams-availability .buttons-container .buttons .submit-button:nth-child(2){
+    margin-right: 20px;
+}

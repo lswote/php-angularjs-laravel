@@ -1,0 +1,42 @@
+<form id="upload-event-process-flow-modal" ng-controller="uploadEventProcessFlowModalController" ng-submit="uploadEventProcessFlow()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Upload Event Process Flow
+    </div>
+    <div class="input-section">
+        <div class="select-container">
+            <select ng-model="uploadEventProcessFlowObject.type">
+                <option value="tennis">
+                    Tennis
+                </option>
+            </select>
+            <span class="label">
+                TYPE
+            </span>
+        </div>
+        <label ng-class="{'no-file-selected': uploadEventProcessFlowObject.inputFileText === 'No file selected'}" class="file-input-container">
+            {{uploadEventProcessFlowObject.inputFileText}}
+            <input id="file-input" type="file" accept="image/*">
+        </label>
+        <div class="error" ng-show="showUploadEventProcessFlowErrors.file">
+            No file selected
+        </div>
+        <div class="error" ng-show="showUploadEventProcessFlowErrors.fileType">
+            File type not supported
+        </div>
+        <div class="error" ng-show="showUploadEventProcessFlowErrors.size">
+            File cannot be larger than 10MB
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

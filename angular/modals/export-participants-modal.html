@@ -1,0 +1,89 @@
+<form id="export-participants-modal" ng-controller="exportParticipantsModalController" ng-submit="exportParticipants()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div>
+		<div class="title" ng-if="exportType === 'facility'">
+			Export facility participant information
+		</div>
+		<div class="title" ng-if="exportType !== 'facility'">
+			{{selectedEvent.event_type === 'multifacility' ? 'Export team roster to file' : 'Export Participant Records As CSV'}}
+		</div>
+		<table>
+			<tr class="radio-buttons">
+				<th>
+					<label>Gender:</label>
+				</th>
+				<td>
+					<input ng-model="exportObject.gender" type="radio" value="both"><label>Both</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.gender" type="radio" value="male"><label>Male</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.gender" type="radio" value="female"><label>Female</label>
+				</td>
+			</tr>
+			<tr class="radio-buttons">
+				<th>
+					<label>Membership:</label>
+				</th>
+				<td>
+					<input ng-model="exportObject.membership" type="radio" value="both"><label>Both</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.membership" type="radio" value="member"><label>Member</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.membership" type="radio" value="guest"><label>Guest</label>
+				</td>
+			</tr>
+			<tr class="radio-buttons">
+				<th>
+					<label>Age:</label>
+				</th>
+				<td>
+					<input ng-model="exportObject.age" type="radio" value="both"><label>Both</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.age" type="radio" value="adult"><label>Adult</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.age" type="radio" value="child"><label>Child</label>
+				</td>
+			</tr>
+			<tr class="radio-buttons">
+				<th>
+					<label>Status:</label>
+				</th>
+				<td>
+					<input ng-model="exportObject.status" type="radio" value="both"><label>Both</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.status" type="radio" value="active"><label>Active</label>
+				</td>
+				<td>
+					<input ng-model="exportObject.status" type="radio" value="inactive"><label>Inactive</label>
+				</td>
+			</tr>
+			<tr class="radio-buttons">
+				<th>
+					<label>Affiliation:</label>
+				</th>
+				<td colspan=3>
+					<input ng-model="exportObject.affiliation" type="radio" value="all"><label>All</label>
+					<input ng-model="exportObject.affiliationValue" ng-click="clearAffiliation()" type="text">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+			EXPORT
+			<span ng-show="callSuccess">
+				&#10004;
+			</span>
+		</button>
+	</div>
+</form>

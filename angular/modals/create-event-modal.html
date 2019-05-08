@@ -1,0 +1,532 @@
+<form id="create-event-modal" ng-controller="createEventModalController" ng-submit="createEvent()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Create Event
+    </div>
+    <div class="input-section">
+        <div ng-show="!getFacilityInProgress">
+            <div class="input-container">
+                <input type="text" maxlength="40" placeholder="Event Name" ng-model="createEventObject.name" ng-disabled="modalViewOnly.createEvent">
+                <span class="label">
+                    EVENT NAME
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.name">
+                    Required
+                </div>
+            </div>
+            <div class="select-container">
+                <select required ng-model="createEventObject.activityId" ng-disabled="modalViewOnly.createEvent">
+                    <option value="{{activity.id}}" ng-repeat="activity in facilityActivities">
+                        {{activity.name}}
+                    </option>
+                </select>
+                <span class="label">
+                    ACTIVITY
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.activity">
+                    Required
+                </div>
+            </div>
+            <div class="select-container">
+                <select required ng-model="createEventObject.eventType" ng-disabled="modalViewOnly.createEvent">
+                    <option value="" disabled selected>
+                        Event Type
+                    </option>
+                    <option value="social">
+                        Social
+                    </option>
+                    <option value="league">
+                        League
+                    </option>
+                    <option value="multifacility">
+                        Multi-Facility League
+                    </option>
+                    <option value="round robin">
+                        Round Robin
+                    </option>
+                    <option value="ladder">
+                        Ladder
+                    </option>
+                </select>
+                <span class="label">
+                    EVENT TYPE
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.eventType">
+                    Required
+                </div>
+            </div>
+            <div>
+                <div class="select-container" ng-if="createEventObject.eventType === 'social'" >
+                    <select required ng-model="createEventObject.eventSubType" ng-change="updateEventSubType(createEventObject.eventSubType)" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Social Type
+                        </option>
+                        <option value="single">
+                            Single
+                        </option>
+                        <option value="series">
+                            Series
+                        </option>
+                    </select>
+                    <span class="label">
+                        SOCIAL TYPE
+                    </span>
+                </div>
+                <div class="select-container" ng-if="createEventObject.eventType === 'multifacility'" >
+                    <select required ng-model="createEventObject.eventSubType" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Type of Multi-Facility League
+                        </option>
+                        <option value="alta">
+                            Alta
+                        </option>
+                        <option value="usta">
+                            USTA
+                        </option>
+                        <option value="multi">
+                            Multi
+                        </option>
+                    </select>
+                    <span class="label">
+                        MULTI-FACILITY LEAGUE TYPE
+                    </span>
+                </div>
+                <div class="select-container" ng-if="createEventObject.eventType === 'ladder'">
+                    <select required ng-model="createEventObject.eventSubType" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Ladder Type
+                        </option>
+                        <option value="doubles">
+                            Doubles
+                        </option>
+                        <option value="singles">
+                            Singles
+                        </option>
+                    </select>
+                    <span class="label">
+                        LADDER TYPE
+                    </span>
+                </div>
+                <div class="error" ng-show="showCreateEventErrors.eventSubType">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input class="date" type="text" placeholder="Start Date" ng-model="createEventObject.startDate" ng-disabled="modalViewOnly.createEvent"
+                       pick-a-date="startDateObject" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+                <span class="label">
+                   START DATE
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.startDate">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Event Leader Username" ng-model="createEventObject.eventLeaderUsername" ng-disabled="modalViewOnly.createEvent">
+                <span class="label">
+                    EVENT LEADER USERNAME
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.eventLeaderUsername">
+                    Username not found
+                </div>
+            </div>
+            <div class="select-container">
+                <select required ng-model="createEventObject.typeOfPlay" ng-disabled="modalViewOnly.createEvent">
+                    <option value="" disabled selected>
+                        Type of Play
+                    </option>
+                    <option value="gender">
+                        Gender
+                    </option>
+                    <option value="mixed">
+                        Mixed
+                    </option>
+                </select>
+                <span class="label">
+                    TYPE OF PLAY
+                </span>
+                <div class="error" ng-show="showCreateEventErrors.typeOfPlay">
+                    Required
+                </div>
+            </div>
+            <div ng-if="createEventObject.eventType === 'ladder' || createEventObject.eventType === 'league' || createEventObject.eventType === 'round robin'">
+                <div class="select-container">
+                    <select required ng-model="createEventObject.genderType" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Select Gender
+                        </option>
+                        <option value="both">
+                            Both
+                        </option>
+                        <option value="female">
+                            Female
+                        </option>
+                        <option value="male">
+                            Male
+                        </option>
+                    </select>
+                    <span class="label">
+                        GENDER TYPE
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.genderType">
+                        Required
+                    </div>
+                </div>
+                <div class="select-container">
+                    <select required ng-model="createEventObject.ageType" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Age Group
+                        </option>
+                        <option value="adult">
+                            Adult
+                        </option>
+                        <option value="child">
+                            Child
+                        </option>
+                        <option value="both">
+                            Both
+                        </option>
+                    </select>
+                    <span class="label">
+                        AGE GROUP
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.ageType">
+                        Required
+                    </div>
+                </div>
+                <div class="select-container">
+                    <select required ng-model="createEventObject.membershipType" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Membership Type
+                        </option>
+                        <option value="member">
+                            Member
+                        </option>
+                        <option value="guest">
+                            Guest
+                        </option>
+                        <option value="both">
+                             Both Member/Guest
+                        </option>
+                    </select>
+                    <span class="label">
+                        MEMBERSHIP TYPE
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.membershipType">
+                        Required
+                    </div>
+                </div>
+                <div class="select-container">
+                    <select required ng-model="createEventObject.activeStatus" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Active Status
+                        </option>
+                        <option value="1">
+                            Active
+                        </option>
+                        <option value="0">
+                            Inactive
+                        </option>
+                        <option value="2">
+                            Both Active/Inactive
+                        </option>
+                    </select>
+                    <span class="label">
+                        ACTIVE STATUS
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.activeStatus">
+                        Required
+                    </div>
+                </div>
+            </div>
+            <div ng-if="createEventObject.eventType === 'social'">
+                <div id="select-group-container">
+                    <div id="select-group-left">
+                        <div class="select-container" ng-if="createEventObject.eventSubType === 'series'">
+                            <select required ng-model="createEventObject.roundsIntervalMetric" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Round Interval Metric
+                                </option>
+                                <option value="days">
+                                    Days
+                                </option>
+                                <option value="minutes">
+                                    Minutes
+                                </option>
+                            </select>
+                            <span class="label">
+                                ROUND INTERVAL METRIC
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.roundsIntervalMetric">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="createEventObject.eventSubType === 'series'">
+                            <select required ng-model="createEventObject.roundsInterval" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Round Interval
+                                </option>
+                                <option ng-if="createEventObject.roundsIntervalMetric === 'minutes'" value="{{interval}}" ng-repeat="interval in roundsMinutesIntervals">
+                                    {{interval}}
+                                </option>
+                                <option ng-if="createEventObject.roundsIntervalMetric === 'days'" value="{{interval}}" ng-repeat="interval in roundsDaysIntervals">
+                                    {{interval}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                ROUND INTERVAL
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.roundsInterval">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.rounds" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    No. of Rounds
+                                </option>
+                                <option value="1" ng-show="createEventObject.eventSubType === 'single'">
+                                    1
+                                </option>
+                                <option value="{{rounds}}" ng-repeat="rounds in numberRounds" ng-show="createEventObject.eventSubType === 'series'">
+                                    {{rounds}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                 NUMBER OF ROUNDS
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.rounds">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.numOfStartTimes" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Start Times Per Round
+                                </option>
+                                <option ng-repeat="i in numOfStartTimesArray" value="{{i}}">
+                                    {{i}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                START TIMES PER ROUND
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.numOfStartTimes">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.standardLineDuration" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Standard Line Duration
+                                </option>
+                                <option value="{{duration}}" ng-repeat="duration in standardLineDurations">
+                                    {{duration}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                STANDARD LINE DURATION
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.standardLineDuration">
+                                Required
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="1st Line Start Time" ng-model="createEventObject.startTime" ng-if="!modalViewOnly.createEvent"
+                                   pick-a-time="startTimeObject" pick-a-time-options="{interval: 15, clear: ''}">
+                            <input type="text" placeholder="1st Line Start Time" disabled ng-model="createEventObject.startTime" ng-if="modalViewOnly.createEvent">
+                            <span class="label">
+                                1ST LINE START TIME
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.startTime">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="createEventObject.eventSubType !== 'series'">
+                            <select required ng-model="createEventObject.chargeCc" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Can Charge Cards
+                                </option>
+                                <option value="1">
+                                    Yes
+                                </option>
+                                <option value="0">
+                                    No
+                                </option>
+                            </select>
+                            <span class="label">
+                                CAN CHARGE CC/DC
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.chargeCc">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <div id="select-group-right">
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.genderType" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Select Gender
+                                </option>
+                                <option value="both">
+                                    Both
+                                </option>
+                                <option value="female">
+                                    Female
+                                </option>
+                                <option value="male">
+                                    Male
+                                </option>
+                            </select>
+                            <span class="label">
+                                GENDER TYPE
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.genderType">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.ageType" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Age Group
+                                </option>
+                                <option value="adult">
+                                    Adult
+                                </option>
+                                <option value="child">
+                                    Child
+                                </option>
+                                <option value="both">
+                                    Both
+                                </option>
+                            </select>
+                            <span class="label">
+                                AGE GROUP
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.ageType">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.membershipType" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Membership Type
+                                </option>
+                                <option value="member">
+                                    Member
+                                </option>
+                                <option value="guest">
+                                    Guest
+                                </option>
+                                <option value="both">
+                                    Both Member/Guest
+                                </option>
+                            </select>
+                            <span class="label">
+                              MEMBERSHIP TYPE
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.membershipType">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="createEventObject.activeStatus" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Active Status
+                                </option>
+                                <option value="1">
+                                    Active
+                                </option>
+                                <option value="0">
+                                    Inactive
+                                </option>
+                                <option value="2">
+                                    Both Active/Inactive
+                                </option>
+                            </select>
+                            <span class="label">
+                             ACTIVE STATUS
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.activeStatus">
+                                Required
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" required step="0.01" placeholder="Dollar Amount" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                                   ng-model="createEventObject.participantCharge" ng-disabled="modalViewOnly.createEvent">
+                            <span class="label">
+                                PARTICIPANT CHARGE
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.participantCharge">
+                                Valid Amount Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="createEventObject.eventSubType === 'series'">
+                            <select required ng-model="createEventObject.chargeCc" ng-disabled="modalViewOnly.createEvent">
+                                <option value="" disabled selected>
+                                    Can Charge Cards
+                                </option>
+                                <option value="1">
+                                    Yes
+                                </option>
+                                <option value="0">
+                                    No
+                                </option>
+                            </select>
+                            <span class="label">
+                                CAN CHARGE CC/DC
+                            </span>
+                            <div class="error" ng-show="showCreateEventErrors.chargeCc">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="createEventObject.eventType !== 'social'">
+                <div class="input-container">
+                    <input type="text" required step="0.01" placeholder="Dollar amount e.g. 1.00" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                           ng-model="createEventObject.participantCharge" ng-disabled="modalViewOnly.createEvent">
+                    <span class="label">
+                        PARTICIPANT CHARGE
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.participantCharge">
+                        Valid Amount Required
+                    </div>
+                </div>
+                <div class="select-container">
+                    <select required ng-model="createEventObject.chargeCc" ng-disabled="modalViewOnly.createEvent">
+                        <option value="" disabled selected>
+                            Can Charge Cards
+                        </option>
+                        <option value="1">
+                            Yes
+                        </option>
+                        <option value="0">
+                            No
+                        </option>
+                    </select>
+                    <span class="label">
+                        CAN CHARGE CC/DC
+                    </span>
+                    <div class="error" ng-show="showCreateEventErrors.chargeCc">
+                        Required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getFacilityInProgress">
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleModal()">
+                CANCEL
+            </button>
+            <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress || modalViewOnly.createEvent}"
+                    ng-disabled="callInProgress || modalViewOnly.createEvent">
+                CREATE
+                <span ng-show="callSuccess">
+                &#10004;
+            </span>
+            </button>
+        </div>
+    </div>
+</form>

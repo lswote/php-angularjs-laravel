@@ -1,0 +1,88 @@
+<form id="edit-participant-contact-info-modal" ng-controller="editParticipantContactInfoModalController" ng-submit="saveTeamSettings()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title event-name">
+		{{selectedEvent.event_type === 'multifacility' ? 'Team Roster for selectedEvent.name' : 'Update participant contact information'}}
+	</div>
+	<div class="search-section">
+		<table>
+			<tr>
+				<td class="search-box">
+					<typeahead class="item" items="items" prompt="Start typing search value" title="name" model="name" inputclass="search-participant" divclass="edit-participant" />
+				</td>
+				<th>
+					Search By
+				</th>
+				<td class="field-change">
+					<select class="field-select" name="field_type" ng-model="field_type" ng-change="change_search_field()">
+						<option ng-repeat="field_type_value in field_type_values" value="{{field_type_value[1]}}">{{field_type_value[0]}}</option>
+					</select>
+				</td>
+				<th>
+					Sort By
+				</th>
+				<td class="field-change">
+					<select class="field-select" name="sort_field" ng-model="sort_field">
+						<option ng-repeat="field_type_value in field_type_values" value="{{field_type_value[1]}}">{{field_type_value[0]}}</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="input-section">
+		<table ng-show="!getParticipantsInProgress && participants.length > 0">
+			<tr>
+				<th>
+					NAME
+				</th>
+				<th>
+					GENDER
+				</th>
+				<th>
+					USERNAME
+				</th>
+				<th>
+					EMAIL
+				</th>
+				<th>
+					PHONE
+				</th>
+				<th>
+				</th>
+			</tr>
+			<tr ng-repeat="participant in participants | orderBy: sort_field">
+				<td>
+					{{participant.name}}
+				</td>
+				<td>
+					{{participant.gender}}
+				</td>
+				<td>
+					{{participant.username}}
+				</td>
+				<td>
+					<label ng-show="roster_editable === false">{{participant.email}}</label>
+					<input type=text ng-show="roster_editable === true" ng-model="participant.email">
+				</td>
+				<td>
+					<label ng-show="roster_editable === false">{{participant.phone}}</label>
+					<input type=text ng-show="roster_editable === true" ng-model="participant.phone">
+				</td>
+				<td>
+					<i class="fa fa-trash" ng-click="deleteRequest(participant.index)" ng-if="participant.index >= 0"></i>
+				</td>
+			</tr>
+		</table>
+		<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getParticipantsInProgress">
+		<div class="no-results-found" ng-show="!getParticipantsInProgress && participants.length === 0">
+			No participants
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit" ng-show="roster_editable === true">
+			SAVE
+		</button>
+	</div>
+</form>

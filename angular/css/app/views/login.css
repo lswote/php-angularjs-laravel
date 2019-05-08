@@ -1,0 +1,80 @@
+#login-form{
+    position: relative;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 5px;
+}
+#login-form .logo{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+}
+#login-form h3{
+    margin-left: 35px;
+    color: #2879ff;
+    font-size: 28px;
+}
+#login-form input{
+    width: calc(100% - 100px);
+    margin-top: 30px;
+}
+#login-form .buttons{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-top: 40px;
+    margin-right: 35px;
+}
+#login-form .register, #login-form .forgot-password{
+    display: inline-block;
+    position: relative;
+    margin-left: 35px;
+    margin-right: 35px;
+    color: #707383;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+}
+#login-form .register{
+    font-size: 14px;
+}
+#login-form .forgot-password{
+    position: absolute;
+    left: 3px;
+    font-size: 10px;
+}
+#login-form .error{
+    margin-top: 25px;
+    text-align: center;
+}
+#login-form .copyright{
+    position: absolute;
+    top: 480px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+@media(max-width: 680px){
+    #login-form h3{
+        margin-left: 20px;
+    }
+    #login-form .buttons{
+        margin-right: 20px;
+    }
+}

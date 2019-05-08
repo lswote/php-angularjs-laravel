@@ -1,0 +1,26 @@
+<section id="header">
+    <a href="/" target="_self">
+        <img src="/images/TeamsRItlogo.png">
+    </a>
+    <span class="hamburger" ng-click="toggleNavLinks()">
+        &#9776;
+    </span>
+    <div class="buttons">
+        <a href="/dashboard" target="_self" class="button" ng-class="{'selected': currentPage === 'dashboard'}">
+            My Dashboard
+        </a>
+        <a href="/schedule" target="_self" class="button" ng-class="{'selected': currentPage === 'schedule'}" ng-show="user.privilege !== 'admin'">
+            My Schedule
+        </a>
+        <a href="/admin" target="_self" class="button" ng-class="{'selected': currentPage === 'admin'}" ng-show="user.privilege !== 'admin'">
+            My Admin
+        </a>
+        <a class="button" ng-click="logout()" ng-show="user.privilege === 'admin'">
+            Sign Out
+        </a>
+    </div>
+    <form class="search">
+        <i class="fa fa-search"></i>
+        <input placeholder="Find players, clubs, and more">
+    </form>
+</section>

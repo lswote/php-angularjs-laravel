@@ -1,0 +1,141 @@
+<div ng-controller="eventLinesController">
+    <div id="event-lines" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Lines for Social Activity Event
+            </div>
+            <div class="subtitle">
+                {{event.name}}
+            </div>
+            <div class="swap-players">
+                <select required ng-model="typeOfLine">
+                    <option value="" disabled selected>
+                        Type of Line
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option class="type" value="{{type}}" ng-repeat="type in typeOfLines">
+                        {{type.toUpperCase()}}
+                    </option>
+                </select>
+                <select required ng-model="eventStartTime">
+                    <option value="" disabled selected>
+                        Event Start Time
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option class="type" value="{{startTime}}" ng-repeat="startTime in availableStartTimes">
+                        {{startTime}}
+                    </option>
+                </select>
+                <select required ng-model="linesWithEmptySlotsOnly">
+                    <option value="" disabled selected>
+                        Lines To Display
+                    </option>
+                    <option value="0">
+                        All
+                    </option>
+                    <option value="1">
+                        Incompete Lines
+                    </option>
+                </select>
+                <button type="button" ng-class="{'disabled': selectedUsers.length < 2}" ng-click="swapPlayers()" ng-disabled="selectedUsers.length < 2">
+                    SWAP PLAYERS
+                </button>
+            </div>
+            <div class="lines-headers-container">
+                <div class="lines-start-times-headers" ng-show="!eventStartTime">
+                    <div class="start-time">
+                        {{availableStartTimes[0]}}
+                    </div>
+                    <div class="start-time">
+                        {{availableStartTimes[1]}}
+                    </div>
+                </div>
+                <div class="lines-headers">
+                    <div class="headers-group">
+                        <span class="name">
+                            Name
+                        </span>
+                        <span class="response">
+                            Response
+                        </span>
+                        <span class="ranking">
+                            Ranking
+                        </span>
+                        <span class="team-number">
+                            Team #
+                        </span>
+                    </div>
+                    <div class="headers-group">
+                        <span class="name">
+                            Name
+                        </span>
+                        <span class="response">
+                            Response
+                        </span>
+                        <span class="ranking">
+                            Ranking
+                        </span>
+                        <span class="team-number">
+                            Team #
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="lines" ng-if="participantRankings">
+                <div class="women-lines" ng-show="eventStartTime || availableStartTimes.length === 1">
+                    <div class="line" ng-class="{'not-first-row': $index > 0}"
+                         ng-repeat="match in eventMatches | filter: femaleColumnsFilter | orderBy: [sortByMatchLineType, sortByRanking]">
+                        <doubles-line></doubles-line>
+                        <singles-line></singles-line>
+                    </div>
+                </div>
+                <div class="men-lines" ng-show="eventStartTime || availableStartTimes.length === 1">
+                    <div class="line" ng-class="{'not-first-row': $index > 0}"
+                         ng-repeat="match in eventMatches | filter: maleColumnsFilter | orderBy: [sortByMatchLineType, sortByRanking]">
+                        <doubles-line></doubles-line>
+                        <singles-line></singles-line>
+                    </div>
+                </div>
+                <div class="first-start-time-lines" ng-show="!eventStartTime && availableStartTimes.length > 1">
+                    <div class="line" ng-class="{'not-first-row': $index > 0}"
+                         ng-repeat="match in eventMatches | filter: {line_play_type: typeOfLine, start_time_formatted: availableStartTimes[0]} | orderBy: [sortByMatchLineType, sortByRanking]">
+                        <doubles-line></doubles-line>
+                        <singles-line></singles-line>
+                    </div>
+                </div>
+                <div class="second-start-time-lines" ng-show="!eventStartTime && availableStartTimes.length > 1">
+                    <div class="line" ng-class="{'not-first-row': $index > 0}"
+                         ng-repeat="match in eventMatches | filter: {line_play_type: typeOfLine, start_time_formatted: availableStartTimes[1]} | orderBy: [sortByMatchLineType, sortByRanking]">
+                        <doubles-line></doubles-line>
+                        <singles-line></singles-line>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateEventMatches(true)" ng-disabled="callInProgress">
+                    Save And Exit
+                </button>
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateEventMatches()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+                <button class="submit-button" type="button" ng-class="{'disabled': selectedUsers.length < 2}" ng-click="swapPlayers()" ng-disabled="selectedUsers.length < 2">
+                    Swap Players
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

@@ -1,0 +1,51 @@
+#team-draw-modal .title{
+    margin-bottom: 20px;
+}
+#team-draw-modal .event-name{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: calc(100% - 25px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    font-weight: 800;
+    background-color: #eceff1;
+    border-bottom: 1px solid #c7cfde;
+}
+#team-draw-modal .input-section{
+    position: relative;
+}
+#team-draw-modal .sort{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background-color: #4caf50;
+}
+#team-draw-modal .teams, #team-draw-modal .current-group-participants{
+    display: flex;
+}
+#team-draw-modal .teams{
+    padding-top: 120px;
+    text-align: center;
+}
+#team-draw-modal .teams .assigned-participant{
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-style: italic;
+}
+#team-draw-modal .teams button{
+    width: 100px;
+}
+#team-draw-modal .current-group-participants{
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+#team-draw-modal .current-group-participants div{
+    text-align: center;
+    font-weight: 600;
+}
+#team-draw-modal .all-group-assignments-complete{
+    text-align: center;
+    font-style: italic;
+}

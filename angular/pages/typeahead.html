@@ -1,0 +1,64 @@
+<!-- this div block will show prompt with placeholder text-->
+<div ng-show="label ? false : true"
+	class="input-container"
+>
+	<input
+	    class="{{inputclass}} modal-toggle" 
+	    type="text"  
+	    spellcheck="false" 
+		ng-model="model" 
+		placeholder="{{prompt}}"
+	    ng-keydown="selected=false" 
+	    typeahead-min-length="0"
+	    ng-disabled="disabledflag"
+	    ng-required="required === 'true'"
+	/>
+	<div 
+	    class="items modal-toggle" 
+	    ng-hide="!model.length || selected"
+	>
+		<div 
+	        class="item modal-toggle" 
+	        ng-repeat="item in items | filter:model track by $index" 
+	        ng-click="handleSelection(item[title])" 
+	        style="cursor:pointer" 
+	        ng-class="{active:isCurrent($index)}" 
+	        ng-mouseenter="setCurrent($index)"
+	    >
+			<p class="{{divclass}} modal-toggle">{{item[title]}}</p>
+		</div>
+	</div>
+</div>
+<!-- this div block will show prompt with labels on edge of input box-->
+<div ng-show="label ? true : false"
+	class="input-container"
+>
+	<input
+	    class="{{inputclass}} modal-toggle" 
+	    type="text"  
+	    spellcheck="false" 
+		ng-model="model" 
+	    ng-keydown="selected=false" 
+	    typeahead-min-length="0"
+	    ng-disabled="disabledflag"
+	    ng-required="required === 'true'"
+	/>
+	<span class="label {{inputclass}}" ng-if="label">
+		{{label}}
+	</span>
+	<div 
+	    class="items modal-toggle" 
+	    ng-hide="!model.length || selected"
+	>
+		<div 
+	        class="item modal-toggle" 
+	        ng-repeat="item in items | filter:model track by $index" 
+	        ng-click="handleSelection(item[title])" 
+	        style="cursor:pointer" 
+	        ng-class="{active:isCurrent($index)}" 
+	        ng-mouseenter="setCurrent($index)"
+	    >
+			<p class="{{divclass}} modal-toggle">{{item[title]}}</p>
+		</div>
+	</div>
+</div>

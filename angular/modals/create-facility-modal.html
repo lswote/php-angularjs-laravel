@@ -1,0 +1,76 @@
+<form id="create-facility-modal" ng-controller="createFacilityModalController" ng-submit="createFacility()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Create Facility
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="text" maxlength="30" placeholder="Name" ng-model="createFacilityObject.name">
+            <span class="label">
+                NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showCreateFacilityErrors.name">
+            Required
+        </div>
+		<div class="select-container">
+			<select required ng-model="createFacilityObject.parentId">
+				<option value="" disabled selected>
+					Master Facility
+				</option>
+				<option value="">
+					None
+				</option>
+				<option value="{{facility.id}}" ng-repeat="facility in facilities | orderBy: 'name'">
+					{{facility.name}}
+				</option>
+			</select>
+			<span class="label">Master Facility</span>
+		</div>
+        <div class="input-container">
+            <input type="text" placeholder="Address" ng-model="createFacilityObject.address">
+            <span class="label">
+                ADDRESS
+            </span>
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="City" ng-model="createFacilityObject.city">
+            <span class="label">
+                CITY
+            </span>
+        </div>
+        <div class="input-container">
+            <select required ng-model="createFacilityObject.state" ng-options="state as state for state in states track by state"></select>
+            <span class="label">
+                STATE
+            </span>
+        </div>
+        <div class="input-container">
+            <input class="zipcode" type="text" maxlength="5" placeholder="Zip" ng-model="createFacilityObject.zip">
+            <span class="label">
+                ZIP
+            </span>
+        </div>
+		<div class="input-container">
+			<input class="date" type="text" placeholder="Select Date" ng-model="createFacilityObject.contractExpirationDate" pick-a-date="createFacilityObject.contractExpirationDateDisplay"  pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+			<span class="label">CONTRACT EXPIRATION</span>
+		</div>
+        <div class="input-container">
+            <input type="text" maxlength="100" placeholder="Paypal Payment Link" ng-model="createFacilityObject.paypalLink">
+            <span class="label">
+                PAYPAL PAYMENT LINK
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

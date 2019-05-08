@@ -1,0 +1,70 @@
+<form id="register-form" ng-controller="registrationController" ng-submit="register()">
+    <img class="logo" src="../images/logowhite.png">
+    <h3>
+        Register
+    </h3>
+    <div>
+        <div class="input-container">
+            <input id="token" type="text" placeholder="TOKEN" ng-model="token">
+            <span class="label">
+                TOKEN
+            </span>
+        </div>
+        <div class="error" ng-show="errors.token">
+            Invalid token
+        </div>
+        <div class="input-container">
+            <input id="email" type="email" placeholder="EMAIL" ng-model="email">
+            <span class="label">
+                EMAIL
+            </span>
+        </div>
+        <div class="error" ng-show="errors.emailRequired">
+            E-Mail is required
+        </div>
+        <div class="input-container">
+            <input id="username" type="text" placeholder="USERNAME" maxlength="25" ng-model="username">
+            <span class="label">
+                USERNAME
+            </span>
+        </div>
+        <div class="error" ng-show="errors.usernameRequired">
+            Username is required
+        </div>
+        <div class="error" ng-show="errors.usernameTaken">
+            Username taken
+        </div>
+        <div class="input-container">
+            <input id="password" type="password" placeholder="PASSWORD" maxlength="30" ng-model="password">
+            <span class="label">
+                PASSWORD
+            </span>
+        </div>
+        <div class="error" ng-show="errors.password">
+            Password must be at least 6 characters
+        </div>
+        <div class="input-container">
+            <input id="first-name" type="text" placeholder="FIRST NAME" maxlength="30" ng-model="firstName">
+            <span class="label">
+                FIRST NAME
+            </span>
+        </div>
+        <div class="error" ng-show="errors.firstName">
+            Please provide a first name
+        </div>
+        <div class="input-container">
+            <input id="last-name" type="text" placeholder="LAST NAME" maxlength="40" ng-model="lastName">
+            <span class="label">
+                LAST NAME
+            </span>
+        </div>
+        <div class="error" ng-show="errors.lastName">
+            Please provide a last name
+        </div>
+        <div class="buttons">
+            <button ng-class="{'disabled': registerInProgress}" type="submit" ng-disabled="registerInProgress">
+                SUBMIT
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,109 @@
+#event-lines .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-lines .swap-players{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-lines .swap-players select{
+    height: 40px;
+    width: 22%;
+    margin-right: 20px;
+}
+#event-lines .swap-players button{
+    position: absolute;
+    right: 30px;
+    height: 40px;
+    width: 180px;
+    line-height: 0.5;
+}
+#event-lines .lines-headers-container .lines-start-times-headers{
+    display: flex;
+}
+#event-lines .lines-headers-container .lines-start-times-headers .start-time{
+    width: 50%;
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+}
+#event-lines .lines-headers-container .lines-headers{
+    display: flex;
+    margin-top: 20px;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group{
+    width: 50%;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group span{
+    display: inline-block;
+    color: #858790;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group .name{
+    width: 35%;
+    margin-left: 65px;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group .response{
+    width: 20%;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group .ranking{
+    width: 14%;
+}
+#event-lines .lines-headers-container .lines-headers .headers-group .team-number{
+    width: 12%;
+}
+#event-lines .lines{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+#event-lines .lines .women-lines, #event-lines .lines .men-lines, #event-lines .lines .first-start-time-lines, #event-lines .lines .second-start-time-lines{
+    width: calc(50% - 1px);
+    margin-top: 20px;
+}
+#event-lines .lines .women-lines .line, #event-lines .lines .first-start-time-lines .line{
+    border-right: 1px solid #c7cfde;
+}
+#event-lines .lines .line{
+    width: 100%;
+    min-width: 450px;
+    padding-top: 20px;
+}
+#event-lines .lines .line.not-first-row{
+    border-top: 1px solid #c7cfde;
+}
+#event-lines .lines .player{
+    padding-bottom: 30px;
+}
+#event-lines .lines .line input{
+    margin-left: 25px;
+    margin-right: 20px;
+}
+#event-lines .lines .line span{
+    display: inline-block;
+}
+#event-lines .lines .line .name{
+    width: 35%;
+}
+#event-lines .lines .line .name.empty-slot{
+    font-style: italic;
+}
+#event-lines .lines .line .time{
+    width: 20%;
+}
+#event-lines .lines .line .ranking{
+    width: 14%;
+}
+#event-lines .lines .line .match{
+    width: 12%;
+}
+@media(max-width: 1142px){
+    #event-lines .lines{
+        justify-content: center;
+    }
+}

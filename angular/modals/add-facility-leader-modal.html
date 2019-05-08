@@ -1,0 +1,89 @@
+<form id="add-facility-leader-modal" ng-controller="addFacilityLeaderModalController" ng-submit="addFacilityLeader()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Facility Leader
+    </div>
+    <div class="input-section">
+        <div class="select-container" ng-if="user.privilege === 'admin'">
+            <select required ng-model="addFacilityLeaderObject.facilityId">
+                <option value="" disabled selected>
+                    Facility
+                </option>
+                <option value="{{facility.id}}" ng-repeat="facility in facilities">
+                    {{facility.name}}
+                </option>
+            </select>
+            <span class="label">
+                Facility
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.facilityId">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="First Name" ng-model="addFacilityLeaderObject.firstName">
+            <span class="label">
+                FIRST NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.firstName">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="Last Name" ng-model="addFacilityLeaderObject.lastName">
+            <span class="label">
+                LAST NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.lastName">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="email" placeholder="E-mail" ng-model="addFacilityLeaderObject.email">
+            <span class="label">
+                EMAIL
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.email">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="Username" ng-model="addFacilityLeaderObject.username">
+            <span class="label">
+                USERNAME
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.username">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="password" placeholder="Password" ng-model="addFacilityLeaderObject.password">
+            <span class="label">
+                PASSWORD
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.password">
+            Required
+        </div>
+        <div class="input-container">
+            <input type="password" placeholder="Confirm Password" ng-model="addFacilityLeaderObject.confirmPassword">
+            <span class="label">
+                CONFIRM PASSWORD
+            </span>
+        </div>
+        <div class="error" ng-show="showAddFacilityLeaderErrors.confirmPassword">
+            Passwords do not match
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,98 @@
+<div ng-controller="emailController">
+    <form id="email" class="page-form page-outer-container" ng-submit="sendEmail()" ng-show="validEmailType">
+        <div class="page-container">
+            <div class="title">
+                E-Mail
+            </div>
+            <div class="input-container" ng-show="emailTypesWithFixedRecipients.indexOf(urlParams.type) === -1" data-test="{{emailTypesWithFixedRecipients.indexOf(urlParams.type)}}">
+                <input class="search-recipients" type="text" placeholder="Search For Recipients" ng-model="searchRecipientsTerm">
+                <span class="label">
+                    SEARCH FOR RECIPIENTS
+                </span>
+                <div class="found-recipients">
+                    <a class="found-recipient" ng-repeat="recipient in foundRecipients" ng-click="toggleFoundRecipient(recipient.id)">
+                        {{recipient.first_name}} {{recipient.last_name}}
+                        <span ng-show="recipient.alreadySelected">
+                            &#10004;
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="checkbox-container">
+				<input type="checkbox" ng-model="emailObject.showRecipients">
+				<span>
+                    Show Recipients
+                </span>
+				<button class="clear-recipients" type="button" ng-click="clearFoundRecipients()" ng-show="emailTypesWithFixedRecipients.indexOf(urlParams.type) === -1">
+                    Clear Recipients
+                </button>
+            </div>
+            <div class="recipients" ng-show="emailObject.showRecipients">
+                <div class="recipient" ng-repeat="recipient in recipients" ng-click="toggleFoundRecipient(recipient.id)">
+                    {{recipient.first_name}} {{recipient.last_name}}
+                </div>
+                <div class="no-recipients-found" ng-show="recipients.length === 0">
+                    {{emailTypesWithFixedRecipients.indexOf(urlParams.type) === -1 ? 'No Recipients Selected' : 'No Recipients Found'}}
+                </div>
+            </div>
+            <div class="message-type">
+                Message Type:
+                <span>
+                    {{emailType}}
+                </span>
+            </div>
+			<div class="subject input-container">
+				<input type="text" ng-model="emailObject.subject">
+                <span class="label">
+                    SUBJECT
+                </span>
+			</div>
+			<div class="checkbox-container">
+				<input type="checkbox" ng-model="emailObject.emailTop">
+                <span>
+                    Include In E-Mail
+                </span>
+			</div>
+			<div class="body textarea-container" ng-show="emailObject.bodyTop && emailObject.emailTop">
+				<textarea class="textarea1" rows="3" ng-model="emailObject.bodyTop" disabled></textarea>
+                <span class="label">
+                    MESSAGE START
+                </span>
+			</div>
+            <div class="custom textarea-container">
+                <textarea class='textarea' placeholder="Your Custom Message"
+                          ng-model="emailObject.customBody"></textarea>
+                <span class="label">
+                    YOUR CUSTOM MESSAGE
+                </span>
+            </div>
+			<div class="checkbox-container">
+				<input type="checkbox" ng-model="emailObject.emailBottom">
+				<span>
+                    Include In E-Mail
+                </span>
+			</div>
+			<div class="body textarea-container" ng-show="emailObject.bodyBottom && emailObject.emailBottom">
+				<textarea class="textarea1" rows="3" ng-model="emailObject.bodyBottom" disabled></textarea>
+                <span class="label">
+                    MESSAGE END
+                </span>
+			</div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+                    Send
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div ng-show="!validEmailType">
+        Invalid e-mail type provided
+    </div>
+</div>

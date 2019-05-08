@@ -1,0 +1,242 @@
+<div class="dropdown" ng-class="{'expand-downwards': event.event_type === 'league' || event.event_type === 'round robin' || facility.disable_image_banner === 1}">
+    <div ng-if="event.event_type !== 'ladder'">
+        <div class="subtitle" ng-if="canEditEvent(event) || (isCaptain(event) && selectedEventStatus === 'current') || event.event_type === 'multifacility'">
+            Event Focused
+        </div>
+        <div class="listing" ng-if="canEditEvent(event) || event.event_type === 'multifacility'">
+            <a class="item modal-toggle" ng-click="toggleStartEventModal()" ng-show="showStartEventLink(event, selectedEventStatus)">
+                Start event
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'past' && (event.event_type === 'league' || event.event_type === 'round robin')">
+                Delete event
+            </a>
+            <a class="item modal-toggle" ng-click="toggleCloseEventModal()"
+               ng-show="selectedEventStatus === 'current' && event.event_type === 'multifacility' && user.privilege !== 'participant'">
+                Close event
+            </a>
+			<a href="/event/{{selectedEvent.id}}/availability" class="item"
+               ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && user.privilege === 'participant' && !isCaptain(event)">
+				Edit availability
+			</a>
+            <a class="item modal-toggle" ng-click="toggleEditCaptainsModal()"
+               ng-show="selectedEventStatus !== 'past' && (event.event_type === 'league' || event.event_type === 'round robin')">
+                Edit captains, if used
+            </a>
+            <a class="item modal-toggle" ng-click="togglePlayingSurfacesModal()"
+               ng-hide="selectedEventStatus === 'past' || event.event_type === 'multifacility' || (event.event_type === 'round robin' && selectedEventStatus === 'current')">
+                Edit facility surface information
+            </a>
+            <a href="/event/{{selectedEvent.id}}/lines" target="_self" class="item"
+               ng-show="selectedEventStatus !== 'past' && selectedEvent.comb_play !== null && selectedEvent.matchResultsEntered === false && event.event_type === 'social'">
+                Edit lines
+            </a>
+            <a href="/event/{{selectedEvent.id}}/lineups" target="_self" class="item"
+               ng-show="selectedEventStatus === 'current' && (event.event_type === 'league' || event.event_type === 'round robin')">
+                Edit lineups
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past' && (event.event_type === 'league' || event.event_type === 'round robin')">
+                Edit order of play schedule
+            </a>
+            <a class="item modal-toggle" ng-click="togglePlayingSurfacesWithLinesModal()"
+               ng-hide="selectedEventStatus === 'past' || selectedEvent.facility_surfaces.length === 0">
+                Edit playing surface for each line
+            </a>
+            <a href="/event/{{selectedEvent.id}}/playoff" class="item"
+               ng-show="selectedEventStatus === 'current' && event.event_type === 'league'">
+                Edit playoff schedule, seeding
+            </a>
+            <a class="item modal-toggle" ng-click="toggleEventResultsModal('edit')" ng-hide="selectedEventStatus === 'upcoming' || event.event_type === 'multifacility'">
+                Edit results
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past' && event.event_type !== 'multifacility'">
+                Edit start time for each line
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'upcoming' && event.event_type === 'round robin' && user.privilege === 'facility leader'">
+                Edit team assignments with import
+            </a>
+			<a class="item modal-toggle" ng-click="toggleAddCaptainMultiModal()"
+               ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && (user.privilege !== 'participant' || isCaptain(event))">
+				Edit captain
+            </a>
+			<a class="item modal-toggle" ng-click="toggleEditStartTimesModal()" ng-if="selectedEventStatus !== 'past' && event.event_type === 'multifacility' && isCaptain(event)">
+                Edit line start times
+            </a>
+			<a class="item modal-toggle" ng-click="toggleEditMatchDirectionsModal()"
+               ng-if="selectedEventStatus !== 'past' && event.event_type === 'multifacility' && canEditEvent(event)">
+                Edit facility and directions
+            </a>
+			<a href="/event/{{selectedEvent.id}}/lineups" class="item" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)">
+				Edit line-ups for each week for each line
+            </a>
+			<a class="item" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'upcoming' && (user.privilege !== 'participant' || isCaptain(event))">
+				Edit line type (sngls/dbls) for each line
+            </a>
+			<a class="item modal-toggle"  ng-click="toggleEditRoundDatesModal()" ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+				Edit match dates
+			</a>
+			<a class="item modal-toggle" ng-click="toggleUpdateMatchScheduleModal()"
+               ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)">
+				Edit opponents
+			</a>
+			<a href="/event/{{selectedEvent.id}}/availability" class="item" ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+				Edit team members' availability
+            </a>
+			<a class="item modal-toggle" ng-click="toggleEditParticipantContactInfoModal(true)"
+               ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'upcoming' && isCaptain(event)">
+				Edit team member's contact information
+            </a>
+            <a href="/event/{{selectedEvent.id}}/to-dos" target="_self" class="item"
+               ng-if="event.event_type !== 'multifacility' || (selectedEventStatus === 'upcoming' && isCaptain(event)) || (selectedEventStatus === 'current' && (user.privilege !== 'participant' || isCaptain(event)))">
+				Edit ToDos
+            </a>
+            <a class="item modal-toggle" ng-click="toggleRegenerateLinesModal()"
+               ng-show="selectedEventStatus !== 'past' && selectedEvent.comb_play !== null && event.event_type !== 'multifacility'">
+                Regenerate lines
+            </a>
+        </div>
+        <a href="/event/{{selectedEvent.id}}/lineups" target="_self" class="item"
+           ng-show="!canEditEvent(event) && isCaptain(event) && selectedEventStatus === 'current' && (event.event_type === 'league' || event.event_type === 'round robin')">
+            Edit lineups
+        </a>
+        <div class="subtitle">
+            Participant Focused
+        </div>
+        <div class="listing">
+			<a href="/event/{{selectedEvent.id}}/availability" class="item"
+               ng-if="event.event_type === 'league' && event.has_team_assignment_occurred">
+                Edit participant availability
+            </a>
+            <a href="/event/{{selectedEvent.id}}/pairings" class="item" ng-if="canEditEvent(event) && event.event_type === 'round robin' && selectedEventStatus !== 'past'">
+                Edit pairings / teams
+            </a>
+            <a href="/event/{{selectedEvent.id}}/teams" class="item"
+               ng-if="showEditGroupsTeamsLink(event, selectedEventStatus)">
+                {{event.event_type === 'multifacility' || (event.event_type !== 'multifacility' && !canEditEvent(event) && isCaptain(event)) ? "Edit team members' group numbers" : 'Edit participant group number or team'}}
+            </a>
+			<a class="item" ng-if="canEditEvent(event) && event.event_type !== 'multifacility'">
+                Edit participant "play type"
+            </a>
+            <a href="/event/{{selectedEvent.id}}/signups" class="item" ng-if="(selectedEventStatus !== 'past' && event.event_type !== 'multifacility' && event.event_type !== 'league') || (selectedEventStatus === 'upcoming' && event.event_type === 'league')">
+                Edit sign-up status
+            </a>
+            <a class="item" ng-if="canEditEvent(event) && event.event_type === 'round robin' && selectedEventStatus === 'upcoming'">
+                Reset teams / lines
+            </a>
+			<a class="item modal-toggle" ng-click="toggleEditParticipantContactInfoModal(true)" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)">
+				Edit team member's contact information
+            </a>
+        </div>
+    </div>
+    <div ng-if="event.event_type === 'ladder'">
+        <div ng-if="selectedEventStatus === 'upcoming'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleCloseEventModal()">
+                    Close event
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditEventModal()">
+                    Edit event setup
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderRankingsModal()">
+                    Edit ladder rankings
+                </a>
+                <a class="item modal-toggle" ng-click="toggleCreateEventRulesModal()" ng-show="selectedEventStatus === 'upcoming'">
+                    Edit ladder rules
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderSettingsModal()">
+                    Edit ladder settings
+                </a>
+                <a href="/event/{{selectedEvent.id}}/to-dos" target="_self" class="item">
+                    Edit ToDos
+                </a>
+                <a href="#" class="item">
+                    Delete / recreate event keeping participants
+                </a>
+                <a class="item modal-toggle" ng-click="toggleStartEventModal()" ng-show="selectedEventStatus === 'upcoming'">
+                    Start event
+                </a>
+            </div>
+            <div class="subtitle">
+                 Participant Focused
+            </div>
+            <div class="listing" ng-if="!canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleEditLadderSettingsModal()">
+                    Edit ladder settings
+                </a>
+            </div>
+        </div>
+        <div ng-if="selectedEventStatus === 'current'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleCloseEventModal()">
+                    Close event
+                </a>
+                <a href="#" class="item">
+                    Delete / recreate event keeping participants
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderRankingsModal()">
+                    Edit ladder rankings
+                </a>
+                <a class="item modal-toggle" ng-click="toggleCreateEventRulesModal()">
+                    Edit ladder rules
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderResultsModal()">
+                    Edit results
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderSettingsModal()">
+                    Edit ladder settings
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEditLadderStartDateModal()">
+                    Edit start date
+                </a>
+                <a href="/event/{{selectedEvent.id}}/to-dos" target="_self" class="item">
+                    Edit ToDos
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(4)">
+                    Reset challenge
+                </a>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleReturnTeamToLadderModal()">
+                        Return to Ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type !== 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleReturnTeamToLadderModal()">
+                        Return to Ladder
+                    </a>
+                </div>
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(2)">
+                    Withdraw challenge
+                </a>
+            </div>
+            <div class="subtitle">
+                Participant Focused
+            </div>
+            <div class="listing" ng-if="!canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleEditLadderSettingsModal()">
+                    Edit ladder settings
+                </a>
+                <a class="item modal-toggle" ng-click="toggleReturnTeamToLadderModal()">
+                    Return to Ladder
+                </a>
+                <a class="item modal-toggle" ng-click="toggleWithdrawChallengesLadderModal()">
+                    Withdraw challenge
+                </a>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventParticipantFromLadderModal()">
+                        Withdraw from ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventTeamFromLadderModal()">
+                        Withdraw from ladder
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+#view-event-rules-modal .title{
+    margin-bottom: 10px;
+}
+#view-event-rules-modal .description{
+    text-align: left
+}
+#view-event-rules-modal .value{
+    text-align: right
+}
+#view-event-rules-modal label{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#view-event-rules-modal table{
+	width: 100%;
+}
+#view-event-rules-modal div.left, #view-event-rules-modal div.right, #view-event-rules-modal div.dotted{
+	height:1em;
+}
+#view-event-rules-modal .left, #view-event-rules-modal .right{
+	padding:1px 0.5em;
+	background:#fff;
+	float:right;
+}
+#view-event-rules-modal .right{
+	padding-right: 0px;
+}
+#view-event-rules-modal .left{
+	float:left;
+	clear:both;
+	padding-left: 0px;
+	padding-right: 8px;
+}
+#view-event-rules-modal .dotted{
+	border-bottom: 1px dotted grey;
+	margin-bottom:2px;
+}
+#view-event-rules-modal .textarea{
+    height: 150px;
+    resize: none;
+    width: calc(100% - 30px);
+    font-size: 14px;
+}
+#view-event-rules-modal .large-label{
+    font-size: 14px;
+}
+#view-event-rules-modal .extra-padded{
+    padding-top: 15px;
+}
+#view-event-rules-modal .padded, #view-event-rules-modal .extra-padded{
+	padding-bottom: 10px;
+}

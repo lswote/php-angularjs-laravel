@@ -1,0 +1,66 @@
+<form id="edit-event-modal" ng-controller="editEventModalController" ng-submit="editEvent()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Edit Event
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="text" maxlength="40" placeholder="Event Name" ng-model="event.name">
+            <span class="label">
+                EVENT NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showEditEventErrors.name">
+            Required
+        </div>
+        <div class="select-container">
+            <select required disabled>
+                <option value="tennis">
+                    Tennis
+                </option>
+            </select>
+            <span class="label">
+                ACTIVITY
+            </span>
+        </div>
+        <div class="select-container">
+            <select required disabled ng-model="event.eventType">
+                <option value="social">
+                    Social
+                </option>
+                <option value="league">
+                    League
+                </option>
+                <option value="ladder">
+                    Ladder
+                </option>
+            </select>
+            <span class="label">
+                EVENT TYPE
+            </span>
+        </div>
+        <div class="input-container">
+            <input type="text" disabled ng-model="event.eventLeaderName">
+            <span class="label">
+                EVENT LEADER
+            </span>
+        </div>
+        <div class="input-container">
+            <input type="text" disabled ng-model="event.startDate">
+            <span class="label">
+                START DATE
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            UPDATE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,103 @@
+<div ng-controller="eventSubsAvailabilityController">
+    <div id="event-subs-availability" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Edit Subs Availability for {{event.name}}
+            </div>
+            <div class="subtitle">
+                Change substitutes' availability for one or multiple rounds
+            </div>
+            <div class="filters">
+                <select ng-model="filters.gender">
+                    <option value="" disabled selected>
+                        Gender
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                    <option value="male">
+                        Male
+                    </option>
+                </select>
+                <input type="text" placeholder="Search Users" ng-class="filters.user" ng-model="filters.name">
+                <select class="date-filter" ng-model="filters.startDate">
+                    <option class="type" value="{{date}}" ng-repeat="date in roundDates">
+                        {{formatDate(date)}}
+                    </option>
+                </select>
+                <span>
+                    to
+                </span>
+                <select class="date-filter" ng-model="filters.endDate">
+                    <option class="type" value="{{date}}" ng-repeat="date in roundDates">
+                        {{formatDate(date)}}
+                    </option>
+                </select>
+            </div>
+            <div class="users">
+                <div class="header">
+                    <span class="name">
+                        NAME
+                    </span>
+                    <span class="type">
+                        S / R
+                    </span>
+                    <span class="group">
+                        GROUP
+                    </span>
+                    <span class="round" ng-repeat="date in shownRoundDates" ng-style="{'width': 'calc((100% - 395px) /' + shownRoundDates.length + ')'}">
+                        {{formatDate(date)}}
+                    </span>
+                </div>
+                <div class="body">
+                    <div class="users-group" ng-repeat="user in foundUsers | orderBy: ['sex', 'first_name']">
+                        <span class="name">
+                            {{user.first_name}} {{user.last_name}}
+                        </span>
+                        <span class="type">
+                            {{user.type}}
+                        </span>
+                        <span class="group">
+                            {{user.group_number}}
+                        </span>
+                        <span class="round" ng-class="{'unavailable': subsAvailability[findEventTeamUserAvailabilityId(user.id, date)].status === 'unavailable'}"
+                              ng-repeat="date in shownRoundDates" ng-style="{'width': 'calc((100% - 395px) /' + shownRoundDates.length + ')'}">
+                            <select ng-model="subsAvailability[findEventTeamUserAvailabilityId(user.id, date)].status">
+                                <option value="available">
+                                    Yes
+                                </option>
+                                <option value="unavailable">
+                                    No
+                                </option>
+                                <option value="">
+                                    Maybe
+                                </option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateAvailability(true)" ng-disabled="callInProgress">
+                    Save And Exit
+                </button>
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateAvailability()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

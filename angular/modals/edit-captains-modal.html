@@ -1,0 +1,68 @@
+<form id="edit-captains-modal" ng-controller="editCaptainsModalController" ng-submit="updateEventTeamCaptains()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Edit Event Captains
+    </div>
+    <div class="event-name">
+        {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <table ng-show="!getEventTeamsInProgress && eventTeams.length > 0">
+            <tr>
+                <th class="team-name">
+                    TEAM
+                </th>
+                <th>
+                    CAPTAIN
+                </th>
+                <th>
+                    EMAIL
+                </th>
+                <th class="role">
+                    ROLE
+                </th>
+            </tr>
+            <tr ng-repeat="team in eventTeams | orderBy: 'last_name'">
+				<td class="{{team.name}} team-name" ng-style="{'color': team.name}">
+                    {{team.name}}
+                </td>
+                <td>
+                    <div class="select-container">
+                        <select ng-model="team.captain_user_id">
+                            <option value="" selected>
+                                None
+                            </option>
+                            <option value="{{user.user_id}}" ng-repeat="user in eventTeamUsers | filter: {event_team_id: team.id}">
+                                {{user.users.first_name}} {{user.users.last_name}}
+                            </option>
+                        </select>
+                        <span class="label">
+                            CAPTAIN
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    {{eventTeamUsers[findArrayIndex(eventTeamUsers, 'user_id', team.captain_user_id)].users.email}}
+                </td>
+                <td class="role">
+                    C
+                </td>
+            </tr>
+        </table>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getEventTeamsInProgress">
+        <div class="no-results-found" ng-show="!getEventTeamsInProgress && eventTeams.length === 0">
+            No teams found
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

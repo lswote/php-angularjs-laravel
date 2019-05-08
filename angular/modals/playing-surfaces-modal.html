@@ -1,0 +1,41 @@
+<form id="playing-surfaces-modal" ng-controller="playingSurfacesModalController" ng-submit="updateSelectedSurfaces()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Playing Surfaces
+    </div>
+    <div class="match-info">
+        {{selectedEvent.name}} - Tennis ({{event.maxPlayingSurfaces}} Surfaces Available)
+    </div>
+    <div class="input-section">
+        <div class="labels">
+            <span class="subtitle">
+                Available Surfaces
+            </span>
+            <span class="subtitle">
+                Standard PS
+            </span>
+        </div>
+        <div class="surface" ng-repeat="surface in surfaces">
+            <input type="checkbox" ng-click="toggleSelectedSurface(surface.id, selectedEvent.id)"
+                   ng-checked="findArrayIndexMultipleKeys(selectedSurfaces, ['facility_surface_id', 'event_id'], [surface.id, selectedEvent.id]) !== false"
+                   ng-disabled="!allowAdditionalSurfacesToBeSelected && findArrayIndexMultipleKeys(selectedSurfaces, ['facility_surface_id', 'event_id'], [surface.id, selectedEvent.id]) === false">
+            <span>
+                Playing Surface {{surface.facility_surface_number}}
+            </span>
+            <input class="event-surface-number" type="number" max="50"
+                   ng-show="findArrayIndexMultipleKeys(selectedSurfaces, ['facility_surface_id', 'event_id'], [surface.id, selectedEvent.id]) !== false"
+                   ng-model="selectedSurfaces[findArrayIndexMultipleKeys(selectedSurfaces, ['facility_surface_id', 'event_id'], [surface.id, selectedEvent.id])].event_surface_number">
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

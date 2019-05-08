@@ -1,0 +1,41 @@
+<div id="navigation" ng-controller="navigationController">
+    <div class="top">
+        Hi,
+        <span class="name">
+            {{user.first_name}}
+        </span>
+        <div class="privilege">
+            {{user.privilege}}
+        </div>
+    </div>
+    <a href="/dashboard" target="_self" ng-class="{'selected': currentPage === 'dashboard'}">
+        My Dashboard
+    </a>
+    <a ng-class="{'selected': currentPage === 'schedule'}" ng-if="user.privilege !== 'admin'">
+        My Schedule
+    </a>
+    <a href="/admin" target="_self" ng-class="{'selected': currentPage === 'admin'}" ng-if="user.privilege !== 'admin'">
+        My Admin
+    </a>
+    <a ng-class="{'selected': currentPage === ''}" ng-if="user.privilege !== 'admin'">
+        Contact Facility Leader
+    </a>
+    <a href="/about-events" ng-class="{'selected': currentPage === 'about-events'}">
+        Events - About
+    </a>
+    <a ng-class="{'selected': currentPage === ''}" ng-if="user.privilege !== 'admin'">
+        Events - Calendar
+    </a>
+    <a href="/event-flows" ng-class="{'selected': currentPage === 'event-flows'}">
+        Events - Flows
+    </a>
+    <a ng-class="{'selected': currentPage === ''}" ng-if="user.privilege !== 'admin'">
+        Participants
+    </a>
+    <a href="/past-events" target="_self" ng-class="{'selected': currentPage === 'pastEvents'}" ng-if="user.privilege !== 'admin'">
+        Past Events
+    </a>
+    <a ng-click="logout()">
+        Sign Out
+    </a>
+</div>

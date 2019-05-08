@@ -1,0 +1,24 @@
+#import-team-participants-modal .title{
+    margin-bottom: 20px;
+}
+#import-team-participants-modal .file-input-container{
+    padding-left: 15px;
+    border: 2px solid #626673;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 40px;
+    cursor: pointer;
+}
+#import-team-participants-modal .file-input-container.no-file-selected{
+    border-color: #bfc7d9;
+}
+#import-team-participants-modal .file-input-container input{
+    display: none;
+}
+#import-team-participants-modal .imported-count{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+}

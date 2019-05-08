@@ -1,0 +1,45 @@
+<form id="print-scorecards-modal" ng-controller="printScorecardsModalController" ng-submit="generateScorecard()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Generate Scorecard
+    </div>
+    <div class="input-section">
+        <div class="select-container" ng-if="selectedEvent.event_type === 'league' || selectedEvent.event_type === 'round robin'">
+            <select required ng-model="printScorecardsObject.roundDate">
+                <option value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                    {{formatDate(round.date)}}
+                </option>
+            </select>
+            <span class="label">
+                Round Date
+            </span>
+        </div>
+        <div class="select-container">
+            <select required ng-model="printScorecardsObject.size">
+                <option value="small">
+                    8.5" x 11"
+                </option>
+                <option value="medium">
+                    8.5" x 14"
+                </option>
+                <option value="large">
+                    8.5" x 11" (2 Sheets)
+                </option>
+            </select>
+            <span class="label">
+                Size
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            GENERATE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+<div id="view-open-challenges-ladder-modal" ng-controller="viewOpenChallengesLadderModalController">
+    <div class="show-challenges" ng-show="show_challenges">
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class="title event-name">
+            Accepted and Unaccepted challenges yet to be played
+        </div>
+        <div>
+            View of the issues challenges yet to be played separated between accepted and unaccepted
+        </div>
+		<div ng-include src="challenges_file"></div>
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleModal()">
+                CLOSE
+            </button>
+        </div>
+    </div>
+    <div class="accepted-challenges" ng-include src="ladderObject.src" ng-show="show_edit_challenge_score">
+    </div>
+</div>

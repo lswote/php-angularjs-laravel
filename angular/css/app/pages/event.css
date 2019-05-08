@@ -1,0 +1,235 @@
+#event .title{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e1e5ed;
+}
+#event .step{
+    margin-bottom: 35px;
+}
+#event .step .step-label, #event .step .event-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+#event .step .step-label{
+    color: #2e7cff;
+}
+#event .step .event-format{
+    color: #485358;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+#event .step .more-info-text{
+    margin-top: 10px;
+    margin-bottom: 40px;
+    color: #858790;
+    font-size: 14px;
+}
+#event .step input{
+    height: 30px;
+    width: calc(100% - 30px);
+}
+#event .step select{
+    height: 44px;
+    width: 100%;
+}
+#event .step .input-container .error, #event .step .select-container .error{
+    position: absolute
+}
+#event .step-one{
+    margin-top: 30px;
+}
+#event .step-one .input-container, #event .step-one .select-container{
+    display: inline-block;
+}
+#event .step-one .first-row{
+    margin-bottom: 20px;
+}
+#event .step-one .first-row .input-container, #event .step-one .first-row .select-container{
+    width: calc(50% - 18px);
+}
+#event .step-one .first-row .input-container.first, #event .step-one .first-row .select-container.first{
+    margin-right: 30px;
+}
+#event .step-one .first-row .input-container.second select, #event .step-one .first-row .input-container.second option,
+#event .step-one .first-row .select-container.second select, #event .step-one .first-row .select-container.second option{
+    text-transform: capitalize;
+}
+@-moz-document url-prefix(){
+    #event .step-one .second-row .select-container{
+        position: relative;
+        top: -15px;
+    }
+}
+#event .step-one .second-row .input-container, #event .step-one .second-row .select-container:not(.small){
+    width: calc(23% - 14px);
+}
+#event .step-one .second-row .input-container.small{
+    width: calc(17% - 18px);
+}
+#event .step-one .second-row .select-container.small{
+    width: calc(15.5% - 14px);
+}
+#event .step-one .second-row .input-container.not-last, #event .step-one .second-row .select-container.not-last{
+    margin-right: 12px;
+}
+#event .step-one .third-row{
+    margin-top: 20px;
+    padding-top: 30px;
+    border-top: 1px solid #e1e5ed;
+}
+#event .step-one .third-row .league-sitting-label{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 40px;
+}
+#event .step-one .third-row .input-container{
+    width: calc(50% - 104px);
+    margin-left: 20px;
+}
+#event .step-one .buttons-row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px dotted #b9c0d5;
+}
+#event .step-one .buttons-row .item{
+    width: 20%;
+    text-align: center;
+}
+#event .step-one .buttons-row .item .tag{
+    font-size: 12px;
+    font-weight: 600;
+}
+#event .step-one .buttons-row .item .button{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 80%;
+    margin-top: 15px;
+    color: white;
+    background-color: #4cb050;
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 2.5;
+}
+#event .step-two .charts{
+    display: flex;
+    margin-bottom: 40px;
+    border: 3px solid #bfc8d9;
+    border-radius: 10px;
+}
+#event .step-two .lines-per-team, #event .step-two .num-of-start-times{
+    padding-bottom: 25px;
+}
+#event .step-two .charts .chart-title{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #ebeff2;
+    font-weight: 600;
+    border-bottom: 3px solid #bfc8d9;
+    text-align: center;
+}
+#event .step-two .charts table{
+    border-collapse: collapse;
+}
+#event .step-two .charts tr.disabled{
+    background-color: #bfc8d9;
+}
+#event .step-two .charts tr.disabled td{
+    color: white;
+}
+#event .step-two .charts th{
+    font-size: 14px;
+    font-weight: 600;
+}
+#event .step-two .charts td{
+    color: #676a79;
+    font-size: 12px;
+}
+#event .step-two .charts .lines-per-team{
+    width: 70%;
+    border-right: 3px solid #bfc8d9;
+}
+#event .step-two .charts .lines-per-team th, #event .step-two .charts .lines-per-team td{
+    padding: 8px 0 8px 15px;
+    text-align: left;
+}
+#event .step-two .charts .num-of-start-times{
+    width: 30%;
+}
+#event .step-two .charts .num-of-start-times .chart-container{
+    display: flex;
+    height: 100%;
+}
+#event .step-two .charts .num-of-start-times .chart-label{
+    display: flex;
+    height: calc(100% - 119px);
+    width: 20%;
+    padding-top: 80px;
+    border-right: 1px solid #bfc8d9;
+}
+#event .step-two .charts .num-of-start-times .chart-label .text{
+    width: 10px;
+    padding-left: 15px;
+    word-wrap: break-word;
+}
+#event .step-two .charts .num-of-start-times table{
+    width: 80%;
+    margin-top: 15px;
+}
+#event .step-two .charts .num-of-start-times th{
+    padding-bottom: 22px;
+}
+#event .step-two .charts .num-of-start-times td{
+    height: 32px;
+    width: 32px;
+    text-align: center;
+}
+#event .step-two .charts .num-of-start-times td div.can-be-clicked{
+    cursor: pointer;
+}
+#event .step-two .charts .num-of-start-times td.not-available div{
+    color: #b7c4c9;
+}
+#event .step-two .charts .num-of-start-times td.not-available div.selected{
+    background-color: red !important;
+}
+#event .step-two .charts .num-of-start-times tr.header-row{
+    border-bottom: 2px solid #bfc8d9;
+}
+#event .step-two .charts .num-of-start-times tr:not(.disabled) td.selected div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 25px;
+    width: 25px;
+    color: white;
+    background-color: #2879ff;
+    border-radius: 25px;
+}
+#event .step-three .inputs{
+    display: flex;
+    flex-wrap: wrap;
+}
+#event .step-three .inputs .column{
+    width: calc(50% - 18px);
+}
+#event .step-three .inputs .column.first{
+    margin-right: 30px;
+}
+#event .step-three .input-container, #event .step-three .select-container{
+    margin-bottom: 25px;
+}
+#no-event-found{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}

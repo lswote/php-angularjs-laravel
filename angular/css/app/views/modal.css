@@ -1,0 +1,89 @@
+#modal{
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 50px auto 100px auto;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px 35px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+}
+#modal.large-size{
+    max-width: 1000px;
+}
+#modal .exit-icon{
+    position: absolute;
+    top: 40px;
+    right: 38px;
+    color: #626673;
+    font-size: 22px;
+    cursor: pointer;
+}
+#modal .title{
+    padding-right: 20px;
+    color: #2979ff;
+    font-size: 28px;
+}
+#modal .match-info{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: calc(100% - 25px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    color: #303b41;
+    background-color: #eceff1;
+    font-weight: 600;
+}
+#modal input:not([type="checkbox"]){
+    width: calc(100% - 35px);
+}
+#modal .error{
+    margin-top: 5px;
+}
+#modal select{
+    width: 100%;
+}
+#modal .buttons{
+    height: 55px;
+    margin-top: 35px;
+    padding-top: 35px;
+    border-top: 1px solid #bfc7d9;
+}
+#modal .buttons button{
+    height: 50px;
+    width: 45%;
+}
+#modal .cancel-button{
+    float: left;
+    color: #626673;
+    background-color: white;
+    border: 3px solid #626673;
+    line-height: 1;
+}
+#modal .submit-button{
+    float: right;
+}
+#modal .submit-button span{
+    margin-left: 10px;
+    color: white;
+}
+@media(max-width: 580px){
+    #modal{
+        padding: 15px 20px;
+    }
+    #modal .exit-icon{
+        top: 22px;
+        right: 20px;
+    }
+    #modal .title{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    #modal .buttons{
+        margin-top: 15px;
+        padding-top: 15px;
+    }
+}

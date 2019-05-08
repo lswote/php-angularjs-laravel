@@ -1,0 +1,158 @@
+<div id="rsvp" ng-controller="rsvpController">
+    <img src="/images/TeamsRItlogo.png">
+    <div class="challenge" ng-if="challengeShow">
+        <div class='challenge-div'>
+            <div class='title'>
+                Accept or Deny Challenge
+            </div>
+            <div>
+                Accept challenge issued to you
+            </div>
+        </div>
+        <form id="challenge-form" ng-show="getChallengeSuccess && !rsvpSuccess" ng-submit="rsvp()">
+            <table>
+                <tr>
+                    <th class="column1" colspan=2>
+                        CHALLENGER
+                    </th>
+                    <th class="column2" colspan=2>
+                        STATUS
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan=2>
+                        <label>{{challenger}}</label>
+                    </th>
+                    <th colspan=2>
+                        <label>{{status}}</label>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        &#x1F6C8; Contact Details
+                    </td>
+                    <td colspan=2>
+                        Expires: {{acceptByDate}}
+                    </td>
+                </tr>
+                <tr class="radio-buttons">
+                    <td class="column3">
+                        <input class="column4" type="radio" id="accept" name="preferred-start-time" ng-model="response.preferredStartTime" value="available" />
+                    </td>
+                    <th class="column5">
+                        <label class="column6"for="accept"><span ng-show="showAccepted">&#10004;</span>Accept</label>
+                    </th>
+                    <td class="column3">
+                        <input class="column4" type="radio" id="deny" name="preferred-start-time" ng-model="response.preferredStartTime" value="unavailable" />
+                    </td>
+                    <th class="column5">
+                        <label class="column6"for="deny"><span ng-show="showUnaccepted">&#10004;</span>Deny</label>
+                    </th>
+                </tr>
+            </table>
+            <hr>
+        <div>
+            <button class="rsvp_button" type="submit">
+                RSVP
+            </button>
+        </div>
+        </form>
+        <div class="confirmation-message confirmation-challenge-message" ng-show="!rsvpInProgress && rsvpSuccess">
+            Thank you.  You have RSVPed for challenge {{challenger}} vs {{challengee}}
+            <br>
+            Your match must be played by {{playByDate}}
+        </div>
+        <div class="error-message" ng-show="getChallengeSuccess === false || rsvpSuccess === false">
+            Something went wrong :(
+        </div>
+    </div>
+    <div ng-if="!challengeShow">
+        <div class="event-info">
+            <div class="item">
+                <span class="label">
+                    Name
+                </span>
+                <span>
+                    {{event.user_first_name}} {{event.user_last_name}}
+                </span>
+            </div>
+            <div class="item">
+                <span class="label">
+                    Username
+                </span>
+                <span>
+                    {{event.username}}
+                </span>
+            </div>
+            <div class="item">
+                <span class="label">
+                    Event Name
+                </span>
+                <span>
+                    {{event.name}}
+                </span>
+            </div>
+            <div class="item">
+                <span class="label">
+                    Activity
+                </span>
+                <span>
+                    {{event.activity}}
+                </span>
+            </div>
+            <div class="item">
+                <span class="label">
+                    Event Type
+                </span>
+                <span>
+                    {{event.event_type}}
+                </span>
+            </div>
+            <div class="item">
+                <span class="label">
+                    Date
+                </span>
+                <span>
+                    {{event.start_date}}
+                </span>
+            </div>
+        </div>
+        <form id="participation-form" ng-show="getEventSuccess && !rsvpSuccess" ng-submit="rsvp()">
+            <div class="indicate-availablity">
+                Indicate Your Availability
+            </div>
+            <div class="radio-buttons">
+                <div ng-if="event.event_type === 'Social'">
+                    <label>
+                        <input name="preferred-start-time" type="radio" ng-model="response.preferredStartTime" value="">No Start Time Requirement
+                    </label>
+                    <label ng-repeat="startTime in availableStartTimes">
+                        <input name="preferred-start-time" type="radio" ng-model="response.preferredStartTime" ng-value="startTime.start_time">{{startTime.start_time_formatted}}
+                    </label>
+                    <label>
+                        <input name="preferred-start-time" type="radio" ng-model="response.preferredStartTime" value="unavailable">Unavailable
+                    </label>
+                </div>
+                <div ng-if="event.event_type !== 'Social'">
+                    <label>
+                        <input name="preferred-start-time" type="radio" ng-model="response.preferredStartTime" value="available">Available
+                    </label>
+                    <label>
+                        <input name="preferred-start-time" type="radio" ng-model="response.preferredStartTime" value="unavailable">Not Available
+                    </label>
+                </div>
+            </div>
+            <button type="submit">
+                RSVP
+            </button>
+        </form>
+        <div class="confirmation-message" ng-show="!rsvpInProgress && rsvpSuccess">
+            Thank you.  You have RSVPed for {{event.name}}.
+            <br>
+            The event starts on {{event.start_date}} at {{event.start_time}}
+        </div>
+        <div class="error-message" ng-show="getEventSuccess === false || rsvpSuccess === false">
+            Something went wrong :(
+        </div>
+    </div>
+</div>

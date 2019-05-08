@@ -1,0 +1,304 @@
+<div ng-controller="eventToDosController">
+    <div id="event-to-dos" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Schedule of To Dos
+            </div>
+            <div class="subtitle">
+                {{selectedEvent.name}} - First Round Date {{selectedEvent.start_date | date: 'longDate'}}
+            </div>
+            <div class="add-to-do">
+                <select ng-model="taskFilter" required>
+                    <option ng-value="" disabled selected>
+                        Status
+                    </option>
+                    <option value="all">
+                        All
+                    </option>
+                    <option value="complete">
+                        Complete
+                    </option>
+                    <option value="!complete">
+                        Not Complete
+                    </option>
+                    <option value="in-progress">
+                        In-Progress
+                    </option>
+                </select>
+                <select ng-model="daysFilter" required>
+                    <option ng-value="" disabled selected>
+                        Days Remaining
+                    </option>
+                    <option value="all">
+                        All
+                    </option>
+                    <option value="0">
+                        < 0
+                    </option>
+                    <option value="-4">
+                        < -4
+                    </option>
+                </select>
+            </div>
+            <div class="to-dos">
+                <div class="before">
+                    <div class="label">
+                        Tasks before event
+                    </div>
+                    <table>
+                        <tr>
+                            <th class="id">
+                                ID
+                            </th>
+                            <th class="description">
+                                DESCRIPTION
+                            </th>
+                            <th class="other-to-do-id">
+                                OTHER TO DO ID
+                            </th>
+                            <th class="days-to-from">
+                                DAYS TO / FROM OTHER TO DO
+                            </th>
+                            <th class="status">
+                                STATUS
+                            </th>
+                            <th class="due">
+                                DUE
+                            </th>
+                            <th class="who">
+                                WHO
+                            </th>
+                            <th class="days-remaining">
+                                DAYS REMAINING
+                            </th>
+                            <th class="delete">
+                                DELETE
+                            </th>
+                        </tr>
+                        <tr ng-repeat="task in tasks[0] | filter: filterFn">
+                            <td class="id">
+                                {{task.id}}
+                            </td>
+                            <td class="description">
+                                <input ng-model="task.description" class="large" type="text" placeholder="Task" />
+                            </td>
+                            <td class="other-to-do-id">
+                                <input ng-model="task.prevTask" class="small" type="text" />
+                            </td>
+                            <td class="days-to-from">
+                                <input ng-model="task.daysOffset" class="small" type="text" />
+                            </td>
+                            <td>
+                                <select ng-model="task.status">
+                                    <option value="complete">
+                                        Complete
+                                    </option>
+                                    <option value="in-progress" selected>
+                                        In-Progress
+                                    </option>
+                                </select>
+                            </td>
+
+                            <td class="due">
+                                {{calculateDueDate(task) | date : 'M/d'}}
+                            </td>
+                            <td class="who">
+                                <input ng-model="task.assigned_user" class="medium" type="text" />
+                            </td>
+                            <td class="days-remaining">
+                                <span ng-style="{color: getColor(task)}">{{calculateDaysRemaining(task)}}</span>
+                            </td>
+                            <td class="delete">
+                                <a><i class="fa fa-trash" ng-click="deleteTodo(task)"></i></a>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" ng-click="addTask(0, addBefore[0])"> INSERT TO-DO AT </button>
+                                <input ng-model="addBefore[0]" class="medium" type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="during">
+                    <div class="label">
+                        Tasks during event
+                    </div>
+                    <table>
+                        <tr>
+                            <th class="id">
+                                ID
+                            </th>
+                            <th class="description">
+                                DESCRIPTION
+                            </th>
+                            <th class="other-to-do-id">
+                                OTHER TO DO ID
+                            </th>
+                            <th class="days-to-from">
+                                DAYS TO / FROM OTHER TO DO
+                            </th>
+                            <th class="status">
+                                STATUS
+                            </th>
+                            <th class="due">
+                                DUE
+                            </th>
+                            <th class="who">
+                                WHO
+                            </th>
+                            <th class="days-remaining">
+                                DAYS REMAINING
+                            </th>
+                            <th class="delete">
+                                DELETE
+                            </th>
+                        </tr>
+                        <tr ng-repeat="task in tasks[1] | filter: filterFn">
+                            <td class="id">
+                                {{task.id}}
+                            </td>
+                            <td class="description">
+                                <input ng-model="task.description" class="large" type="text" placeholder="Task" />
+                            </td>
+                            <td class="other-to-do-id">
+                                <input ng-model="task.prevTask" class="small" type="text" />
+                            </td>
+                            <td class="days-to-from">
+                                <input ng-model="task.daysOffset" class="small" type="text" />
+                            </td>
+                            <td>
+                                <select ng-model="task.status">
+                                    <option value="complete">
+                                        Complete
+                                    </option>
+                                    <option value="in-progress" selected>
+                                        In-Progress
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="due">
+                                {{calculateDueDate(task) | date : 'M/d'}}
+                            </td>
+                            <td class="who">
+                                <input ng-model="task.assigned_user" class="medium" type="text" />
+                            </td>
+                            <td class="days-remaining">
+                                <span ng-style="{color: getColor(task)}">{{calculateDaysRemaining(task)}}</span>
+                            </td>
+                            <td class="delete">
+                                <a><i class="fa fa-trash" ng-click="deleteTodo(task)"></i></a>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" ng-click="addTask(1, addBefore[1])"> INSERT TO-DO AT </button>
+                                <input ng-model="addBefore[1]" class="medium" type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="after">
+                    <div class="label">
+                        Tasks after event
+                    </div>
+                    <table>
+                        <tr>
+                            <th class="id">
+                                ID
+                            </th>
+                            <th class="description">
+                                DESCRIPTION
+                            </th>
+                            <th class="other-to-do-id">
+                                OTHER TO DO ID
+                            </th>
+                            <th class="days-to-from">
+                                DAYS TO / FROM OTHER TO DO
+                            </th>
+                            <th class="status">
+                                STATUS
+                            </th>
+                            <th class="due">
+                                DUE
+                            </th>
+                            <th class="who">
+                                WHO
+                            </th>
+                            <th class="days-remaining">
+                                DAYS REMAINING
+                            </th>
+                            <th class="delete">
+                                DELETE
+                            </th>
+                        </tr>
+                        <tr ng-repeat="task in tasks[2] | filter: filterFn">
+                            <td class="id">
+                                {{task.id}}
+                            </td>
+                            <td class="description">
+                                <input ng-model="task.description" class="large" type="text" placeholder="Task" />
+                            </td>
+                            <td class="other-to-do-id">
+                                <input ng-model="task.prevTask" class="small" type="text" />
+                            </td>
+                            <td class="days-to-from">
+                                <input ng-model="task.daysOffset" class="small" type="text" />
+                            </td>
+                            <td>
+                                <select ng-model="task.status">
+                                    <option value="complete">
+                                        Complete
+                                    </option>
+                                    <option value="in-progress" selected>
+                                        In-Progress
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="due">
+                                {{calculateDueDate(task) | date : 'M/d'}}
+                            </td>
+                            <td class="who">
+                                <input ng-model="task.assigned_user" class="medium" type="text" />
+                            </td>
+                            <td class="days-remaining">
+                                <span ng-style="{color: getColor(task)}">{{calculateDaysRemaining(task)}}</span>
+                            </td>
+                            <td class="delete">
+                                <a><i class="fa fa-trash" ng-click="deleteTodo(task)"></i></a>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" ng-click="addTask(2, addBefore[2])"> INSERT TO-DO AT </button>
+                                <input ng-model="addBefore[2]" class="medium" type="text" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress" ng-click="submit()">
+                    Update
+                    <span ng-show="callSuccess">
+                        &#10004;
+                    </span>
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<form id="delete-facility-leader-modal" ng-controller="deleteFacilityLeaderModalController" ng-submit="deleteFacilityLeader()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Delete Facility Leader
+    </div>
+    <div class="input-section">
+		<div class="select-container">
+            <select required ng-model="deleteFacilityLeaderObject.facilityId" ng-change="showFacilityLeaders()">
+                <option value="" disabled selected>
+                    Select Facility
+                </option>
+                <option value="{{facility.id}}" ng-repeat="facility in facilities">
+                    {{facility.name}}
+                </option>
+            </select>
+            <span class="label">
+                Facility
+            </span>
+        </div>
+		<div class="radio-buttons" ng-show="facilityLeaders.length > 1">
+			<div ng-repeat="facilityLeader in facilityLeaders | orderBy: ['first_name', 'last_name']">
+				<div class="input-container">
+					<input required name="facility_leader" id="{{facilityLeader.id}}" ng-model="deleteFacilityLeaderObject.leaderId" type="radio" value="{{facilityLeader.id}}">
+					<label for="{{facilityLeader.id}}">{{facilityLeader.first_name}} {{facilityLeader.last_name}}</label>
+				</div>
+			</div>
+		</div>
+		<div class="radio-buttons" ng-show="facilityLeaders.length === 1">
+			<div ng-repeat="facilityLeader in facilityLeaders | orderBy: ['first_name', 'last_name']">
+				<div class="input-container">
+					<label>{{facilityLeader.first_name}} {{facilityLeader.last_name}}</label>
+				</div>
+			</div>
+		</div>
+		<div class="error" ng-show="deleteFacilityLeaderObject.facilityId && facilityLeaders.length === 0">
+			Facility has no leaders
+		</div>
+		<div class="error" ng-show="facilityLeaders.length === 1">
+			Facility must have at least one leader.  Add another leader and
+			this leader can be deleted.
+		</div>
+		<div class="error" ng-show="showDeleteFacilityLeaderErrors.facilityId">
+			Select a facility
+		</div>
+		<div class="error" ng-show="showDeleteFacilityLeaderErrors.leaderId">
+			Select a leader to delete
+		</div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+		<button class="submit-button" type="submit" ng-disabled="facilityLeaders.length < 2">
+            DELETE
+        </button>
+    </div>
+</form>

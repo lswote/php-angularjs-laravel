@@ -1,0 +1,111 @@
+#event-lineups .error{
+	font-size: 14px;
+}
+#event-lineups .title{
+    margin-bottom: 40px;
+}
+#event-lineups .filters{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-lineups .filters select:not(.date-filter){
+    width: 19%;
+    margin-right: 30px;
+}
+#event-lineups .filters select{
+    height: 40px;
+    text-transform: capitalize;
+}
+#event-lineups .filters .date-filter{
+    width: 12%;
+}
+#event-lineups .filters span{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#event-lineups .users{
+    margin-top: 20px;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+}
+#event-lineups .users .header{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+#event-lineups .users .header span, #event-lineups .users .users-group span{
+    display: inline-block;
+}
+#event-lineups .users .header span{
+    color: #858790;
+}
+#event-lineups .users .header .name{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-lineups .users .header .group{
+    width: 90px;
+}
+#event-lineups .users .header .gender{
+    width: 100px;
+}
+#event-lineups .users .header .round{
+    position: relative;
+    min-width: 135px;
+    text-align: center;
+    cursor: pointer;
+}
+#event-lineups .users .header .round i{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+#event-lineups .users .header .round .availability-count{
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    width: 100%;
+}
+#event-lineups .users .body{
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#event-lineups .users .users-group{
+    width: 100%;
+    padding-top: 20px;
+    white-space: nowrap;
+}
+#event-lineups .users .users-group .name{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-lineups .users .users-group .name span{
+    font-weight: 400;
+    font-style: italic;
+}
+#event-lineups .users .users-group .group{
+    width: 90px;
+}
+#event-lineups .users .users-group .gender{
+    width: 100px;
+    text-transform: capitalize;
+}
+#event-lineups .users .users-group .round{
+    min-width: 135px;
+    text-align: center;
+}
+#event-lineups .users .users-group .round select{
+    width: 83px;
+}
+#event-lineups .users .users-group .round.unavailable select{
+    color: red;
+    font-weight: 600;
+}

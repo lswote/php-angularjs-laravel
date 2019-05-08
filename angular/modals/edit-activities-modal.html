@@ -1,0 +1,97 @@
+<div id="edit-activities-modal" ng-controller="editActivitiesModalController">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div ng-show="showListActivities">
+		<div class="title">
+			Edit Participant Activity Profile
+		</div>
+		<div>
+			Edit activities in which a participant is interested in participating
+		</div>
+		<div class="search-section" ng-show="showSearchSection">
+			<typeahead class="item" items="items" prompt="Participant name" title="name" model="name" inputclass="search-participant" divclass="view-participant" />
+		</div>
+		<div class="input-container" ng-show="showInputSection">
+			<table>
+				<tr ng-repeat="activity in participantActivities|limitTo:(Math.ceil(participantActivities.length/2))">
+					<td>
+						{{participantActivities[$index*2].name}} 
+						<span ng-if="$index*2 < participantActivities.length" 
+							ng-click="delete_activity(participantActivities[$index*2].name,
+													  participantActivities[$index*2].pivot.facility_id, 
+													  participantActivities[$index*2].pivot.activity_id, 
+													  participantActivities[$index*2].pivot.user_id)">
+							<i class="fa fa-trash"></i>
+						</span>
+					</td>
+					<td> 
+						{{participantActivities[$index*2+1].name}} 
+						<span ng-if="$index*2+1 < participantActivities.length" 
+							ng-click="delete_activity(participantActivities[$index*2+1].name,
+													  participantActivities[$index*2+1].pivot.facility_id, 
+													  participantActivities[$index*2+1].pivot.activity_id, 
+													  participantActivities[$index*2+1].pivot.user_id)">
+							<i class="fa fa-trash"></i>
+						</span>
+					</td>
+				</tr>
+			</table>
+			<div class="add-event-leader modal-toggle" ng-click="addActivity()">
+				<i class="fa fa-plus-square-o"></i>
+				Add new activity
+			</div>
+		</div>
+		<div class="buttons">
+			<button class="cancel-button" type="button" ng-click="toggleModal()">
+				CANCEL
+			</button>
+		</div>
+	</div>
+	<div ng-show="showAddActivities">
+		<form ng-submit="update_activities()">
+			<div class="input-container">
+                <input class="search-activities" type="text" placeholder="Search For Activities" ng-model="searchActivitiesTerm">
+                <span class="label">
+                    SEARCH FOR ACTIVITIES
+                </span>
+                <div class="added-activities">
+                    <a class="added-activity modal-toggle" ng-repeat="activity in possibleActivities | orderBy: 'name'" ng-click="toggleAddedActivity(activity.id)">
+                        {{activity.name}}
+                        <span ng-show="activity.alreadySelected">
+                            &#10004;
+                        </span>
+                    </a>
+                </div>
+				<div class="activities">
+					<table>
+						<tr ng-repeat="activity in addedActivities | orderBy: 'name'">
+							<td class="modal-toggle activity" ng-click="toggleAddedActivity(activity.id)">
+								{{activity.name}}
+							</td>
+							<td>
+								<select required ng-model="activity.skill_level">
+									<option value="" disabled selected>
+										Select skill
+									</option>
+									<option value={{skill}} ng-repeat="skill in ['Need Education', 'Beginner', 'Intermediate', 'Advanced', 'Expert']">
+										{{skill}}
+									</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<div class="no-activities-added" ng-show="addedActivities.length === 0">
+						No Activities Added
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<button class="cancel-button" type="button" ng-click="revertDisplay()">
+					CANCEL
+				</button>
+				<button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+					SAVE
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<form id="edit-round-dates-modal" ng-controller="editRoundDatesModalController" ng-submit="updateRoundDates()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Edit Round Dates For {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <div class="input-container" ng-repeat="round in rounds | orderBy: orderRounds">
+            <input class="date" type="text" placeholder="{{round.number > 0 ? 'Round ' + round.number : 'Playoff Round ' +  -round.number}}" ng-model="round.date"
+                   pick-a-date="round.dateObject" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+            <span class="label">
+                {{round.number > 0 ? 'ROUND ' + round.number : 'PLAYOFF ROUND ' +  -round.number}}
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

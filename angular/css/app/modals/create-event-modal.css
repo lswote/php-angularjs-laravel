@@ -1,0 +1,18 @@
+#create-event-modal .title{
+    margin-bottom: 20px;
+}
+#create-event-modal input, #create-event-modal select{
+    margin-top: 30px;
+}
+#select-group-container{
+    display: flex;
+    width: 100%;
+}
+#select-group-left{
+    width: 49%;
+    margin-right: 1%;
+}
+#select-group-right{
+    width: 49%;
+    margin-left: 1%;
+}

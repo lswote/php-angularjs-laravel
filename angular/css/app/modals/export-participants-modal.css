@@ -1,0 +1,22 @@
+#export-participants-modal .title{
+    margin-bottom: 20px;
+}
+#export-participants-modal .radio-buttons{
+    padding-top: 20px;
+}
+#export-participants-modal table{
+	width: 90%;
+}
+#export-participants-modal th{
+	text-align: left;
+}
+#export-participants-modal label{
+    display: inline;
+    font-size: 18px;
+}
+#export-participants-modal .radio-buttons td input:not([type="checkbox"]){
+    margin-left: 10px;
+    display: inline;
+    width: auto;
+    height: auto;
+}

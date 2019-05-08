@@ -1,0 +1,256 @@
+<form id="activity-master-record-modal" ng-controller="activityMasterRecordModalController" ng-submit="selectedView === 'add' ? addActivity() : updateActivity()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Activity Master Record
+    </div>
+    <div class="add-edit-activity-container">
+        <button type="button" class="add-activity-button" ng-class="{'inactive': selectedView === 'edit'}" ng-click="selectView('add')">
+            Add Activity
+        </button>
+        <button type="button" class="edit-activity-button" ng-class="{'inactive': selectedView === 'add'}" ng-click="selectView('edit')">
+            Edit Activity
+        </button>
+    </div>
+    <div class="input-section">
+        <div class="input-container" ng-if="selectedView === 'add'">
+            <input type="text" maxlength="30" placeholder="Activity Name" ng-model="activityMasterRecordObject.name">
+            <span class="label">
+                ACTIVITY NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.name">
+            Required
+        </div>
+        <div class="select-container" ng-if="selectedView === 'edit'">
+            <select required ng-model="activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Activity Name
+                </option>
+                <option value="{{activity.id}}" ng-repeat="activity in activities">
+                    {{activity.name}}
+                </option>
+            </select>
+            <span class="label">
+                ACTIVITY NAME
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.id">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.twoTeamsPerLine"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    2 Teams/Line
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                2 TEAMS/LINE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.twoTeamsPerLine">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.threeTeamsPerLine"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    3 Teams/Line
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                3 TEAMS/LINE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.threeTeamsPerLine">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.fourTeamsPerLine"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    4 Teams/Line
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                4 TEAMS/LINE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.fourTeamsPerLine">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.fiveTeamsPerLine"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    5 Teams/Line
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                5 TEAMS/LINE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.fiveTeamsPerLine">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}"
+                    ng-model="activityMasterRecordObject.doubles" ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Doubles
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                DOUBLES
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.doubles">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.competitionScoringFormat"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Competition Scoring Format
+                </option>
+                <option value="1">
+                    1
+                </option>
+                <option value="3">
+                    3
+                </option>
+                <option value="5">
+                    5
+                </option>
+            </select>
+            <span class="label">
+                COMPETITION SCORING FORMAT
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.competitionScoringFormat">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.lineScoringFormat"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Line Scoring Format
+                </option>
+                <option value="wl">
+                    Win / Loss
+                </option>
+                <option value="points">
+                    Points
+                </option>
+            </select>
+            <span class="label">
+                LINE SCORING FORMAT
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.lineScoringFormat">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': (selectedView === 'edit' && !activityMasterRecordObject.id) || activityMasterRecordObject.lineScoringFormat === 'wl'}"
+                    ng-model="activityMasterRecordObject.pointHighLow"
+                    ng-disabled="(selectedView === 'edit' && !activityMasterRecordObject.id) || activityMasterRecordObject.lineScoringFormat === 'wl'">
+                <option value="" disabled selected>
+                    Point
+                </option>
+                <option value="high">
+                    High
+                </option>
+                <option value="low">
+                    Low
+                </option>
+            </select>
+            <span class="label">
+                POINT
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.pointHighLow">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.surfaceType"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Surface Type
+                </option>
+                <option value="court">
+                    Court
+                </option>
+                <option value="table">
+                    Table
+                </option>
+            </select>
+            <span class="label">
+                SURFACE TYPE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.surfaceType">
+            Required
+        </div>
+        <div class="select-container">
+            <select required ng-class="{'disabled': selectedView === 'edit' && !activityMasterRecordObject.id}" ng-model="activityMasterRecordObject.setOrGame"
+                    ng-disabled="selectedView === 'edit' && !activityMasterRecordObject.id">
+                <option value="" disabled selected>
+                    Match Type
+                </option>
+                <option value="set">
+                    Set
+                </option>
+                <option value="game">
+                    Game
+                </option>
+            </select>
+            <span class="label">
+                MATCH TYPE
+            </span>
+        </div>
+        <div class="error" ng-show="showActivityMasterRecordErrors.setOrGame">
+            Required
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            {{selectedView === 'add' ? 'ADD' : 'UPDATE'}}
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

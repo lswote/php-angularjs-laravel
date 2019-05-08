@@ -1,0 +1,67 @@
+#event-playoff .title{
+    margin-bottom: 40px;
+}
+#event-playoff .playoff-bracket{
+    display: flex;
+}
+#event-playoff .playoff-bracket .header{
+    color: #646770;
+}
+#event-playoff .playoff-bracket .match{
+    width: calc(90% - 60px);
+    margin-top: 30px;
+    margin-right: 10%;
+    padding: 15px 20px;
+    border: #c0c7d9 1px solid;
+    border-radius: 15px;
+}
+#event-playoff .playoff-bracket .match .team{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    width: calc(100% - 40px);
+    border: #c0c7d9 3px solid;
+    border-radius: 15px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+#event-playoff .playoff-bracket .match select.team{
+    width: 100%;
+    padding: 9px 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+#event-playoff .playoff-bracket .match select.team.team-selected{
+    width: calc(100% - 28px);
+}
+#event-playoff .playoff-bracket .match .team-container:first-child{
+    margin-bottom: 15px;
+}
+#event-playoff .playoff-bracket .match .team-container i{
+    margin-left: 5px;
+    cursor: pointer;
+}
+#event-playoff .playoff-bracket .champions .match{
+    position: relative;
+    height: 114px;
+}
+#event-playoff .playoff-bracket .champions .match i, #event-playoff .playoff-bracket .champions .match div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    text-align: center;
+}
+#event-playoff .playoff-bracket .champions .match i{
+    top: 40px;
+    color: #ffc208;
+    font-size: 30px;
+}
+#event-playoff .playoff-bracket .champions .match div{
+    top: 80px;
+    text-transform: capitalize;
+}

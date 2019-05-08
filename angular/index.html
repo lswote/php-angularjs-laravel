@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html ng-app="teamsRIt">
+
+<head>
+    <title ng-bind="'TeamsRIt - ' + title">
+        TeamsRIt
+    </title>
+    <script src="/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="/js/vendor/angular.js"></script>
+    <script src="/js/vendor/angular-route.js"></script>
+    <script src="/js/vendor/picker.js"></script>
+    <script src="/js/vendor/picker.date.js"></script>
+    <script src="/js/vendor/picker.time.js"></script>
+    <script src="/js/vendor/ng-picker.js"></script>
+    <script src="/js/vendor/aws-sdk-2.202.0.js"></script>
+    <script src="/env.js"></script>
+    <script src="/js/app/app.js"></script>
+    <script src="/js/app/directives/utilDirectives.js"></script>
+    <script src="/js/app/directives/viewDirective.js"></script>
+    <script src="/js/app/services/helperService.js"></script>
+    <script src="/js/app/services/socialEventLinesService.js"></script>
+    <script src="/js/app/services/leagueEventLinesService.js"></script>
+    <script src="/js/app/services/roundRobinEventLinesService.js"></script>
+    <script src="/js/app/services/ladderEventLinesService.js"></script>
+    <script src="/js/app/services/registrationService.js"></script>
+    <script src="/js/app/services/forgotPasswordService.js"></script>
+    <script src="/js/app/services/resetPasswordService.js"></script>
+    <script src="/js/app/services/rsvpService.js"></script>
+    <script src="/js/app/services/createEventModalService.js"></script>
+    <script src="/js/app/services/createEventRulesModalService.js"></script>    
+    <script src="/js/app/services/viewEventRulesModalService.js"></script>    
+    <script src="/js/app/services/createFacilityModalService.js"></script>
+    <script src="/js/app/services/dashboardImageModalService.js"></script>
+    <script src="/js/app/services/addFacilityLeaderModalService.js"></script>
+    <script src="/js/app/services/deleteFacilityLeaderModalService.js"></script>
+    <script src="/js/app/services/editFacilityModalService.js"></script>
+    <script src="/js/app/services/editActivitiesModalService.js"></script>
+    <script src="/js/app/services/addEventLeaderModalService.js"></script>
+    <script src="/js/app/services/ladderModalService.js"></script>
+    <script src="/js/app/services/ladderHelperService.js"></script>
+    <script src="/js/app/services/multiModalService.js"></script>
+    <script src="/js/app/services/playingSurfacesModalService.js"></script>
+    <script src="/js/app/services/playingSurfacesWithLinesModalService.js"></script>
+    <script src="/js/app/services/deleteFacilityModalService.js"></script>
+    <script src="/js/app/services/activityMasterRecordModalService.js"></script>
+    <script src="/js/app/services/uploadEventDescriptionModalService.js"></script>
+    <script src="/js/app/services/uploadEventProcessFlowModalService.js"></script>
+    <script src="/js/app/services/notConfirmedParticipantsModalService.js"></script>
+    <script src="/js/app/services/waitlistedParticipantsModalService.js"></script>
+    <script src="/js/app/services/addEventParticipantModalService.js"></script>
+    <script src="/js/app/services/closeEventModalService.js"></script>
+    <script src="/js/app/services/doNotMatchModalService.js"></script>
+    <script src="/js/app/services/importParticipantsModalService.js"></script>
+    <script src="/js/app/services/addFacilityParticipantModalService.js"></script>
+    <script src="/js/app/services/editParticipantContactInfoModalService.js"></script>
+    <script src="/js/app/services/editEventModalService.js"></script>
+    <script src="/js/app/services/startEventModalService.js"></script>
+    <script src="/js/app/services/printScorecardsModalService.js"></script>
+    <script src="/js/app/services/printToDosModalService.js"></script>
+    <script src="/js/app/services/editParticipantModalService.js"></script>
+    <script src="/js/app/services/regenerateLinesModalService.js"></script>
+    <script src="/js/app/services/importParticipantsActivitiesModalService.js"></script>
+    <script src="/js/app/services/exportParticipantsActivitiesModalService.js"></script>
+    <script src="/js/app/services/openTimeSlotsModalService.js"></script>
+    <script src="/js/app/services/teamDrawModalService.js"></script>
+    <script src="/js/app/services/importTeamParticipantsModalService.js"></script>
+    <script src="/js/app/services/exportParticipantsModalService.js"></script>
+    <script src="/js/app/services/perRoundLinesModalService.js"></script>
+    <script src="/js/app/services/matchLineTimesModalService.js"></script>
+    <script src="/js/app/services/editRoundDatesModalService.js"></script>
+    <script src="/js/app/services/editCaptainsModalService.js"></script>
+    <script src="/js/app/services/addWaitlistedParticipantToTeamModalService.js"></script>
+    <script src="/js/app/services/addSubAvailabilityModalService.js"></script>
+    <script src="/js/app/services/addSubToLineupModalService.js"></script>
+    <script src="/js/app/services/tiebreakModalService.js"></script>
+    <script src="/js/app/services/changePasswordModalService.js"></script>
+    <script src="/js/app/services/authService.js"></script>
+    <script src="/js/app/services/dashboardService.js"></script>
+    <script src="/js/app/services/eventService.js"></script>
+    <script src="/js/app/services/eventToDosService.js"></script>
+    <script src="/js/app/services/eventLinesService.js"></script>
+    <script src="/js/app/services/eventStandingsService.js"></script>
+    <script src="/js/app/services/emailService.js"></script>
+    <script src="/js/app/services/eventSignupsService.js"></script>
+    <script src="/js/app/services/facilityActivitiesService.js"></script>
+    <script src="/js/app/services/eventTeamsAvailabilityService.js"></script>
+    <script src="/js/app/services/eventSubsAvailabilityService.js"></script>
+    <script src="/js/app/services/eventLineupsService.js"></script>
+    <script src="/js/app/services/eventPlayoffService.js"></script>
+    <script src="/js/app/controllers/registrationController.js"></script>
+    <script src="/js/app/controllers/forgotPasswordController.js"></script>
+    <script src="/js/app/controllers/resetPasswordController.js"></script>
+    <script src="/js/app/controllers/rsvpController.js"></script>
+    <script src="/js/app/controllers/authController.js"></script>
+    <script src="/js/app/controllers/navigationController.js"></script>
+    <script src="/js/app/controllers/dashboardController.js"></script>
+    <script src="/js/app/controllers/adminController.js"></script>
+    <script src="/js/app/controllers/eventController.js"></script>
+    <script src="/js/app/controllers/eventLinesController.js"></script>
+    <script src="/js/app/controllers/eventTeamsController.js"></script>
+    <script src="/js/app/controllers/eventTeamsAvailabilityController.js"></script>
+    <script src="/js/app/controllers/eventSubsAvailabilityController.js"></script>
+    <script src="/js/app/controllers/pastEventsController.js"></script>
+    <script src="/js/app/controllers/aboutEventsController.js"></script>
+    <script src="/js/app/controllers/eventFlowsController.js"></script>
+    <script src="/js/app/controllers/eventToDosController.js"></script>
+    <script src="/js/app/controllers/eventLeadersController.js"></script>
+    <script src="/js/app/controllers/emailController.js"></script>
+    <script src="/js/app/controllers/eventSignupsController.js"></script>
+    <script src="/js/app/controllers/facilityActivitiesController.js"></script>
+    <script src="/js/app/controllers/eventLineupsController.js"></script>
+    <script src="/js/app/controllers/eventPairingsController.js"></script>
+    <script src="/js/app/controllers/eventPlayoffController.js"></script>
+    <script src="/js/app/controllers/eventIconsController.js"></script>
+    <script src="/js/app/controllers/modalsController.js"></script>
+    <script src="/js/app/controllers/eventStandingsController.js"></script>
+    <script src="/js/app/controllers/dashboardImageModalController.js"></script>
+    <script src="/js/app/controllers/createEventModalController.js"></script>
+    <script src="/js/app/controllers/createEventRulesModalController.js"></script>    
+    <script src="/js/app/controllers/viewEventRulesModalController.js"></script>    
+    <script src="/js/app/controllers/eventTeamChallengeLadderModalController.js"></script>    
+    <script src="/js/app/controllers/acceptChallengeLadderModalController.js"></script>    
+    <script src="/js/app/controllers/createFacilityModalController.js"></script>
+    <script src="/js/app/controllers/addFacilityLeaderModalController.js"></script>
+    <script src="/js/app/controllers/deleteFacilityLeaderModalController.js"></script>
+    <script src="/js/app/controllers/addEventLeaderModalController.js"></script>
+    <script src="/js/app/controllers/addCaptainMultiModalController.js"></script>
+    <script src="/js/app/controllers/addEventTeamToLadderModalController.js"></script>
+    <script src="/js/app/controllers/withdrawEventTeamFromLadderModalController.js"></script>
+    <script src="/js/app/controllers/returnTeamToLadderModalController.js"></script>
+    <script src="/js/app/controllers/withdrawEventParticipantFromLadderModalController.js"></script>
+    <script src="/js/app/controllers/addEventChallengeLadderModalController.js"></script>
+    <script src="/js/app/controllers/viewParticipantsLadderModalController.js"></script>
+    <script src="/js/app/controllers/viewTeamRosterMultiModalController.js"></script>
+    <script src="/js/app/controllers/editParticipantContactInfoModalController.js"></script>
+    <script src="/js/app/controllers/viewLadderRankingsModalController.js"></script>
+    <script src="/js/app/controllers/editLadderRankingsModalController.js"></script>
+    <script src="/js/app/controllers/editLadderResultsModalController.js"></script>
+    <script src="/js/app/controllers/editLadderStartDateModalController.js"></script>
+    <script src="/js/app/controllers/editLadderSettingsModalController.js"></script>
+    <script src="/js/app/controllers/viewCompletedLadderResultsModalController.js"></script>
+    <script src="/js/app/controllers/viewOpenChallengesLadderModalController.js"></script>
+    <script src="/js/app/controllers/withdrawChallengesLadderModalController.js"></script>
+    <script src="/js/app/controllers/playingSurfacesModalController.js"></script>
+    <script src="/js/app/controllers/playingSurfacesWithLinesModalController.js"></script>
+    <script src="/js/app/controllers/eventResultsModalController.js"></script>
+    <script src="/js/app/controllers/deleteFacilityModalController.js"></script>
+    <script src="/js/app/controllers/activityMasterRecordModalController.js"></script>
+    <script src="/js/app/controllers/uploadEventDescriptionModalController.js"></script>
+    <script src="/js/app/controllers/uploadEventProcessFlowModalController.js"></script>
+    <script src="/js/app/controllers/expiringContractsModalController.js"></script>
+    <script src="/js/app/controllers/notConfirmedParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/waitlistedParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/closeEventModalController.js"></script>
+    <script src="/js/app/controllers/doNotMatchModalController.js"></script>
+    <script src="/js/app/controllers/addEventParticipantModalController.js"></script>
+    <script src="/js/app/controllers/importParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/editEventModalController.js"></script>
+    <script src="/js/app/controllers/editFacilityModalController.js"></script>
+    <script src="/js/app/controllers/editActivitiesModalController.js"></script>
+    <script src="/js/app/controllers/startEventModalController.js"></script>
+    <script src="/js/app/controllers/addMatchDirectionsModalController.js"></script>
+    <script src="/js/app/controllers/editMatchDirectionsModalController.js"></script>
+    <script src="/js/app/controllers/deleteMatchDirectionsModalController.js"></script>
+    <script src="/js/app/controllers/updateMatchScheduleModalController.js"></script>
+    <script src="/js/app/controllers/sendCustomEmailModalController.js"></script>
+    <script src="/js/app/controllers/sendTeamMemberLineupModalController.js"></script>
+    <script src="/js/app/controllers/sendIndividualAvailabilityModalController.js"></script>
+    <script src="/js/app/controllers/viewMatchScheduleModalController.js"></script>
+    <script src="/js/app/controllers/addFacilityParticipantModalController.js"></script>
+    <script src="/js/app/controllers/printScorecardsModalController.js"></script>
+    <script src="/js/app/controllers/printMultiScorecardsModalController.js"></script>
+    <script src="/js/app/controllers/printMatchDirectionsModalController.js"></script>
+    <script src="/js/app/controllers/printParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/printToDosModalController.js"></script>
+    <script src="/js/app/controllers/viewParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/editParticipantModalController.js"></script>
+    <script src="/js/app/controllers/regenerateLinesModalController.js"></script>
+    <script src="/js/app/controllers/pickFacilityActivitiesModalController.js"></script>
+    <script src="/js/app/controllers/downloadParticipantsActivitiesModalController.js"></script>
+    <script src="/js/app/controllers/importParticipantsActivitiesModalController.js"></script>
+    <script src="/js/app/controllers/exportParticipantsActivitiesModalController.js"></script>
+    <script src="/js/app/controllers/openTimeSlotsModalController.js"></script>
+    <script src="/js/app/controllers/downloadParticipantsImportModalController.js"></script>
+    <script src="/js/app/controllers/teamDrawModalController.js"></script>
+    <script src="/js/app/controllers/importTeamParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/exportParticipantsModalController.js"></script>
+    <script src="/js/app/controllers/perRoundLinesModalController.js"></script>
+    <script src="/js/app/controllers/matchLineTimesModalController.js"></script>
+    <script src="/js/app/controllers/teamRoundLineupModalController.js"></script>
+    <script src="/js/app/controllers/editRoundDatesModalController.js"></script>
+    <script src="/js/app/controllers/editCaptainsModalController.js"></script>
+    <script src="/js/app/controllers/editStartTimesModalController.js"></script>
+    <script src="/js/app/controllers/addWaitlistedParticipantToTeamModalController.js"></script>
+    <script src="/js/app/controllers/addSubAvailabilityModalController.js"></script>
+    <script src="/js/app/controllers/addSubToLineupModalController.js"></script>
+    <script src="/js/app/controllers/tiebreakModalController.js"></script>
+    <script src="/js/app/controllers/changePasswordModalController.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/vendor/picker-default.css">
+    <link rel="stylesheet" href="/css/vendor/picker.date.css">
+    <link rel="stylesheet" href="/css/vendor/picker.time.css">
+    <link rel="stylesheet" href="/css/app/base.css">
+    <link rel="stylesheet" href="/css/app/pages/dashboard.css">
+    <link rel="stylesheet" href="/css/app/pages/admin.css">
+    <link rel="stylesheet" href="/css/app/pages/past-events.css">
+    <link rel="stylesheet" href="/css/app/pages/event.css">
+    <link rel="stylesheet" href="/css/app/pages/about-events.css">
+    <link rel="stylesheet" href="/css/app/pages/event-flows.css">
+    <link rel="stylesheet" href="/css/app/pages/event-lines.css">
+    <link rel="stylesheet" href="/css/app/pages/event-teams.css">
+    <link rel="stylesheet" href="/css/app/pages/event-teams-availability.css">
+    <link rel="stylesheet" href="/css/app/pages/event-subs-availability.css">
+    <link rel="stylesheet" href="/css/app/pages/event-to-dos.css">
+    <link rel="stylesheet" href="/css/app/pages/event-leaders.css">
+    <link rel="stylesheet" href="/css/app/pages/email.css">
+    <link rel="stylesheet" href="/css/app/pages/event-signups.css">
+    <link rel="stylesheet" href="/css/app/pages/facility-activities.css">
+    <link rel="stylesheet" href="/css/app/pages/event-standings.css">
+    <link rel="stylesheet" href="/css/app/pages/event-lineups.css">
+    <link rel="stylesheet" href="/css/app/pages/event-pairings.css">
+    <link rel="stylesheet" href="/css/app/pages/event-playoff.css">
+    <link rel="stylesheet" href="/css/app/views/modal.css">
+    <link rel="stylesheet" href="/css/app/views/header.css">
+    <link rel="stylesheet" href="/css/app/views/register.css">
+    <link rel="stylesheet" href="/css/app/views/forgot-password.css">
+    <link rel="stylesheet" href="/css/app/views/reset-password.css">
+    <link rel="stylesheet" href="/css/app/views/rsvp.css">
+    <link rel="stylesheet" href="/css/app/views/login.css">
+    <link rel="stylesheet" href="/css/app/views/navigation.css">
+    <link rel="stylesheet" href="/css/app/views/dropdowns.css">
+    <link rel="stylesheet" href="/css/app/modals/dashboard-image-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/create-event-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/create-event-rules-modal.css">    
+    <link rel="stylesheet" href="/css/app/modals/view-event-rules-modal.css">    
+    <link rel="stylesheet" href="/css/app/modals/event-team-challenge-ladder-modal.css">    
+    <link rel="stylesheet" href="/css/app/modals/accept-challenge-ladder-modal.css">    
+    <link rel="stylesheet" href="/css/app/modals/create-facility-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-facility-leader-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/delete-facility-leader-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-event-leader-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-captain-multi-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-event-team-to-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/withdraw-event-team-from-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/return-team-to-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/withdraw-event-participant-from-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-event-challenge-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-participants-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-team-roster-multi-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-participant-contact-info-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-ladder-rankings-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-ladder-rankings-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-ladder-results-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-ladder-start-date-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-ladder-settings-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-completed-ladder-results-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-open-challenges-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/withdraw-challenges-ladder-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/playing-surfaces-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/playing-surfaces-with-lines-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/event-results-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/delete-facility-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/activity-master-record-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/upload-event-description-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/upload-event-process-flow-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/expiring-contracts-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/not-confirmed-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/waitlisted-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/close-event-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/do-not-match-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-event-participant-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/import-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-event-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-facility-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-activities-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/start-event-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-match-directions-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-match-directions-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/delete-match-directions-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/update-match-schedule-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/send-custom-email-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/send-team-member-lineup-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/send-individual-availability-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/view-match-schedule-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-facility-participant-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/print-scorecards-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/print-multi-scorecards-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/print-match-directions-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/print-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/print-to-dos-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-participant-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/regenerate-lines-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/pick-facility-activities-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/import-participants-activities-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/export-participants-activities-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/open-time-slots-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/download-participants-import-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/team-draw-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/import-team-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/export-participants-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/per-round-lines-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/match-line-times-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/team-round-lineup-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-round-dates-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-captains-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/edit-start-times-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-waitlisted-participant-to-team-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-sub-availability-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/add-sub-to-lineup-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/tiebreak-modal.css">
+    <link rel="stylesheet" href="/css/app/modals/change-password-modal.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+</head>
+<body ng-controller="authController" ng-cloak>
+    <section id="logged-out-content" ng-if="(!userAuthenticated && userAuthenticationComplete) || currentPath === '/rsvp'">
+        <div class="background" ng-show="currentPath !== '/rsvp'"></div>
+        <login-panel ng-if="currentPath !== '/register' && currentPath !== '/rsvp' && currentPath !== '/forgot-password' && currentPath !== '/reset-password'"></login-panel>
+        <registration ng-if="currentPath === '/register'"></registration>
+        <forgot-password ng-if="currentPath === '/forgot-password'"></forgot-password>
+        <reset-password ng-if="currentPath === '/reset-password'"></reset-password>
+        <rsvp ng-if="currentPath === '/rsvp'"></rsvp>
+    </section>
+    <section id="logged-in-content" ng-if="userAuthenticated && currentPath !== '/rsvp'">
+        <app-header></app-header>
+        <section id="logged-in-container">
+            <navigation></navigation>
+            <div id="logged-in-body"ng-view></div>
+        </section>
+    </section>
+    <section id="overlay" ng-show="showModal">
+        <modal></modal>
+    </section>
+</body>
+
+</html>

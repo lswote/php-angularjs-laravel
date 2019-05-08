@@ -1,0 +1,34 @@
+#waitlisted-participants-modal .title{
+    margin-bottom: 20px;
+}
+#waitlisted-participants-modal input, #waitlisted-participants-modal select{
+    margin-top: 30px;
+}
+#waitlisted-participants-modal .event-name{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: calc(100% - 25px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    font-weight: 800;
+    background-color: #eceff1;
+    border-bottom: 1px solid #c7cfde;
+}
+#waitlisted-participants-modal table{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+}
+#waitlisted-participants-modal table th, #waitlisted-participants-modal table td{
+    width: 14.28%;
+    text-align: left;
+}
+#waitlisted-participants-modal table th{
+    color: #76767e;
+}
+#waitlisted-participants-modal table td.sex{
+    text-transform: capitalize;
+}

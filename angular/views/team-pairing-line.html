@@ -1,0 +1,21 @@
+<div>
+    <div class="doubles" ng-show="line.line_type === 'doubles'">
+        <div class="player">
+            <span class="name" ng-class="{'empty-slot': !line.current_team_lineup.user_one}">
+                {{line.current_team_lineup.user_one ? line.current_team_lineup.user_one.first_name + ' ' + line.current_team_lineup.user_one.last_name : 'Empty Slot'}}
+            </span>
+        </div>
+        <div class="player">
+            <span class="name" ng-class="{'empty-slot': !line.current_team_lineup.user_two}">
+                {{line.current_team_lineup.user_two ? line.current_team_lineup.user_two.first_name + ' ' + line.current_team_lineup.user_two.last_name : 'Empty Slot'}}
+            </span>
+        </div>
+    </div>
+    <div class="singles" ng-show="line.line_type === 'singles'">
+        <div class="player">
+            <span class="name" ng-class="{'empty-slot': !line.current_team_lineup}">
+                {{line.current_team_lineup ? line.current_team_lineup.first_name + ' ' + line.current_team_lineup.last_name : 'Empty Slot'}}
+            </span>
+        </div>
+    </div>
+</div>

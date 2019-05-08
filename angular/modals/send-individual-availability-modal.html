@@ -1,0 +1,103 @@
+<form id="send-individual-availability-modal" ng-controller="sendIndividualAvailabilityModalController" ng-submit="sendIndividualAvailability()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Email Individuality Availability For {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table>
+			<tr>
+				<td class="radio-buttons">
+					<input type="radio" id="all" ng-model="sendIndividualAvailabilityObject.member_type" value="all" ng-click="resetSendIndividualAvailabilityErrors()">
+                    <label for="all">
+                        Send To All Members
+                    </label>
+				</td>
+				<td class="radio-buttons">
+					<input type="radio" id="select" ng-model="sendIndividualAvailabilityObject.member_type" value="select" ng-click="resetSendIndividualAvailabilityErrors()">
+                    <label for="select">
+                        Send To Select Members
+                    </label>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<div class="input-container" ng-if="sendIndividualAvailabilityObject.member_type === 'select'">
+						<input type="text" placeholder="Team member" ng-model="sendIndividualAvailabilityObject.username" ng-click="resetSendIndividualAvailabilityErrors()">
+						<span class="label">
+							TEAM MEMBER
+						</span>
+						<div class="found-participants">
+							<a class="found-participant" ng-repeat="participant in foundParticipants | orderBy: 'username'"
+							   ng-click="toggleFoundParticipant(participant); $event.stopPropagation()">
+								{{participant.first_name}} {{participant.last_name}}
+								<span class="username">
+									{{participant.username}}
+								</span>
+								<span class="selected" ng-show="participant.alreadySelected">
+									&#10004;
+								</span>
+							</a>
+						</div>
+			            <div class="modal-toggle recipients">
+			                <div class="modal-toggle recipient" ng-repeat="recipient in selectedParticipants" ng-click="toggleFoundParticipant(recipient)">
+			                    {{recipient.first_name}} {{recipient.last_name}}
+			                </div>
+			            </div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table class="rounds">
+			<tr>
+				<th>
+					Round
+				</th>
+				<th>
+					Date
+				</th>
+				<th>
+					Opponent
+				</th>
+				<th>
+					Where
+				</th>
+			</tr>
+			<tr ng-repeat="match in matches" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td class="container">
+					<input type="checkbox" id="checkbox{{match.round}}" value="{{match.value}}" ng-model="match.selected" ng-click="resetSendIndividualAvailabilityErrors()">
+					<label for="checkbox{{match.round}}">
+                        {{match.round}}
+                    </label>
+				</td>
+				<td>
+					{{match.date}}
+				</td>
+				<td>
+					<pre>
+                        {{match.opponent}}
+                    </pre>
+				</td>
+				<td>
+					{{match.where}}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="error" ng-show="showSendIndividualAvailabilityErrors.noRecipients">
+		No recipients entered
+	</div>
+   	<div class="error" ng-show="showSendIndividualAvailabilityErrors.noCheckbox">
+		At least one checkbox must be selected
+   	</div>
+	<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="sendIndividualAvailabilityInProgress">
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SEND
+		</button>
+	</div>
+</form>

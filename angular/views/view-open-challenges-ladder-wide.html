@@ -1,0 +1,140 @@
+<table>
+	<tr class="accepted-challenges">
+		<th colspan=7>
+			<label>Accepted challenges waiting to be played</label>
+		</th>
+	</tr>
+	<tr ng-show="!getAcceptedChallengesInProgress && accepted.length > 0">
+		<th class="column1">
+			CHALLENGER
+		</th>
+		<th class="column2">
+		</th>
+		<th class="column3">
+			OPPONENT
+		</th>
+		<th class="column4">
+			ACCEPTED DATE 
+		</th>
+		<th class="column5">
+			PLAY BY DATE
+		</th>
+		<th class="column-button" ng-show="showReportButton">
+		</th>
+		<th class="column-button" ng-show="showWithdrawButton">
+		</th>
+		<th class="column-button" ng-show="showResetButton">
+		</th>
+	</tr>
+	<tr ng-show="challenge.show" ng-repeat="challenge in accepted | orderBy: ['challenger', 'challengee']">
+		<td>
+			#{{challenge.challenger_ranking}} {{challenge.challenger}}
+		</td>
+		<td>
+			vs
+		</td>
+		<td>
+			#{{challenge.challengee_ranking}} {{challenge.challengee}}
+		</td>
+		<td>
+			{{challenge.accepted_date}}
+		</td>
+		<td>
+			{{challenge.play_by_date}}
+		</td>
+		<td class="button-td" ng-show="showReportButton">
+			<button type="button" ng-click="toggleReportChallengeScore(unplayed_challenge_data, challenge.id)"> 
+				REPORT SCORE
+			</button> 
+		</td>
+		<td class="button-td" ng-show="showWithdrawButton">
+			<button type="button" ng-click="confirmAcceptedDelete(challenge.id, challenge.challenger, challenge.challengee)"> 
+				WITHDRAW
+			</button> 
+		</td>
+		<td class="button-td" ng-show="showResetButton">
+			<button type="button" ng-click="resetChallenge(challenge.id, challenge.challenger, challenge.challengee)"> 
+				RESET CHALLENGE
+			</button> 
+		</td>
+	</tr>
+	<tr class="no-accepted-found" ng-show="!getUnacceptedChallengesInProgress && accepted.length === 0">
+		<td colspan=7>
+			<label class="no-challenges">No accepted challenges</label>
+		</td>
+	</tr>
+	<tr ng-show="getUnacceptedChallengesInProgress">
+		<td colspan=7>
+			<img src="/images/spinning-wheel.gif" class="loading-icon">
+		</td>
+	</tr>
+	<tr class="unaccepted-challenges">
+		<th colspan=7>
+			<label>Challenges waiting to be accepted</label>
+		</th>
+	</tr>
+	<tr ng-show="!getUnacceptedChallengesInProgress && unaccepted.length > 0">
+		<th class="column1">
+			CHALLENGER
+		</th>
+		<th class="column2">
+		</th>
+		<th class="column3">
+			OPPONENT
+		</th>
+		<th class="column4">
+			CHALLENGED DATE
+		</th>
+		<th class="column5">
+			ACCEPT BY DATE
+		</th>
+		<th class="column-button" ng-show="showReportButton">
+		</th>
+		<th class="column-button" ng-show="showWithdrawButton">
+		</th>
+		<th class="column-button" ng-show="showResetButton">
+		</th>
+	</tr>
+	<tr ng-show="challenge.show" ng-repeat="challenge in unaccepted | orderBy: ['challenger', 'challengee']">
+		<td>
+			#{{challenge.challenger_ranking}} {{challenge.challenger}}
+		</td>
+		<td>
+			vs
+		</td>
+		<td>
+			#{{challenge.challengee_ranking}} {{challenge.challengee}}
+		</td>
+		<td>
+			{{challenge.challenge_date}}
+		</td>
+		<td>
+			{{challenge.accept_by_date}}
+		</td>
+		<td class="button-td" ng-show="showReportButton">
+			<button type="button" ng-click="toggleReportChallengeScore(unaccepted_challenge_data, challenge.id)"> 
+				REPORT SCORE
+			</button> 
+		</td>
+		<td class="button-td" ng-show="showWithdrawButton">
+			<button type="button" ng-click="confirmUnacceptedDelete(challenge.id, challenge.challenger, challenge.challengee)"> 
+				WITHDRAW
+			</button> 
+		</td>
+		<td class="button-td" ng-show="showResetButton">
+			<button type="button" ng-click="resetChallenge(challenge.id, challenge.challenger, challenge.challengee)"> 
+				RESET CHALLENGE
+			</button> 
+		</td>
+	</tr>
+	<tr ng-show="getUnacceptedChallengesInProgress">
+		<td colspan=7>
+			<img src="/images/spinning-wheel.gif" class="loading-icon">
+		</td>
+	</tr>
+	<tr ng-show="!getUnacceptedChallengesInProgress && unaccepted.length === 0">
+		<td colspan=7>
+			<label class="no-challenges">No waiting challenges</label>
+		</td>
+	</tr>
+</table>

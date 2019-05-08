@@ -1,0 +1,29 @@
+#per-round-lines-modal .title{
+    margin-bottom: 20px;
+}
+#per-round-lines-modal .match-info{
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+}
+#per-round-lines-modal .subtitle{
+    display: inline-block;
+    width: calc(33% - 5px);
+    margin-bottom: 20px;
+    color: #6c6f7b;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+#per-round-lines-modal .line{
+    height: 60px;
+}
+#per-round-lines-modal .line span{
+    display: inline-block;
+    width: calc(33% - 5px);
+    color: #384348;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+}

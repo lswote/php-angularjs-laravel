@@ -1,0 +1,66 @@
+<div class="dropdown">
+    <div class="subtitle">
+        Event Focused
+    </div>
+	<div class="listing">
+        <a class="item modal-toggle" ng-click="toggleSendCustomEmailModal('captains')"
+           ng-if="canEditEvent(event) && (event.event_type === 'league' || event.event_type === 'round robin')">
+            Email captains
+        </a>
+        <a class="item modal-toggle" ng-click="toggleSendCustomEmailModal('event')"
+           ng-if="event.event_type !== 'multifacility' || (selectedEventStatus === 'upcoming' && user.privilege === 'facility leader') || (selectedEventStatus === 'current' && (user.privilege === 'facility leader' || user.privilege === 'event leader'))">
+            Email event leader
+        </a>
+        <a class="item modal-toggle" ng-click="toggleSendCustomEmailModal('captain')"
+           ng-if="showEmailCaptainLink(event, selectedEventStatus, user)">
+            Email captain
+        </a>
+		<a class="item modal-toggle" ng-click="toggleSendIndividualAvailabilityModal()"
+           ng-if="(event.event_type === 'league' || event.event_type === 'round robin' || event.event_type === 'multifacility') && selectedEventStatus === 'current' && isCaptain(event)">
+			Email individual availability to team members
+        </a>
+		<a class="item modal-toggle" ng-click="toggleSendTeamMemberLineupModal()"
+           ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)">
+            Email line-ups / directions to team members
+        </a>
+		<a class="item" ng-if="(event.event_type === 'league' || event.event_type === 'round robin') && selectedEventStatus === 'current' && isCaptain(event)">
+			Email line-ups to team members
+        </a>
+        <a class="item modal-toggle" ng-click="toggleSendCustomEmailModal('members')"
+           ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+            Email team members
+        </a>
+		<a href="/email?event_id={{selectedEvent.id}}&type=email-potential-participants" target="_self" class="item"
+           ng-show="(selectedEventStatus !== 'past' && event.event_type !== 'multifacility' && event.event_type !== 'ladder') || (selectedEventStatus === 'upcoming' && event.event_type === 'ladder')"
+           ng-if="canEditEvent(event)">
+            Email potential participants
+        </a>
+        <a href="/email?event_id={{selectedEvent.id}}&type=email-potential-additional-participants" target="_self" class="item"
+           ng-show="selectedEventStatus !== 'past' && event.event_type !== 'multifacility'"
+           ng-if="canEditEvent(event) && event.event_type !== 'multifacility'">
+            Email potential additional pariticipants
+        </a>
+    </div>
+    <div class="subtitle" ng-if="canEditEvent(event)">
+        Participant Focused
+    </div>
+    <div class="listing" ng-if="canEditEvent(event) && event.event_type !== 'multifacility'">
+        <a class="item" ng-if="event.event_type === 'league' && selectedEventStatus === 'current'">
+            Email individual availability to participants
+        </a>
+        <a href="/email?event_id={{selectedEvent.id}}&type=email-participants" target="_self" class="item">
+            Email participants
+        </a>
+        <a href="/email?event_id={{selectedEvent.id}}&type=email-participants-reminder" target="_self" class="item" ng-hide="selectedEventStatus === 'upcoming'"
+           ng-if="event.event_type === 'social' || event.event_type === 'league' || event.event_type === 'round robin'">
+            Email participants reminder of time & playing surface
+        </a>
+        <a href="/email?event_id={{selectedEvent.id}}&type=email-not-responded-participants" target="_self" class="item" ng-show="selectedEventStatus !== 'past'">
+            Email participants not responded
+        </a>
+        <a href="/email?event_id={{selectedEvent.id}}&type=email-waitlisted-participants" target="_self" class="item" ng-show="selectedEventStatus !== 'past'"
+           ng-if="event.event_type === 'social' || event.event_type === 'league' || event.event_type === 'round robin'">
+            Email waitlist participants
+        </a>
+    </div>
+</div>

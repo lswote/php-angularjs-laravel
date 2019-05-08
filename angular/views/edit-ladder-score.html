@@ -1,0 +1,89 @@
+<div class="title event-name">
+	{{ladderObject.edit ? 'Edit ' : 'Enter'}} Score for Completed Match
+</div>
+{{ladderObject.edit ? 'Edit ' :  'Post'}} results for completed match
+</div>
+<form ng-submit="saveChallengeScore()">
+	<div class="match-section">
+		<table>
+			<tr>
+				<th class="header-one">Challenger:</th>
+				<td class="header-one">{{ladderObject.match.challenger}}</td>
+				<th class="header-one">Opponent:</th>
+				<td class="header-one">{{ladderObject.match.challengee}}</td>
+			</tr>
+			<tr>
+				<th colspan=2> PLAY DATE</th>
+				<th colspan=2>WINNER</th>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<input class="date" type="text" placeholder="Select Date" ng-focus="resetLadderErrors()" ng-model="ladderObject.match.played_date" pick-a-date="ladderObject.match.played_date_display" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+
+				</td>
+				<td colspan=2 class="header-three">
+					<select required class="field-select" ng-click="resetLadderErrors()" ng-model="ladderObject.match.winner">
+						<option value="0" ng-disabled="ladderObject.match.winner_disabled">Select winner</option>
+						<option value="{{ladderObject.match.challenger_id}}">{{ladderObject.match.challenger}}</option>
+						<option value="{{ladderObject.match.challengee_id}}">{{ladderObject.match.challengee}}</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="input-section">
+		<table>
+			<tr>
+				<th class="match-one">SET</th>
+				<th class="match-two">WINNER SCORE</th>
+				<td class="match-three"></td>
+				<th class="match-four">LOSER SCORE</th>
+			</tr>
+			<tr ng-repeat="match in ladderObject.match.matches">
+				<th class="match-one">Set #{{$index+1}}</th>
+				<td class="match-two"><input class="match-number" type="number" ng-click="resetLadderErrors()" ng-model="match.one"></td>
+				<td class="match-three">--</td>
+				<td class="match-four"><input class="match-number" type="number" ng-click="resetLadderErrors()" ng-model="match.two"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="match-results-section">
+		<div>
+			Match Status
+		</div>
+		<table class='match-status'>
+			<tr>
+				<td class="match-status">
+					<input type="radio" ng-click="resetLadderErrors()" ng-model="ladderObject.match.match_status" value="completed">
+					<label>Completed</label>
+				</td>
+				<td class="match-status">
+					<input type="radio" ng-click="resetLadderErrors()" ng-model="ladderObject.match.match_status" value="injury_forfeit">
+					<label>Injury/Forfeit</label>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="errors">
+		<div class="error" ng-show="ladderObject.errors.played_date">
+			Valid played date must be selected
+		</div>
+		<div class="error" ng-show="ladderObject.errors.winner">
+			Valid winner must be picked
+		</div>
+		<div class="error" ng-show="ladderObject.errors.winner_too_few">
+			Winner must have more won more than half of games
+		</div>
+		<div class="error" ng-show="ladderObject.errors.match_status">
+			Match status must have value selected
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="revertDisplay()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SUBMIT SCORECARD
+		</button>
+	</div>
+</form>

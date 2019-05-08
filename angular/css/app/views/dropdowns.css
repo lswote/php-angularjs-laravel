@@ -1,0 +1,66 @@
+.event-icons .icon{
+    position: relative;
+}
+.event-icons .icon.pencil-square{
+    top: 1px;
+}
+.event-icons .dropdown{
+    position: absolute;
+    bottom: -26px;
+    left: -150px;
+    width: 280px;
+    margin-bottom: 50px;
+    padding: 30px 35px;
+    background-color: white;
+    font-size: 14px;
+    border: 1px solid #dddddf;
+    border-radius: 10px;
+    z-index: 100;
+}
+.event-icons .dropdown.expand-downwards{
+    top: 22px;
+    bottom: auto;
+}
+.event-icons .dropdown .subtitle{
+    font-weight: 600;
+}
+.event-icons .dropdown .subtitle ~ .subtitle{
+    margin-top: 20px;
+}
+.event-icons .dropdown a{
+    display: block;
+    margin-top: 10px;
+}
+@media(max-width: 1106px){
+    .event-icons .dropdown{
+        left: auto;
+        right: 0;
+    }
+}
+@media(max-width: 540px){
+    .event-icons .icon:nth-last-of-type(6) .dropdown{
+        right: -158px;
+    }
+    .event-icons .icon:nth-last-of-type(5) .dropdown{
+        right: -130px;
+    }
+    .event-icons .icon:nth-last-of-type(4) .dropdown{
+        right: -100px;
+    }
+    .event-icons .icon:nth-last-of-type(3) .dropdown{
+        right: -70px;
+    }
+    .event-icons .icon:nth-last-of-type(2) .dropdown{
+        right: -40px;
+    }
+    .event-icons .icon:nth-last-of-type(1) .dropdown{
+        right: -10px;
+    }
+}
+@media(max-width: 410px){
+    .event-icons .dropdown{
+        width: 240px;
+        padding: 15px;
+        font-size: 12px;
+    }
+}

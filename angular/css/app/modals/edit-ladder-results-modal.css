@@ -1,0 +1,172 @@
+#edit-ladder-results-modal .search-section{
+    padding-top: 20px;
+}
+#edit-ladder-results-modal .search-section table{
+    width: 100%;
+    background: #ebeff2;
+}
+#edit-ladder-results-modal .search-section table tr td{
+    padding-top: 20px;
+    vertical-align: top;
+    padding-bottom: 20px;
+}
+#edit-ladder-results-modal .error{
+    font-size: 18px;
+}
+#edit-ladder-results-modal .col-one{
+    width: 32%;
+    text-align: left;
+}
+#edit-ladder-results-modal .col-two{
+    width: 40%;
+    text-align: left;
+}
+#edit-ladder-results-modal .col-three{
+    width: 22%;
+    text-align: left;
+}
+#edit-ladder-results-modal .col-four{
+    width: 6%;
+    text-align: left;
+}
+#edit-ladder-results-modal .error{
+    font-size: 18px;
+}
+#edit-ladder-results-modal .column1{
+    width: 19%;
+}
+#edit-ladder-results-modal .column2{
+    width: 6%;
+}
+#edit-ladder-results-modal .column3{
+    width: 19%;
+}
+#edit-ladder-results-modal .column4{
+    width: 18%;
+}
+#edit-ladder-results-modal .column5{
+    width: 18%;
+}
+#edit-ladder-results-modal .column6{
+    width: 10%;
+}
+#edit-ladder-results-modal .column7{
+    width: 10%;
+}
+#edit-ladder-results-modal button{
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#edit-ladder-results-modal {
+    padding-top: 20px;
+}
+#edit-ladder-results-modal .no-challenges{
+    padding-left: 10px;
+}
+#edit-ladder-results-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 0px 0px;
+}
+#edit-ladder-results-modal .button-td{
+    padding: 4px 4px 4px 4px;
+}
+#edit-ladder-results-modal .match-data{
+    text-align: center;
+}
+#edit-ladder-results-modal .field-select{
+    border-color: #bfc7d9;
+    background-color: white
+}
+#edit-ladder-results-modal .input-section table{
+    margin-top: 10px;
+}
+#edit-ladder-results-modal .match-one{
+    width: 14%;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-two{
+    width: 40%;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-three{
+    width: 6%;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-four{
+    width: 40%;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-section{
+    padding-top: 5px;
+}
+#edit-ladder-results-modal .match-section table{
+    width: 100%;
+    background: #ebeff2;
+}
+#edit-ladder-results-modal .match-section table tr th{
+    padding-top: 5px;
+    vertical-align: center;
+    padding-bottom: 5px;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-section table tr th.header-one, #edit-ladder-results-modal .match-section table tr td.header-one{
+    width: 25%;
+}
+#edit-ladder-results-modal .match-col25{
+    width: 25%;
+}
+#edit-ladder-results-modal .match-col50{
+	width: 50%;
+}
+#edit-ladder-results-modal .match-number{
+    width: 50% !important;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    padding: 5px;
+    color: #384348;
+    font-size: 14px;
+    font-weight: 600;
+    border: 3px solid #bfc7d9;
+    border-radius: 10px;
+    text-align: center;
+}
+#edit-ladder-results-modal .match-results-section{
+    height: 55px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 55px;
+    border-top: 1px solid #bfc7d9;
+}
+#edit-ladder-results-modal .match-results-section label{
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    vertical-align: bottom;
+    margin-left: 0px;
+}
+#edit-ladder-results-modal .match-results-section input:not([type="checkbox"]){
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    height: 20px;
+    width: 20px;
+    outline: none;
+}
+#edit-ladder-results-modal th input:not([type="number"]) {
+    width: 135px;
+    border-color: #bfc7d9;
+}
+#edit-ladder-results-modal .match-status table td{
+    text-align: left;
+}
+#edit-ladder-results-modal .buttons{
+    margin-top: 10px;
+}

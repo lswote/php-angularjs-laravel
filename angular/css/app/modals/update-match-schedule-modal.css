@@ -1,0 +1,66 @@
+#update-match-schedule-modal .error{
+	font-size: 18px;
+}
+#update-match-schedule-modal .title{
+    margin-bottom: 20px;
+}
+#update-match-schedule-modal .input-section{
+    text-align: left;
+}
+#update-match-schedule-modal .odd{
+    background-color: white;
+}
+#update-match-schedule-modal .even{
+    background-color: #ebeff2;
+}
+#update-match-schedule-modal .col-one{
+    width: 8%;
+}
+#update-match-schedule-modal .col-two{
+    width: 15%;
+}
+#update-match-schedule-modal .col-three{
+    width: 27%;
+}
+#update-match-schedule-modal .col-four{
+    width: 10%;
+}
+#update-match-schedule-modal .col-five{
+    width: 40%;
+}
+#update-match-schedule-modal .input-section table{
+	width: 100%;
+}
+#update-match-schedule-modal .input-section select{
+	background: white;
+}
+#update-match-schedule-modal .buttons button {
+	width: 33%;
+	float: inherit;
+}
+#update-match-schedule-modal .view-opponent{
+	width: 100%;
+	padding: 5px;
+	color: #2879ff;
+	background-color: white;
+	cursor: pointer;
+	margin: 0px;
+	font-weight: 600;
+	display: inline-block;
+}
+#update-match-schedule-modal .view-opponent:hover{
+	color: white;
+	background-color: #2879ff;
+}
+#update-match-schedule-modal .search-opponent{
+	margin-top: 0px;
+	display: inline-block;
+	color: #2879ff;
+}
+#update-match-schedule-modal pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}

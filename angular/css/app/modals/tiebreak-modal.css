@@ -1,0 +1,34 @@
+#tiebreak-modal .title{
+    margin-bottom: 20px;
+}
+#tiebreak-modal input, #tiebreak-modal select{
+    margin-top: 30px;
+}
+#tiebreak-modal .event-name{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: calc(100% - 25px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    font-weight: 800;
+    background-color: #eceff1;
+    border-bottom: 1px solid #c7cfde;
+}
+#tiebreak-modal table{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+}
+#tiebreak-modal table th, #tiebreak-modal table td{
+    width: 14.28%;
+    text-align: left;
+}
+#tiebreak-modal table th{
+    color: #76767e;
+}
+#tiebreak-modal table td.team-name{
+    text-transform: capitalize;
+}

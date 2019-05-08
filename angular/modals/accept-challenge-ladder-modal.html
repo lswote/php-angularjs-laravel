@@ -1,0 +1,77 @@
+<div id="accept-challenge-ladder-modal" ng-controller="acceptChallengeLadderModalController">
+    <div class="challenge">
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class='challenge-div'>
+            <div class='title'>
+                Accept or Deny Challenge
+            </div>
+            <div>
+                Accept or deny challenges issued to you
+            </div>
+        </div>
+        <form id="challenge-form" ng-submit="accept_or_deny_challenge()">
+            <table ng-show="challenges.length > 0">
+                <tr>
+                    <th>
+                        CHALLENGER
+                    </th>
+                    <th>
+                        OPPONENT
+                    </th>
+                    <th colspan=2>
+                        STATUS
+                    </th>
+                </tr>
+                <tbody ng-repeat="challenge in challenges">
+                    <tr>
+                        <td colspan=4>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="column1">
+                            {{challenge.challenger}}
+                        </th>
+                        <th class="column2">
+                            {{challenge.challengee}}
+                        </th>
+                        <td class="column3">
+                            <input class="radio" type="radio" ng-model="challenge.accept_deny" value="available" ng-click="resetAcceptChallengeLadderErrors()"/>
+                            <label class="label" for="accept">Accept</label>
+                        </td>
+                        <td class="column4">
+                            <input class="radio" type="radio" ng-model="challenge.accept_deny" value="unavailable" ng-click="resetAcceptChallengeLadderErrors()"/>
+                            <label class="label" for="deny">Deny</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            &#x1F6C8; Contact Details
+                        </th>
+                        <td>
+                            Expires: {{challenge.expires}}
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-challenges" ng-show="challenges.length == 0">
+                No challenges
+            </div>
+            <div class="error selection" ng-show="showAcceptChallengeLadderErrors.no_selection">
+                No selection was made
+            </div>
+            <div class="buttons">
+                <button type="button" ng-click="toggleModal()">
+                    CANCEL
+                </button>
+                <button type="button" ng-click="clearSelections()">
+                    CLEAR
+                </button>
+                <button type="submit">
+                    DONE
+                </button>
+            </div>
+        </form>
+    </div>

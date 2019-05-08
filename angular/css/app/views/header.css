@@ -1,0 +1,76 @@
+#header{
+    height: 90px;
+    background-color: white;
+}
+#header img{
+    margin-top: 25px;
+    margin-left: 20px;
+    height: 40px;
+}
+#header .hamburger, #header .buttons, #header .search{
+    float: right;
+    position: relative;
+    cursor: pointer;
+}
+#header .hamburger{
+    top: 22px;
+    margin-right: 10px;
+    color: #283b91;
+    font-size: 28px;
+    font-weight: 600;
+}
+#header .buttons{
+    display: flex;
+    margin-right: 25px;
+}
+#header .buttons .button{
+    margin-top: 4px;
+    padding: 25px 30px;
+    font-size: 20px;
+}
+#header .buttons .button.selected{
+    color: white;
+    background-color: #273238;
+}
+#header .search{
+    width: calc(100% - 750px);
+    margin-right: 20px;
+}
+#header .search i{
+    position: absolute;
+    top: 38px;
+    right: 90%;
+    z-index: 100;
+}
+#header .search input{
+    height: 40px;
+    width: 80%;
+    margin-top: 20px;
+    padding-left: 40px;
+    border: 1px solid #cad1df;
+    z-index: 50;
+}
+@media(max-width: 1020px){
+    #header .search{
+        display: none;
+    }
+}
+@media(max-width: 780px){
+    #header .buttons{
+        display: none;
+    }
+}
+@media(max-width: 680px){
+    #header{
+        height: 50px;
+    }
+    #header img{
+        height: 35px;
+        margin-top: 8px;
+        margin-left: 5px;
+    }
+    #header .hamburger{
+        display: inline-block;
+        top: 4px;
+    }
+}

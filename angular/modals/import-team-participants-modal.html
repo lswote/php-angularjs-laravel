@@ -1,0 +1,41 @@
+<form id="import-team-participants-modal" ng-controller="importTeamParticipantsModalController" ng-submit="importTeamParticipants()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Import Team Participants
+    </div>
+    <div class="input-section">
+        <label ng-class="{'no-file-selected': importTeamParticipantsObject.inputFileText === 'No file selected'}" class="file-input-container">
+            {{importTeamParticipantsObject.inputFileText}}
+            <input id="file-input" type="file" accept=".csv">
+        </label>
+         <div class="imported-count" ng-show="importedCount > 0">
+            {{importedCount}} {{importedCount > 1 ? 'users were' : 'user was'}} successfully imported and placed on {{importedCount > 1 ? 'teams' : 'a team'}}
+        </div>
+        <div class="error" ng-show="showImportTeamParticipantsErrors.file">
+            No file selected
+        </div>
+        <div class="error" ng-show="showImportTeamParticipantsErrors.fileType">
+            File type not supported
+        </div>
+        <div class="error" ng-show="showImportTeamParticipantsErrors.size">
+            File cannot be larger than 10MB
+        </div>
+        <div class="error" ng-show="showImportTeamParticipantsErrors.linesNotAdded.length > 0">
+            Accounts were not created for records in the following lines because of invalid column values:
+            <div ng-repeat="line in showImportTeamParticipantsErrors.linesNotAdded">
+                -Line {{line}}
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            IMPORT
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

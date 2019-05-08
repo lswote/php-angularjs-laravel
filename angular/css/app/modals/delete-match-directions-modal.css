@@ -1,0 +1,42 @@
+#delete-match-directions-modal .error{
+	font-size: 18px;
+}
+#delete-match-directions-modal .title{
+    margin-bottom: 20px;
+}
+#delete-match-directions-modal .input-section{
+    text-align: left;
+}
+#delete-match-directions-modal .select-section table{
+	width: 100%;
+}
+#delete-match-directions-modal .select-section table tr th.col-one{
+	width: 100%;
+}
+#delete-match-directions-modal .input-section table{
+	width: 100%;
+}
+#delete-match-directions-modal .input-section table tr th.col-one{
+	width: 100%;
+}
+#delete-match-directions-modal .input-section select{
+	background: white;
+}
+#delete-match-directions-modal .input-section textarea{
+	width: calc(100% - 30px);
+	height: 350px;
+}
+#delete-match-directions-modal .view-facility{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#delete-match-directions-modal .view-facility:hover{
+    color: white;
+    background-color: #2879ff;
+}

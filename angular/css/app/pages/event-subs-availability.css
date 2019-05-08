@@ -1,0 +1,96 @@
+#event-subs-availability .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-subs-availability .filters{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-subs-availability .filters input, #event-subs-availability .filters select:not(.date-filter){
+    width: 19%;
+    margin-right: 30px;
+}
+#event-subs-availability .filters input{
+    height: 26px;
+}
+#event-subs-availability .filters select{
+    height: 40px;
+    text-transform: capitalize;
+}
+#event-subs-availability .filters .date-filter{
+    width: 12%;
+}
+#event-subs-availability .filters span{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#event-subs-availability .filters button{
+    position: absolute;
+    right: 30px;
+    height: 40px;
+    width: 180px;
+    line-height: 0.5;
+}
+#event-subs-availability .users{
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+#event-subs-availability .users .header{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+#event-subs-availability .users .header span{
+    color: #858790;
+}
+#event-subs-availability .users .header .name{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-subs-availability .users .header .type, #event-subs-availability .users .header .group{
+    width: 80px;
+}
+#event-subs-availability .users .header .round{
+    min-width: 135px;
+    text-align: center;
+}
+#event-subs-availability .users .header span, #event-subs-availability .users .users-group span{
+    display: inline-block;
+}
+#event-subs-availability .users .body{
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#event-subs-availability .users .users-group{
+    width: 100%;
+    padding-top: 20px;
+    white-space: nowrap;
+}
+#event-subs-availability .users .users-group .name{
+    width: 200px;
+    margin-left: 20px;
+}
+#event-subs-availability .users .users-group .type, #event-subs-availability .users .users-group .group{
+    width: 80px;
+    text-transform: capitalize;
+}
+#event-subs-availability .users .users-group .round{
+    min-width: 135px;
+    text-align: center;
+}
+#event-subs-availability .users .users-group .round.unavailable select{
+    color: red;
+    font-weight: 600;
+}
+#event-subs-availability .buttons-container .buttons .submit-button:nth-child(2){
+    margin-right: 20px;
+}

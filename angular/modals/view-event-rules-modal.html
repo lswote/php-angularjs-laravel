@@ -1,0 +1,174 @@
+<div id="view-event-rules-modal" ng-controller="viewEventRulesModalController" ng-submit="viewEventRules()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div ng-show="showLadderRules">
+		<div class="title">
+			View Ladder Rules
+		</div>
+		<div>
+			Rules for {{selectedEvent.name}}.  Entries below determine how the ladder operates.
+		</div>
+			<table>
+			<tr>
+				<th><label class="description">Description</label></th>
+				<th><label class="value">Value</label></th>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of "sets" for each challenge</div>
+					<div class="right">{{rulesObject.numSets}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of opponent challenges allowed</div>
+					<div class="right">{{rulesObject.numOppChallenges}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of challenges a player/team can issue</div>
+					<div class="right">{{rulesObject.numTeamChallenges}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of spots can challenge up</div>
+					<div class="right">{{rulesObject.numSpotsUp}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of spots can challenge down</div>
+					<div class="right">{{rulesObject.numSpotsDown}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Allow to challenge “next in line”</div>
+					<div class="right">{{rulesObject.allowChallengeNext}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Switch (S) or Jump Above (J) if lower ranked team wins</div>
+					<div class="right">{{rulesObject.switchOrJump}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Does denying a challenge result in change in ranking</div>
+					<div class="right">{{rulesObject.denyChallengeRank}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Does not accepting challenge result in change in ranking</div>
+					<div class="right">{{rulesObject.denyAcceptRank}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Does withdrawal after accepting result in change in ranking</div>
+					<div class="right">{{rulesObject.withdrawalRank}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Does accepting and not playing result in change in ranking</div>
+					<div class="right">{{rulesObject.acceptNotPlayedRank}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Days to accept a challenge</div>
+					<div class="right">{{rulesObject.daysAcceptChallenge}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Days to play a challenge before it expires</div>
+					<div class="right">{{rulesObject.daysPlayChallenge}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Days after completed challenge before issuing rechallenge</div>
+					<div class="right">{{rulesObject.daysAfterCompleted}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div ng-show="showEventRules">
+		<div class="title">
+			Edit Event Rules
+		</div>
+		<div>
+			Rules for {{selectedEvent.name}}
+		</div>
+		<table>
+			<tr>
+				<th><label class="description">Description</label></th>
+				<th><label class="value">Value</label></th>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">No. of rounds</div>
+					<div class="right">{{eventObject.rounds}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Competition scoring format</div>
+					<div class="right">{{eventObject.sets}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Line scoring format</div>
+					<div class="right">{{eventObject.lineScoringFormat}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="padded">
+					<div class="left">Standard line duration</div>
+					<div class="right">{{eventObject.standardLineDuration}}</div>
+					<div class="dotted"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="extra-padded">
+					<div class="textarea-container">
+						<textarea class="textarea" ng-model="eventObject.notes" disabled></textarea>
+						<span class="label large-label">
+							ADDITIONAL RULES/NOTES
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<div class="buttons">
+			<button class="submit-button" type="submit" ng-click="toggleModal()">
+				DONE
+			</button>
+		</div>
+	</div>
+</div>

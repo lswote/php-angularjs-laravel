@@ -1,0 +1,138 @@
+#view-open-challenges-ladder-modal .error{
+    font-size: 18px;
+}
+#view-open-challenges-ladder-modal .column1{
+    width: 19%;
+}
+#view-open-challenges-ladder-modal .column2{
+    width: 6%;
+}
+#view-open-challenges-ladder-modal .column3{
+    width: 19%;
+}
+#view-open-challenges-ladder-modal .column4{
+    width: 18%;
+}
+#view-open-challenges-ladder-modal .column5{
+    width: 18%;
+}
+#view-open-challenges-ladder-modal .column-button{
+    width: 10%;
+}
+#view-open-challenges-ladder-modal button{
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#view-open-challenges-ladder-modal {
+    padding-top: 20px;
+}
+#view-open-challenges-ladder-modal .no-challenges{
+    padding-left: 10px;
+}
+#view-open-challenges-ladder-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 0px 0px;
+}
+#view-open-challenges-ladder-modal .show-challenges table th{
+    text-align: left;
+}
+#view-open-challenges-ladder-modal .button-td{
+    padding: 4px 4px 4px 4px;
+}
+#view-open-challenges-ladder-modal .match-data{
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .field-select{
+    border-color: #bfc7d9;
+    background-color: white
+}
+#view-open-challenges-ladder-modal .input-section table{
+    margin-top: 10px;
+}
+#view-open-challenges-ladder-modal .match-one{
+    width: 14%;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-two{
+    width: 40%;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-three{
+    width: 6%;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-four{
+    width: 40%;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-section{
+    padding-top: 5px;
+}
+#view-open-challenges-ladder-modal .match-section table{
+    width: 100%;
+    background: #ebeff2;
+}
+#view-open-challenges-ladder-modal .match-section table tr th{
+    padding-top: 5px;
+    vertical-align: center;
+    padding-bottom: 5px;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-section table tr th.header-one, #view-open-challenges-ladder-modal .match-section table tr td.header-one{
+    width: 25%;
+}
+#view-open-challenges-ladder-modal .match-number{
+    width: 50% !important;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    padding: 5px;
+    color: #384348;
+    font-size: 14px;
+    font-weight: 600;
+    border: 3px solid #bfc7d9;
+    border-radius: 10px;
+    text-align: center;
+}
+#view-open-challenges-ladder-modal .match-results-section{
+    height: 55px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 55px;
+    border-top: 1px solid #bfc7d9;
+}
+#view-open-challenges-ladder-modal .match-results-section label{
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    vertical-align: bottom;
+    margin-left: 0px;
+}
+#view-open-challenges-ladder-modal .match-results-section input:not([type="checkbox"]){
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    height: 20px;
+    width: 20px;
+    outline: none;
+}
+#view-open-challenges-ladder-modal th input:not([type="number"]) {
+    width: 135px;
+    border-color: #bfc7d9;
+}
+#view-open-challenges-ladder-modal .match-status table td{
+    text-align: left;
+}
+#view-open-challenges-ladder-modal .match-section table tr td.match-status{
+    width: 50%;
+}
+#edit-ladder-results-modal .buttons{
+    margin-top: 10px;
+}

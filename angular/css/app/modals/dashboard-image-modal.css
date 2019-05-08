@@ -1,0 +1,27 @@
+#dashboard-image-modal .title{
+    margin-bottom: 20px;
+}
+#dashboard-image-modal .file-input-container{
+    padding-left: 15px;
+    border: 2px solid #626673;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 40px;
+    cursor: pointer;
+}
+#dashboard-image-modal .file-input-container.no-file-selected{
+    border-color: #bfc7d9;
+}
+#dashboard-image-modal .file-input-container input{
+    display: none;
+}
+#dashboard-image-modal .input-section > span{
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-style: italic;
+}
+#dashboard-image-modal .disable-banner > span{
+    margin-left: 3px;
+}

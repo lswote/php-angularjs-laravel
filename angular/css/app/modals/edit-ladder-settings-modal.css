@@ -1,0 +1,30 @@
+#edit-ladder-settings-modal .input-section{
+    margin-top: 10px;
+}
+#edit-ladder-settings-modal .error{
+    font-size: 18px;
+}
+#edit-ladder-settings-modal table{
+    width: 100%;
+}
+#edit-ladder-settings-modal table tr td{
+    width: 50%;
+}
+#edit-ladder-settings-modal select{
+    width: 100%;
+}
+#edit-ladder-settings-modal table tr td.col1{
+    width: 50%;
+	text-align: center;
+}
+#edit-ladder-settings-modal table tr td.col2{
+    width: 40%;
+	text-align: center;
+}
+#edit-ladder-settings-modal table tr td.col3{
+    width: 10%;
+	text-align: left;
+}
+#edit-ladder-settings-modal button.double{
+    width: 100%;
+}

@@ -1,0 +1,44 @@
+<div id="past-events" ng-controller="pastEventsController">
+    <div class="dashboard-image tint" ng-style="{'background-image': 'url('+ facility.image_url +')'}" ng-show="facility.image_url">
+        <div class="title">
+            Past Events
+        </div>
+    </div>
+    <div class="past-events-container" ng-controller="eventIconsController">
+        <div class="past-events box">
+            <div class="title">
+                Past Events
+            </div>
+            <div class="past-events-listings">
+                <div class="event" ng-class="{'not-last': ($index !== pastEvents.length - 1)}" ng-repeat="event in pastEvents | orderBy: 'start_date'">
+                    <span class="left">
+                        <a class="event-name">
+                            {{event.name}}
+                        </a>
+                        <span class="event-date">
+                            {{event.start_date_string}}
+                        </span>
+                    </span>
+                    <span class="right">
+                        <span class="event-format">
+                            {{event.event_type.substring(0, 2).toUpperCase()}}
+                        </span>
+                        <span class="event-icons">
+                            <span class="icon">
+                                <i class="fa fa-eye" ng-click="toggleEyeDropdown(event, 'past')"></i>
+                                <eye-dropdown ng-show="showEyeDropdown === event.id"></eye-dropdown>
+                            </span>
+                            <span class="icon" ng-if="canEditEvent(event) || (event.event_type === 'multifacility' && isCaptain(event))">
+                                <img src="/images/plus-minus-icon.png" ng-click="togglePlusSignDropdown(event, 'past')">
+                                <plus-sign-dropdown ng-show="showPlusSignDropdown === event.id"></plus-sign-dropdown>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="no-results-found" ng-show="pastEvents.length === 0">
+                    No events found
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>

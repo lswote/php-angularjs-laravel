@@ -1,0 +1,92 @@
+<form id="add-waitlisted-participant-to-team-modal" ng-controller="addWaitlistedParticipantToTeamModalController" ng-submit="addWaitlistedParticipant()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Waitlisted Player To Team For {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <div class="select-container">
+            <select required ng-model="selectedParticipantId">
+                <option value="" selected>
+                    Username
+                </option>
+                <option value="{{participant.id}}" ng-repeat="participant in waitlistedParticipants">
+                    {{participant.username}}
+                </option>
+                <option value="" disabled ng-show="waitlistedParticipants.length === 0">
+                    No Waitlisted Participants Found
+                </option>
+            </select>
+            <span class="label">
+                USERNAME
+            </span>
+            <div class="error" ng-show="addWaitlistedParticipantToTeamErrors.selectedParticipantId">
+                Required
+            </div>
+        </div>
+        <div class="select-container event-teams">
+            <select required ng-model="selectedTeamId">
+                <option value="" selected>
+                    Team
+                </option>
+                <option value="{{team.id}}" ng-repeat="team in teamsWithOpenFemaleSlots" ng-show="selectedSex === 'female'">
+                    {{team.name}}
+                </option>
+                <option value="{{team.id}}" ng-repeat="team in teamsWithOpenMaleSlots" ng-show="selectedSex === 'male'">
+                    {{team.name}}
+                </option>
+            </select>
+            <span class="label">
+                TEAM
+            </span>
+            <div class="error" ng-show="addWaitlistedParticipantToTeamErrors.selectedTeamId">
+                Required
+            </div>
+        </div>
+        <div class="select-container">
+            <select required ng-model="selectedEventTeamUserId">
+                <option value="" selected>
+                    Group No.
+                </option>
+                <option value="{{group.event_team_user_id}}" ng-repeat="group in groupsWithOpenSlots">
+                    {{group.group_number}}
+                </option>
+            </select>
+            <span class="label">
+                GROUP NO.
+            </span>
+            <div class="error" ng-show="addWaitlistedParticipantToTeamErrors.selectedEventTeamUserId">
+                Required
+            </div>
+        </div>
+        <div class="select-container">
+            <select required ng-model="addAsCaptain">
+                <option value="" selected>
+                    Captain
+                </option>
+                <option value="1">
+                    Yes
+                </option>
+                <option value="0">
+                    No
+                </option>
+            </select>
+            <span class="label">
+                CAPTAIN
+            </span>
+            <div class="error" ng-show="addWaitlistedParticipantToTeamErrors.addAsCaptain">
+                Required
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

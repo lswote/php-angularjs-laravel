@@ -1,0 +1,227 @@
+<div class="dropdown">
+	<div ng-if="event.event_type !== 'ladder'">
+        <div class="subtitle">
+			Event Focused
+        </div>
+        <div class="listing">
+            <div ng-show="selectedEventStatus !== 'past'">
+                <a href="/event/{{selectedEvent.id}}" target="_self" class="item" ng-if="showViewCompleteEventSetupLink(event, selectedEventStatus)">
+                    View complete event setup
+                </a>
+                <a class="item modal-toggle" ng-click="toggleCreateEventModal(true)" ng-if="showViewCreateEventLink(event, selectedEventStatus)">
+                    View create event
+                </a>
+                <a href="/event/{{selectedEvent.id}}/leaders" target="_self" class="item" ng-if="event.event_type !== 'multifacility' && canEditEvent(event)">
+                    View event leader
+                </a>
+                <a class="item modal-toggle" ng-click="toggleOpenTimeSlotsModal()"
+                   ng-if="canEditEvent(event) && event.event_type === 'social'">
+                    View open time slots
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewEventRulesModal()" ng-if="showViewEventRulesLink(event, selectedEventStatus, user)">
+                    View event rules
+                </a>
+                <a class="item modal-toggle" ng-click="togglePerRoundLinesModal()"
+                   ng-if="(event.event_type === 'league') && selectedEventStatus !== 'past' && selectedEvent.comb_play !== null && canEditEvent(event)">
+                    View match line types
+                </a>
+                <a class="item" ng-if="event.event_type === 'league' && selectedEventStatus !== 'upcoming'">
+                    View match results
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewTeamsByGroupNumber()"
+                   ng-if="(canEditEvent(event) || isCaptain(event)) && event.event_type === 'league' && selectedEventStatus === 'current'">
+                    View teams by group number
+                </a>
+                <a href="/event/{{selectedEvent.id}}/standings" target="_self" class="item"
+                   ng-if="event.event_type === 'league' && selectedEventStatus !== 'upcoming'">
+                    View team results / standings
+                </a>
+                <a class="item modal-toggle" ng-click="toggleTiebreakModal()"
+                   ng-show="event.event_type === 'league' && selectedEventStatus === 'current'">
+                    View tiebreak results
+                </a>
+            	<a class="item modal-toggle" ng-click="toggleViewMatchScheduleModal()"
+                   ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && user.privilege !== 'facility leader'">
+                	View match schedule
+            	</a>
+            </div>
+			<a class="item" ng-show="showViewScheduleLink(event, selectedEventStatus)">
+                View schedule
+			</a>
+            <a class="item"
+               ng-if="((event.event_type === 'league' && canEditEvent(event)) || (event.event_type === 'multifacility' && isCaptain(event))) && selectedEventStatus === 'past'">
+                View lineups
+            </a>
+            <div ng-show="event.event_type === 'league' && selectedEventStatus === 'past'">
+                <a class="item">
+                    View match results
+                </a>
+                <a class="item">
+                    View playoff schedule
+                </a>
+                <a class="item">
+                    View standings
+                </a>
+                <a class="item">
+                    View team results
+                </a>
+            </div>
+            <a class="item"
+               ng-show="(event.event_type === 'social' && selectedEventStatus !== 'upcoming') || (event.event_type === 'round robin' && selectedEventStatus !== 'upcoming')">
+                View results
+            </a>
+            <a class="item modal-toggle" ng-click="togglePrintParticipantsModal()" ng-show="showViewTeamsLink(event, selectedEventStatus, user)">
+                View teams
+            </a>
+        </div>
+        <div class="subtitle">
+            Participant Focused
+        </div>
+        <div class="listing">
+            <a class="item modal-toggle" ng-click="togglePrintParticipantsModal()" ng-show="showViewParticipantsLink(event, selectedEventStatus, user)">
+                View participants
+            </a>
+            <a class="item modal-toggle" ng-click="toggleNotConfirmedParticipantsModal()"
+               ng-if="event.event_type !== 'multifacility' && canEditEvent(event) && selectedEventStatus !== 'past'">
+                View participants not responded
+            </a>
+            <a class="item" ng-if="canEditEvent(event) && (event.event_type === 'league' || event.event_type === 'round robin') && selectedEventStatus === 'upcoming'">
+                View sign-up status
+            </a>
+            <a class="item"
+               ng-if="(canEditEvent(event) || isCaptain(event)) && (event.event_type === 'league') && selectedEventStatus !== 'past'">
+                View sub availability
+            </a>
+            <a class="item modal-toggle" ng-click="toggleWaitlistedParticipantsModal()"
+               ng-if="event.event_type !== 'multifacility' && canEditEvent(event) && selectedEventStatus !== 'past'">
+                View waitlist participants
+            </a>
+            <a class="item" ng-if="event.event_type === 'social' && !canEditEvent(event) && selectedEventStatus === 'upcoming'">
+                View availability
+            </a>
+			<a class="item modal-toggle" ng-click="toggleViewTeamRosterMultiModal()"
+               ng-if="event.event_type === 'multifacility' && (selectedEventStatus !== 'past' || user.privilege === 'participant')">
+               	View team members
+           	</a>
+        </div>
+    </div>
+    <div ng-if="event.event_type === 'ladder'">
+        <div ng-if="selectedEventStatus === 'upcoming'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleCreateEventModal(true)">
+                    View create event
+                </a>
+                <a href="/event/{{selectedEvent.id}}/leaders" target="_self" class="item">
+                    View event leader
+                </a>
+            </div>
+            <div class="listing" ng-if="!canEditEvent(event)">
+                <a class="item modal-toggle" ng-if="!canEditEvent(event)" ng-click="toggleViewEventRulesModal()">
+                    View event rules
+                </a>
+            </div>
+            <div class="subtitle">
+                Participant Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleNotConfirmedParticipantsModal()">
+                    View participants not responded
+                </a>
+            </div>
+            <div class="listing">
+                <a class="item modal-toggle" ng-click="toggleViewParticipantsLadderModal()">
+                    View participants
+                </a>
+            </div>
+        </div>
+        <div ng-if="selectedEventStatus === 'current'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(3)">
+                    View all open challenges in the ladder
+                </a>
+				<a class="item modal-toggle" ng-click="toggleViewCompletedLadderResultsModal(2)">
+                    View all played challenges for a date range
+                </a>
+                <a class="item modal-toggle" ng-click="toggleCreateEventModal(true)">
+                    View create event
+                </a>
+                <a href="/event/{{selectedEvent.id}}/leaders" target="_self" class="item">
+                    View event leader
+                </a>
+				<a class="item modal-toggle" ng-click="toggleViewCompletedLadderResultsModal(1)">
+					View played challenges for individual
+				</a>
+            </div>
+            <div class="listing" ng-if="!canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(0)">
+                    View all open challenges in the ladder
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewEventRulesModal()">
+                    View event rules
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewLadderRankingsModal()">
+                    View ladder rankings
+                </a>
+				<a class="item modal-toggle" ng-click="toggleViewCompletedLadderResultsModal(0)">
+					View past matches
+				</a>
+                <div ng-if="event.event_sub_type === 'singles'">
+                	<a class="item modal-toggle" ng-click="toggleEventTeamChallengeLadderModal(false)">
+                    	View participants able to challenge
+                	</a>
+				</div>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                	<a class="item modal-toggle" ng-click="toggleEventTeamChallengeLadderModal(false)">
+                    	View teams able to challenge
+                	</a>
+				</div>
+            </div>
+            <div class="subtitle">
+                Participant Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleNotConfirmedParticipantsModal()">
+                    View participants not responded
+                </a>
+            </div>
+            <div class="listing">
+                <a class="item modal-toggle" ng-click="toggleViewParticipantsLadderModal()">
+                    View participants
+                </a>
+            </div>
+        </div>
+        <div ng-if="selectedEventStatus === 'past'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a href="#" class="item">
+                    View all played challenges for a date range
+                </a>
+                <a href="#" class="item">
+                    View ladder rankings
+                </a>
+                <a href="#" class="item">
+                    View played challenges for individual
+                </a>
+                <a href="#" class="item">
+                    View results
+                </a>
+            </div>
+            <div class="subtitle">
+                Participant Focused
+            </div>
+            <div class="listing">
+                <a class="item modal-toggle" ng-click="toggleViewParticipantsLadderModal()">
+                    View participants
+                </a>
+            </div>
+        </div>
+    </div>
+ </div>

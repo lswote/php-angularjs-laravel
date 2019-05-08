@@ -1,0 +1,61 @@
+<form id="match-line-times-modal" ng-controller="matchLineTimesModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Schedule & Line Times For {{event.name}}
+    </div>
+    <div class="match-info">
+        <select ng-model="selectedRoundDate">
+            <option value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                {{formatDate(round.date)}}
+            </option>
+        </select>
+    </div>
+    <div class="input-section">
+        <div class="match-courts">
+            <div class="header">
+                Court Asssignments
+            </div>
+            <div class="labels">
+                <span class="y-labels" ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}"></span>
+                <span class="subtitle" ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}"
+                      ng-repeat="match in matches" ng-show="match.date === selectedRoundDate">
+                    <span class="team-name" ng-style="{'color': match.team_one.name}">
+                        {{match.team_one.name}}
+                    </span>
+                    vs.
+                    <span class="team-name" ng-style="{'color': match.team_two.name}">
+                        {{match.team_two.name}}
+                    </span>
+                </span>
+            </div>
+            <div class="courts">
+                <span class="y-labels" ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}">
+                    Courts
+                </span>
+                <span ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}" ng-repeat="match in matches"
+                      ng-show="match.date === selectedRoundDate">
+                    {{match.courts_string ? match.courts_string : 'No courts assigned'}}
+                </span>
+            </div>
+        </div>
+        <div class="line-start-times">
+            <div class="header">
+                Line Start Times
+            </div>
+            <div class="start-times" ng-repeat="startTime in startTimes">
+                <span class="y-labels" ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}">
+                    {{startTime ? parseTime(startTime) : 'No Start Time'}}
+                </span>
+                <span ng-style="{'width': 'calc((100% - 5px) / ' + ((matches.length / roundDates.length) + 1) + ')'}" ng-repeat="match in matches"
+                      ng-show="match.date === selectedRoundDate">
+                    {{matchLineStartTimes[selectedRoundDate][match.id][startTime]}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+    </div>
+</form>

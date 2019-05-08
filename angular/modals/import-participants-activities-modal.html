@@ -1,0 +1,41 @@
+<form id="import-participants-modal" ng-controller="importParticipantsActivitiesModalController" ng-submit="importParticipantsActivities()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Import Participants Activities
+    </div>
+    <div class="input-section">
+        <label ng-class="{'no-file-selected': importParticipantsActivitiesObject.inputFileText === 'No file selected'}" class="file-input-container">
+            {{importParticipantsActivitiesObject.inputFileText}}
+            <input id="file-input" type="file" accept=".csv">
+        </label>
+         <div class="imported-count" ng-show="importedCount > 0">
+            {{importedCount}} {{importedCount > 1 ? 'user records were' : 'user record was'}} successfully processed
+        </div>
+        <div class="error" ng-show="showImportParticipantsActivitiesErrors.file">
+            No file selected
+        </div>
+        <div class="error" ng-show="showImportParticipantsActivitiesErrors.fileType">
+            File type not supported
+        </div>
+        <div class="error" ng-show="showImportParticipantsActivitiesErrors.size">
+            File cannot be larger than 10MB
+        </div>
+        <div class="error" ng-show="showImportParticipantsActivitiesErrors.linesNotAdded.length > 0">
+            Accounts were not created for records in the following lines because of invalid column values:
+            <div ng-repeat="line in showImportParticipantsActivitiesErrors.linesNotAdded">
+                -Line {{line}}
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            IMPORT
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

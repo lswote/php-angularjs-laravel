@@ -1,0 +1,29 @@
+<div>
+    <form id="print-participant-modal" ng-controller="printParticipantsModalController">
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class="title">
+            <i ng-click="rowMode = !rowMode" class="side-pad fa fa-undo"></i>
+            Print Roster for {{eventName}}
+        </div>
+        <div class="team-table">
+            <div ng-repeat="team in teams" ng-class="{'team-row': rowMode, 'team-cell': !rowMode}">
+                <span class="team-cell team-icon" ng-style="{'background-color': team.color}">
+                    <span class="team-number">
+                    {{team.color.slice(0, 2)}}
+                </span>
+                </span>
+                <span ng-class="{'team-row': !rowMode, 'team-cell': rowMode}" class="side-pad" ng-repeat="member in team.roster">
+                    {{member.first_name}} {{member.last_name}}
+                </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+            <button ng-click="print()" class="submit-button" type="submit">
+            PRINT
+        </button>
+        </div>
+    </form>
+</div>

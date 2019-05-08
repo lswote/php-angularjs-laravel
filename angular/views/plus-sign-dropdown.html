@@ -1,0 +1,248 @@
+<div class="dropdown">
+    <div ng-if="event.event_type !== 'ladder'">
+        <div class="subtitle">
+            Event Focused
+        </div>
+        <div class="listing">
+            <a class="item modal-toggle" ng-click="toggleAddEventLeaderModal()" ng-show="showAddEventLeaderLink(event, selectedEventStatus, user)">
+                Add event leader
+            </a>
+            <a class="item modal-toggle" ng-click="toggleAddMatchDirectionsModal()"
+               ng-if="(selectedEventStatus !== 'past' && (canEditEvent(event) || isCaptain(event))) && event.event_type === 'multifacility'">
+                Add facility and directions
+            </a>
+			<a class="item modal-toggle" ng-click="toggleUpdateMatchScheduleModal()"
+               ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+                Add opponents
+            </a>
+            <a class="item modal-toggle" ng-click="toggleAddEventParticipantModal()"
+               ng-show="(selectedEventStatus !== 'past' && event.event_type !== 'multifacility') || ((selectedEventStatus === 'upcoming' || (selectedEventStatus === 'current' && isCaptain(event))) && event.event_type === 'multifacility')">
+                {{event.event_type !== 'multifacility' ? 'Add participant to event sign-up' : 'Add participants to team'}}
+            </a>
+            <a class="item modal-toggle" ng-click="toggleAddSubAvailabilityModal()"
+               ng-show="canEditEvent(event) && selectedEventStatus !== 'past' && event.event_type === 'league'">
+                Add sub availability
+            </a>
+            <a class="item modal-toggle" ng-click="toggleAddSubToLineupModal()"
+               ng-show="(canEditEvent(event) || isCaptain(event)) && selectedEventStatus === 'current' && event.event_type === 'league'">
+                Add sub to team lineup
+            </a>
+            <a class="item modal-toggle" ng-click="toggleAddWaitlistedParticipantToTeamModal()" ng-show="selectedEventStatus !== 'past' && event.event_type !== 'multifacility'">
+                Add waitlist participant to line-up
+            </a>
+            <a class="item" ng-show="canEditEvent(event) && selectedEventStatus === 'upcoming' && event.event_type === 'round robin'">
+                Assign participants to teams / lines
+            </a>
+            <a href="/event/{{selectedEvent.id}}" target="_self" class="item"
+               ng-hide="selectedEventStatus !== 'upcoming' || selectedEvent.comb_play !== null || (event.event_type === 'multifacility' && !isCaptain(event))">
+                Complete event setup
+            </a>
+            <a class="item modal-toggle" ng-click="toggleTeamDrawModal()"
+               ng-show="selectedEventStatus === 'upcoming' && (event.event_type === 'league' || event.event_type === 'round robin') && event.team_assignment_method === 'grouping'">
+                Complete team draw
+            </a>
+            <a class="item modal-toggle" ng-click="toggleImportTeamParticipantsModal()"
+               ng-show="selectedEventStatus === 'upcoming' && (event.event_type === 'league' || event.event_type === 'round robin') && !event.has_team_assignment_occurred && event.team_assignment_method === 'import'">
+                Import team participants
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'upcoming' && (event.event_type === 'league')">
+                Copy team in from multi-facility event
+            </a>
+            <a class="item" ng-show="canEditEvent(event) && selectedEventStatus !== 'past' && event.event_type !== 'multifacility'">
+                Create list of additional potential participants
+            </a>
+            <a class="item" ng-if="canEditEvent(event)">
+                Delete event
+            </a>
+            <a href="/event/{{selectedEvent.id}}/leaders" class="item modal-toggle" ng-show="selectedEventStatus !== 'past'"
+               ng-if="user.privilege === 'facility leader' && (event.event_type !== 'multifacility' || selectedEventStatus !== 'upcoming')">
+                Delete event leader
+            </a>
+            <a class="item modal-toggle" ng-click="toggleEventResultsModal('add')" ng-hide="selectedEventStatus !== 'current' || event.event_type === 'multifacility'">
+                Enter round results
+            </a>
+            <a class="item" ng-if="canEditEvent(event) && selectedEventStatus === 'upcoming' && event.event_type === 'round robin'">
+                Import participant team / pairings
+            </a>
+            <a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')"
+               ng-if="(canEditEvent(event) && selectedEventStatus !== 'past' && event.event_type !== 'multifacility' && event.event_type !== 'round robin') || (canEditEvent(event) && selectedEventStatus === 'upcoming' && event.event_type === 'round robin')">
+                Import participant sign-up
+            </a>
+            <a class="item" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'upcoming' && isCaptain(event)">
+                Create participants from prior season
+            </a>
+            <a class="item modal-toggle" ng-click="toggleEditParticipantContactInfoModal(false)" ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+                Delete participants from team
+            </a>
+			<a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'upcoming' && isCaptain(event)">
+                Import participants to team
+            </a>
+            <a class="item" ng-if="event.event_type === 'multifacility' && selectedEventStatus !== 'past' && isCaptain(event)">
+                Set line type (Sngl, Dbls) and start time
+            </a>
+        </div>
+    </div>
+    <div ng-if="event.event_type === 'ladder'">
+        <div ng-if="selectedEventStatus === 'upcoming'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a class="item modal-toggle" ng-click="toggleAddEventLeaderModal()" ng-if="user.privilege === 'facility leader'">
+                    Add event leader
+                </a>
+                <a class="item modal-toggle" ng-click="toggleAddEventParticipantModal()">
+                    Add participant to event sign-up
+                </a>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleAddEventTeamToLadderModal()">
+                        Add team to ladder
+                    </a>
+                </div>
+                <a href="#" class="item">
+                    Create list of addt'l potential participants
+                </a>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventTeamFromLadderModal()" ng-if="user.privilege === 'facility leader'">
+                        Delete participant/team from the ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventParticipantFromLadderModal()">
+                        Delete participant from the ladder
+                    </a>
+                </div>
+                <a href="/event/{{selectedEvent.id}}/leaders" class="item modal-toggle" ng-if="user.privilege === 'facility leader'">
+                    Delete event leader
+                </a>
+                <a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')">
+                    Import participant sign-up
+                </a>
+            </div>
+            <div class="listing" ng-if="event && event.event_leaders.length > 0">
+                <a class="item modal-toggle" ng-click="toggleAddEventParticipantModal()">
+                    Add participant to event sign-up
+                </a>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleAddEventTeamToLadderModal()">
+                        Add team to ladder
+                    </a>
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventTeamFromLadderModal()">
+                        Delete participant/team from the ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventParticipantFromLadderModal()">
+                        Delete participant from the ladder
+                    </a>
+                </div>
+                <a href="#" class="item">
+                    Complete event setup
+                </a>
+                <a href="#" class="item">
+                    Create list of addt'l potential participants
+                </a>
+                <a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')">
+                    Import participant sign-up
+                </a>
+            </div>
+        </div>
+        <div ng-if="selectedEventStatus === 'current'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="user.privilege === 'facility leader'">
+                <a class="item modal-toggle" ng-click="toggleAddEventLeaderModal()" ng-show="selectedEventStatus !== 'past'">
+                    Add event leader
+                </a>
+                <a class="item modal-toggle" ng-click="toggleAddEventParticipantModal()">
+                    Add participant to event sign-up
+                </a>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleAddEventTeamToLadderModal()">
+                        Add team to ladder
+                    </a>
+                </div>
+                <a href="#" class="item">
+                    Create list of addt'l potential participants
+                </a>
+                <a class="item modal-toggle" ng-click="toggleAddEventChallengeLadderModal()">
+                    Create new challenge
+                </a>
+                <a href="/event/{{selectedEvent.id}}/leaders" class="item modal-toggle">
+                    Delete event leader
+                </a>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventParticipantFromLadderModal()">
+                        Delete participant from the ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventTeamFromLadderModal()">
+                        Delete participant/team from the ladder
+                    </a>
+                </div>
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(1)">
+                    Enter results
+                </a>
+                <a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')">
+                    Import participant sign-up
+                </a>
+            </div>
+            <div class="listing" ng-if="event && event.event_leaders.length > 0">
+                <a class="item modal-toggle" ng-click="toggleAddEventParticipantModal()">
+                    Add participant to event sign-up
+                </a>
+                <a href="#" class="item">
+                    Create list of addt'l potential participants
+                </a>
+                <a href="/event/{{selectedEvent.id}}/leaders" class="item modal-toggle">
+                    Delete event leader
+                </a>
+                <a class="item modal-toggle" ng-click="toggleAddEventChallengeLadderModal()">
+                    Create new challenge
+                </a>
+                <div ng-if="event.event_sub_type === 'doubles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventTeamFromLadderModal()">
+                        Delete participant/team from the ladder
+                    </a>
+                </div>
+                <div ng-if="event.event_sub_type === 'singles'">
+                    <a class="item modal-toggle" ng-click="toggleWithdrawEventParticipantFromLadderModal()">
+                        Delete participant from the ladder
+                    </a>
+                </div>
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(1)">
+                    Enter results
+                </a>
+                <a class="item modal-toggle" ng-click="toggleImportParticipantsModal('events')">
+                    Import participant sign-up
+                </a>
+            </div>
+            <div class="listing" ng-if="user.privilege === 'participant'">
+                <a class="item modal-toggle" ng-click="toggleAcceptChallengeLadderModal()">
+                    Accept challenge
+                </a>
+                <a class="item modal-toggle" ng-click="toggleViewOpenChallengesLadderModal(1)">
+                    Enter results
+                </a>
+                <a class="item modal-toggle" ng-click="toggleEventTeamChallengeLadderModal(false)">
+                    Issue challenge
+                </a>
+                <a class="item modal-toggle" ng-click="toggleWithdrawChallengesLadderModal()">
+                    Withdraw challenge
+                </a>
+            </div>
+        </div>
+        <div ng-if="selectedEventStatus === 'past'">
+            <div class="subtitle">
+                Event Focused
+            </div>
+            <div class="listing" ng-if="canEditEvent(event)">
+                <a href="#" class="item">
+                    Delete event
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<form id="edit-start-times-modal" ng-controller="editStartTimesModalController" ng-submit="saveStartTimes()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Edit line start times for {{selectedEvent.name}}
+	</div>
+	<div class="match-info">
+		Enter/Edit start time for each line
+	</div>
+	<table class="input-section">
+		<tr>
+			<th>
+				Line Number
+			</th>
+			<th>
+				Play Type
+			</th>
+			<th>
+				Line Type
+			</th>
+			<th class="time">
+				Start Time
+			</th>
+		</tr>
+		<tr ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="line in lines | orderBy: sortByLineType">
+			<td>
+				{{$index + 1}}
+			</td>
+			<td>
+				{{line.line_type}}
+			</td>
+			<td>
+				{{line.line_play_type.toUpperCase()}}
+			</td>
+			<td class="time">
+				<div>
+				<input type="text" placeholder="Start Time" ng-model="line.start_time"
+				  pick-a-time="line.start_time_object" pick-a-time-options="{format: 'HH:i', interval: 15, clear: ''}" ng-click="resetEditStartTimesErrors()">
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SUBMIT
+		</button>
+	</div>
+</form>

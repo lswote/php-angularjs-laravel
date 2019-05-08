@@ -1,0 +1,15 @@
+#event-flows .paged-view {
+    margin-top: 25px;
+}
+
+#event-flows .paged-link {
+    padding-right: 25px;
+}
+
+#event-flows .inactive {
+    color: #848590;
+}
+
+#event-flows .paged-content-window {
+    line-height: 35px;
+}

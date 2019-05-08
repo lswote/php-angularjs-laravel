@@ -1,0 +1,44 @@
+<form id='add-event-challenge-ladder-modal' ng-controller="addEventChallengeLadderModalController" ng-submit="addTeamToLadder()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add New Challenge to {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <table>
+            <tr>
+                <td>
+                    <typeahead class="item" items="items1" prompt="{{prompt1}}" title="name" model="name1" ng-click="resetAddEventTeamToLadderErrors()" inputclass="search-player" divclass="view-player" disabledflag={{name1_disabled}}/>
+                </td>
+                <td>
+                    <typeahead class="item" items="items2" prompt="{{prompt2}}" title="name" model="name2" ng-click="resetAddEventTeamToLadderErrors()" inputclass="search-player" divclass="view-player" />
+                </td>
+            </tr>
+        </table>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.username1">
+            Valid {{prompt1}} name Required
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.username2">
+            Valid {{prompt2}} name Required
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.userOnTwoTeams">
+            Players can't be on both challenge teams
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.createFailed">
+            {{create_failure_reason}}
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.usernamesIdentical">
+            {{prompt1}} & #2 names can not be the same
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit">
+            SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

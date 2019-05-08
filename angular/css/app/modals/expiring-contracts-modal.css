@@ -1,0 +1,43 @@
+#expiring-contracts-modal .title{
+    margin-bottom: 20px;
+}
+#expiring-contracts-modal input, #expiring-contracts-modal select{
+    margin-top: 30px;
+}
+#expiring-contracts-modal .before-date-container{
+    height: 80px;
+    width: calc(100% - 25px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    background-color: #eceff1;
+    border-bottom: 1px solid #c7cfde;
+}
+#expiring-contracts-modal .before-date-container .input-container{
+    top: 20px;
+}
+#expiring-contracts-modal .before-date-container .input-container input{
+    width: 320px;
+    margin: 0;
+    padding-left: 123px;
+}
+#expiring-contracts-modal .before-date-container .input-container .sub-label{
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    font-size: 18px;
+    z-index: 150;
+}
+#expiring-contracts-modal table{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+}
+#expiring-contracts-modal table th, #expiring-contracts-modal table td{
+    width: 25%;
+    text-align: left;
+}
+#expiring-contracts-modal table th{
+    color: #76767e;
+}

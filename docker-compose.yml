@@ -1,0 +1,29 @@
+version: "2"
+services:
+  app:
+    build: .
+    links: 
+      - "db:db"
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=teams_r_it
+      - DB_USERNAME=teamsrit
+      - DB_PASSWORD=password
+    ports:
+      - "8000:80"
+  db:
+    build: ./.docker/db/
+    tty: true
+    volumes:
+      - ./persist:/var/lib/mysql
+    environment: 
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=teams_r_it
+      - MYSQL_USER=teamsrit
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+

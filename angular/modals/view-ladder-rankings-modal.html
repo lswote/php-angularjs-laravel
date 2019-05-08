@@ -1,0 +1,77 @@
+<div id="view-ladder-rankings-modal" ng-controller="viewLadderRankingsModalController" ng-submit="updateMatchScores()">
+    <div ng-show="show_view_rankings">
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class="title">
+            {{selectedEvent.name}}
+        </div>
+        <div>
+            Current Ladder Rankings as of {{selectedEvent.start_date_string}}
+        </div>
+        <div class="input-section">
+            <table>
+                <tr>
+                    <th class='col-one'>
+                        RANK
+                    </th>
+                    <th class='col-fill'>
+                        
+                    </th>
+                    <th class='col-two'>
+                        PLAYERS
+                    </th>
+                    <th class='col-three'>
+                        RECORD
+                    </th>
+                    <th class='col-four'>
+                    </th>
+                </tr>
+                <tr ng-repeat="record in records|orderBy: 'ranking'">
+                    <td class='col-one'>
+                        {{record.ranking}}
+                    </td>
+                    <td class='col-fill'>
+                    </td>
+                    <td class='col-two'>
+                        {{record.player}}
+                    </td>
+                    <td class='col-three'>
+                        {{record.record}}
+                    </td>
+                    <td class='col-four' ng-show="record.drop_options">
+                        <button type="button" ng-click="showDropOptions(record.id, record.index)">
+                            DROP OPTIONS
+                        </button> 
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleModal()">
+                DONE
+            </button>
+        </div>
+    </div>
+    <div ng-show="show_drop_options">
+        <form ng-submit="withdrawTeamFromLadder()">
+            <div class="title">
+                Drop Options for {{drop_data_player}}
+            </div>
+            <div class="radio-buttons">
+                <div>
+                    <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="dropped" checked><label>Remove from ladder</label>
+                </div>
+                <div>
+                    <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="out"><label>Temporarily remove from ladder</label>
+               </div>
+            </div>
+            <div class="buttons">
+                <button class="cancel-button" type="button" ng-click="toggleDisplays()">
+                    CANCEL
+                </button>
+                <button class="submit-button" type="submit">
+                    DROP
+                </button>
+            </div>
+        </form>
+    </div>
+<div>

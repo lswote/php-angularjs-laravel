@@ -1,0 +1,88 @@
+#send-individual-availability-modal .recipients{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#send-individual-availability-modal .recipient{
+    margin-right: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    color: white;
+    background-color: #626673;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#send-individual-availability-modal .error{
+	font-size: 18px;
+}
+#send-individual-availability-modal .title{
+	margin-bottom: 20px;
+}
+#send-individual-availability-modal .input-section{
+	text-align: left;
+}
+#send-individual-availability-modal .input-section table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#send-individual-availability-modal .input-section table.rounds{
+	margin-top: 15px;
+}
+#send-individual-availability-modal .input-section select{
+	background: white;
+}
+#send-individual-availability-modal .radio-buttons label{
+	display: inline;
+}
+#send-individual-availability-modal .radio-buttons input:not([type="checkbox"]){
+	display: inline;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+    background-color: white;
+}
+#send-individual-availability-modal .found-participants{
+	position: relative;
+}
+#send-individual-availability-modal .found-participant{
+	display: block;
+	width: 100%;
+	padding: 5px;
+	color: #2879ff;
+	background-color: white;
+	cursor: pointer;
+}
+#send-individual-availability-modal .found-participant:hover{
+	color: white;
+	background-color: #2879ff;
+}
+#send-individual-availability-modal .found-participant .username{
+	color: #2879ff;
+	font-weight: 600;
+}
+#send-individual-availability-modal .found-participant:hover .username, #send-individual-availability-modal .found-participant:hover .selected{
+	color: white;
+}
+#send-individual-availability-modal .found-participant .selected{
+	color: #626673;
+}
+#send-individual-availability-modal .container label{
+	display: inline;
+	padding-left: 5px;
+}
+#send-individual-availability-modal .container input{
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+}

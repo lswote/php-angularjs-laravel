@@ -1,0 +1,105 @@
+<div ng-controller="eventTeamsController">
+    <div id="event-teams" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Edit Event Teams / Groups
+            </div>
+            <div class="subtitle">
+                {{event.name}}
+            </div>
+            <div class="swap-players">
+                <select class="group-filter" ng-model="startGroup">
+                    <option class="type" value="{{group}}" ng-repeat="group in eventGroupsCountArray">
+                        Group #{{group}}
+                    </option>
+                </select>
+                <span>
+                    thru
+                </span>
+                <select class="group-filter" ng-model="endGroup">
+                    <option class="type" value="{{group}}" ng-repeat="group in eventGroupsCountArray" ng-show="group >= startGroup">
+                        Group #{{group}}
+                    </option>
+                </select>
+                <select class="gender-filter" ng-model="showGender">
+                    <option value="" disabled selected>
+                        Gender
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                    <option value="male">
+                        Male
+                    </option>
+                </select>
+                <button type="button" ng-class="{'disabled': selectedUsers.length < 2}" ng-click="swapPlayers()" ng-disabled="selectedUsers.length < 2">
+                    SWAP PLAYERS
+                </button>
+            </div>
+            <div class="teams" ng-if="participantRankings">
+                <div class="header">
+                    <span class="name">
+                        NAME
+                    </span>
+                    <span class="gender">
+                        GENDER
+                    </span>
+                    <span class="group-number">
+                        GROUP NO.
+                    </span>
+                    <span class="team-name">
+                        TEAM
+                    </span>
+                    <span class="ranking">
+                        RANKING
+                    </span>
+                </div>
+                <div class="team-group" ng-repeat="team in eventTeamUsers | filter: groupsAndGenderFilter | orderBy: 'group_number'">
+                    <input type="checkbox" ng-checked="selectedUsers.indexOf(team.user_id) > -1"
+                           ng-click="toggleSelectedUsers(team.user_id, team.users.sex)"
+                           ng-disabled="disableCheckbox(team.user_id, team.users.sex)">
+                    <span class="name">
+                        {{team.users.first_name}} {{team.users.last_name}}
+                        <i class="fa fa-flag-o" title="Team Captain" ng-show="team.captain === 1"></i>
+                    </span>
+                    <span class="gender">
+                        {{team.users.sex}}
+                    </span>
+                    <span class="group-number">
+                        {{team.group_number}}
+                    </span>
+                    <span class="team-name">
+                        {{capitalizeWords(team.event_teams.name)}}
+                    </span>
+                    <span class="ranking">
+                        {{participantRankings[findArrayIndex(participantRankings, 'id', team.user_id)]['pivot']['ranking'] || '0.00'}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateEventTeams(true)" ng-disabled="callInProgress">
+                    Save And Exit
+                </button>
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateEventTeams()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+                <button class="submit-button" type="button" ng-class="{'disabled': selectedUsers.length < 2}" ng-click="swapPlayers()" ng-disabled="selectedUsers.length < 2">
+                    Swap Players
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

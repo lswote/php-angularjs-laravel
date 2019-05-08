@@ -1,0 +1,195 @@
+<div ng-controller="facilityActivitiesController">
+    <div id="facility-activities" class="page-form page-outer-container" ng-show="displayFacilityForm">
+        <div class="page-container">
+            <div class="title">
+                FACILITY ACTIVITY MASTER FILE
+            </div>
+            <div class="top-bar">
+                <span>
+                    {{facility.name}}
+                </span>
+                <select required ng-model="selectedActivityId">
+                    <option value="" disabled selected>
+                        Activity Name
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="{{activity.id}}" ng-repeat="activity in facilityActivities">
+                        {{activity.name}}
+                    </option>
+                </select>
+                <div class="add-activity">
+                    <button type="button" ng-click="toggleNonFacilityActivities()">
+                        ADD ACTIVITY
+                    </button>
+                    <div class="non-facility-activities" ng-show="showNonFacilityActivities">
+                        <div ng-repeat="activity in nonFacilityActivities" ng-click="addActivity(activity.id)">
+                            {{activity.name}}
+                        </div>
+                        <div class="no-activities" ng-show="nonFacilityActivities.length === 0">
+                            No Activities To Add
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="associated-activities">
+                <div class="labels">
+                    <div></div>
+                    <div>
+                        TEAM LINE
+                    </div>
+                    <div>
+                        2
+                    </div>
+                    <div>
+                        3
+                    </div>
+                    <div>
+                        4
+                    </div>
+                    <div>
+                        5
+                    </div>
+                    <div>
+                        DBLS
+                    </div>
+                    <div>
+                        COMPETITION SCORING FORMAT
+                    </div>
+                    <div>
+                        LINE SCORING FORMAT
+                    </div>
+                    <div>
+                        PTS H/L
+                    </div>
+                    <div>
+                        SURFACE TYPE
+                    </div>
+                    <div>
+                        MATCH TYPE
+                    </div>
+                    <div>
+                        NO. OF SURFACES
+                    </div>
+                    <div>
+                        NEXT EVENT DATE
+                    </div>
+                    <div>
+                        NEXT EVENT TYPE
+                    </div>
+                </div>
+                <div class="activity" ng-style="{width: '80' / selectedActivities.length + '%'}" ng-repeat="activity in selectedActivities">
+                    <div class="remove-activity">
+                        <i class="fa fa-minus-circle" ng-click="removeActivity(activity.id)"></i>
+                    </div>
+                    <div class="activity-name">
+                        {{activity.name.toUpperCase()}}
+                    </div>
+                    <div class="activity-checkbox">
+                        <input type="checkbox" ng-checked="activity.pivot.two_teams_per_line"
+                               ng-click="activity.pivot.two_teams_per_line = activity.pivot.two_teams_per_line == 1 ? 0 : 1">
+                    </div>
+                    <div class="activity-checkbox">
+                        <input type="checkbox" ng-checked="activity.pivot.three_teams_per_line"
+                               ng-click="activity.pivot.three_teams_per_line = activity.pivot.three_teams_per_line == 1 ? 0 : 1">
+                    </div>
+                    <div class="activity-checkbox">
+                        <input type="checkbox" ng-checked="activity.pivot.four_teams_per_line"
+                               ng-click="activity.pivot.four_teams_per_line = activity.pivot.four_teams_per_line == 1 ? 0 : 1">
+                    </div>
+                    <div class="activity-checkbox">
+                        <input type="checkbox" ng-checked="activity.pivot.five_teams_per_line"
+                               ng-click="activity.pivot.five_teams_per_line = activity.pivot.five_teams_per_line == 1 ? 0 : 1">
+                    </div>
+                    <div class="activity-checkbox">
+                        <input type="checkbox" ng-checked="activity.pivot.doubles"
+                               ng-click="activity.pivot.doubles = activity.pivot.doubles == 1 ? 0 : 1">
+                    </div>
+                    <div class="activity-select first">
+                        <select ng-model="activity.pivot.competition_scoring_format">
+                            <option value="1">
+                                1
+                            </option>
+                            <option value="3">
+                                3
+                            </option>
+                            <option value="5">
+                                5
+                            </option>
+                        </select>
+                    </div>
+                    <div class="activity-select">
+                        <select ng-model="activity.pivot.line_scoring_format">
+                            <option value="wl">
+                                Win / Loss
+                            </option>
+                            <option value="points">
+                                Points
+                            </option>
+                        </select>
+                    </div>
+                    <div class="activity-select">
+                        <select ng-model="activity.pivot.point">
+                            <option value="high">
+                                High
+                            </option>
+                            <option value="low">
+                                Low
+                            </option>
+                        </select>
+                    </div>
+                    <div class="activity-select">
+                        <select ng-model="activity.pivot.surface_type">
+                            <option value="court">
+                                Court
+                            </option>
+                            <option value="table">
+                                Table
+                            </option>
+                        </select>
+                    </div>
+                    <div class="activity-select">
+                        <select ng-model="activity.pivot.line_type">
+                            <option value="set">
+                                Set
+                            </option>
+                            <option value="game">
+                                Game
+                            </option>
+                        </select>
+                    </div>
+                    <div class="activity-input">
+                        <input type="number" min="1" ng-model="activity.pivot.num_of_surfaces">
+                    </div>
+                    <div class="activity-input">
+                        <input class="date" type="date" ng-model="activity.pivot.next_event_date" pick-a-date="activity.pivot.next_event_date"
+                               pick-a-date-options="{format: 'yyyy-mm-dd'}">
+                    </div>
+                    <div class="activity-select">
+                        <select ng-model="activity.pivot.next_event_type">
+                            <option value="social">
+                                Social
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updateFacilityActivities()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayFacilityForm === false">
+        No facility found or you are not a facility leader at this facility
+    </div>
+</div>

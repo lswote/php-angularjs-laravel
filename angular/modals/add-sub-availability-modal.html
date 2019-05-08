@@ -1,0 +1,43 @@
+<form id="add-event-participant-modal" ng-controller="addSubAvailabilityModalController" ng-submit="addSubstitute()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Substitute
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="text" placeholder="Username" ng-model="addSubAvailabilityObject.username">
+            <span class="label">
+                USERNAME
+            </span>
+            <div class="found-participants">
+                <a class="found-participant" ng-repeat="participant in foundParticipants | orderBy: 'username'"
+                   ng-click="selectFoundParticipant(participant.username); $event.stopPropagation()">
+                    {{participant.first_name}} {{participant.last_name}}
+                    <span class="username">
+                        {{participant.username}}
+                    </span>
+                    <span class="selected" ng-show="participant.currentSubstitute">
+                        &#10004;
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="error" ng-show="showSubAvailabilityErrors.username">
+            Required
+        </div>
+        <div class="error" ng-show="showSubAvailabilityErrors.usernameNotFound">
+            No user found with matching username
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

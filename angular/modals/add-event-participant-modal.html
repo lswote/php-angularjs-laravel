@@ -1,0 +1,52 @@
+<form id="add-event-participant-modal" ng-controller="addEventParticipantModalController" ng-submit="addEventParticipant()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Participant
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="text" placeholder="Username" ng-model="addEventParticipantObject.username">
+            <span class="label">
+                USERNAME
+            </span>
+            <div class="found-participants">
+                <a class="found-participant" ng-repeat="participant in foundParticipants | orderBy: 'username'"
+                   ng-click="selectFoundParticipant(participant.username); $event.stopPropagation()">
+                    {{participant.first_name}} {{participant.last_name}}
+                    <span class="username">
+                        {{participant.username}}
+                    </span>
+                    <span class="selected" ng-show="participant.alreadySelected">
+                        &#10004;
+                    </span>
+                </a>
+            </div>
+        	<div class="is-captain" ng-show="showParticipantCaptainOption">
+                <input type="checkbox" ng-checked="participantType === 'captain'" ng-click="toggleCaptainDesignation()">
+                <span>
+                    Add as captain
+                </span>
+           	</div>
+        </div>
+        <div class="error" ng-show="showAddEventParticipantErrors.username">
+            Required
+        </div>
+        <div class="error" ng-show="showAddEventParticipantErrors.usernameNotFound">
+            No user found with matching username
+        </div>
+        <div class="error" ng-show="showAddEventParticipantErrors.wrongGender">
+            User is not the correct gender for this event
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

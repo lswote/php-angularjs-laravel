@@ -1,0 +1,52 @@
+#withdraw-event-participant-from-ladder-modal .active{
+	background-color: #aaaaaa;
+}
+#withdraw-event-participant-from-ladder-modal .error{
+    font-size: 18px;
+}
+#withdraw-event-participant-from-ladder-modal .input-section{
+    padding-top: 20px;
+}
+#withdraw-event-participant-from-ladder-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#withdraw-event-participant-from-ladder-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}
+#withdraw-event-participant-from-ladder-modal .buttons button{
+    width: 240px;
+}
+#withdraw-event-participant-from-ladder-modal .pair-div{
+    padding-left: 30px;
+}
+#withdraw-event-participant-from-ladder-modal .pair-div span{
+    padding-left: 0px;
+    font-size: 18px;
+}
+#withdraw-event-participant-from-ladder-modal .view-participant{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#withdraw-event-participant-from-ladder-modal .view-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#withdraw-event-participant-from-ladder-modal .search-participant{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#withdraw-event-participant-from-ladder-modal .field-select{
+    border-color: #bfc7d9;
+    background-color: white
+}

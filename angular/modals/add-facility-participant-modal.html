@@ -1,0 +1,141 @@
+<form id="add-facility-participant-modal" ng-controller="addFacilityParticipantModalController" ng-submit="addFacilityParticipant()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Participant
+    </div>
+    <div class="inputs">
+        <div class="top-section">
+            <div class="input-container">
+                <input type="text" placeholder="First Name" ng-model="addFacilityParticipantObject.firstName">
+                <span class="label">
+                    FIRST NAME
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.firstName">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Last Name" ng-model="addFacilityParticipantObject.lastName">
+                <span class="label">
+                    LAST NAME
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.lastName">
+                    Required
+                </div>
+            </div>
+            <div class="select-container">
+                <select required ng-model="addFacilityParticipantObject.gender">
+                    <option value="female">
+                        Female
+                    </option>
+                    <option value="male">
+                        Male
+                    </option>
+                </select>
+                <span class="label">
+                    GENDER
+                </span>
+            </div>
+            <div class="input-container">
+                <input type="email" placeholder="E-Mail" ng-model="addFacilityParticipantObject.email">
+                <span class="label">
+                    E-MAIL
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.email">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Username" ng-model="addFacilityParticipantObject.username">
+                <span class="label">
+                    USERNAME
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.username">
+                    Required
+                </div>
+                <div class="error" ng-show="addFacilityParitcipantErrors.usernameTaken">
+                    Username Taken
+                </div>
+            </div>
+            <div class="input-container">
+                <input class="phone" type="text" placeholder="Phone" ng-model="addFacilityParticipantObject.phone">
+                <span class="label">
+                    PHONE
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.phone">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="number" placeholder="Room" ng-model="addFacilityParticipantObject.room">
+                <span class="label">
+                    ROOM
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.room">
+                    Required
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Password" ng-model="addFacilityParticipantObject.password">
+                <span class="label">
+                    PASSWORD
+                </span>
+                <div class="error" ng-show="addFacilityParitcipantErrors.password">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="bottom-section">
+            <div class="select-container">
+                <select required ng-model="addFacilityParticipantObject.membershipType">
+                    <option value="member">
+                        Member
+                    </option>
+                    <option value="guest">
+                        Guest
+                    </option>
+                </select>
+                <span class="label">
+                    MEMBERSHIP TYPE
+                </span>
+            </div>
+            <div class="select-container">
+                <select required ng-model="addFacilityParticipantObject.active">
+                    <option value="1">
+                        Active
+                    </option>
+                    <option value="0">
+                        Inactive
+                    </option>
+                </select>
+                <span class="label">
+                    ACTIVE
+                </span>
+            </div>
+            <div class="select-container">
+                <select required ng-model="addFacilityParticipantObject.ageType">
+                    <option value="adult">
+                        Adult
+                    </option>
+                    <option value="child">
+                        Child
+                    </option>
+                </select>
+                <span class="label">
+                    AGE TYPE
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

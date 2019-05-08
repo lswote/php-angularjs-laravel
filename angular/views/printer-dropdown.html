@@ -1,0 +1,47 @@
+<div class="dropdown">
+	<div>
+		<div class="subtitle">
+			Event Focused
+		</div>
+		<div class="listing">
+			<a class="item modal-toggle" ng-click="toggleExportParticipantsModal('event')"
+               ng-if="(event.event_type !== 'multifacility' && (canEditEvent(event) || isCaptain(event))) || (event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)) || (event.event_type === 'ladder' && selectedEventStatus !== 'past' && canEditEvent(event))">
+				{{event.event_type === 'multifacility' ? 'Export team roster to file' : 'Export participants to .csv file'}}
+			</a>
+			<a class="item modal-toggle" ng-click="togglePrintParticipantsModal()" ng-if="canEditEvent(event) && selectedEventStatus === 'current' && event.event_type === 'social'">
+				Print participant roster
+			</a>
+			<a class="item modal-toggle" ng-click="togglePrintScorecardsModal()"
+               ng-hide="!canEditEvent(event) || selectedEventStatus === 'upcoming' || event.event_type === 'multifacility' || event.event_type === 'ladder'">
+				Print scorecards
+			</a>
+			<a class="item modal-toggle" ng-if="selectedEventStatus === 'current' && canEditEvent(event) && event.event_type === 'league'"
+			   ng-click="togglePrintParticipantsModal()">
+				Print team roster
+			</a>
+			<a class="item" ng-if="canEditEvent(event) && selectedEventStatus === 'current' && event.event_type === 'league'">
+				Print team sheets for draw event
+			</a>
+			<a class="item modal-toggle" ng-click="togglePrintMatchDirectionsModal()" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && user.privilege === 'participant'">
+				Print match directions
+			</a>
+			<a class="item modal-toggle" ng-click="togglePrintMultiScorecardsModal()" ng-if="event.event_type === 'multifacility' && selectedEventStatus === 'current' && isCaptain(event)">
+				Print scorecard for round
+			</a>
+            <a class="item" ng-if="canEditEvent(event) && event.event_type === 'round robin'">
+				Print match event guide
+			</a>
+			<a class="item modal-toggle" ng-click="togglePrintToDosModal()" ng-if="showPrintToDosLink(event, selectedEventStatus)">
+				Print ToDos for a date range
+			</a>
+		</div>
+		<div class="subtitle" ng-if="canEditEvent(event) && event.event_type === 'league'">
+			Participant Focused
+		</div>
+		<div class="listing" ng-if="canEditEvent(event) && event.event_type === 'league'">
+			<a class="item">
+				Print participant availability
+			</a>
+		</div>
+	</div>
+</div>

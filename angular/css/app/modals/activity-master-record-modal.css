@@ -1,0 +1,20 @@
+#activity-master-record-modal .title{
+    margin-bottom: 10px;
+}
+#activity-master-record-modal .add-edit-activity-container{
+    position: relative;
+    height: 50px;
+    text-align: center;
+}
+#activity-master-record-modal button.inactive{
+    background-color: #DCDCDC;
+}
+#activity-master-record-modal input, #activity-master-record-modal select{
+    margin-top: 30px;
+}
+#activity-master-record-modal select:disabled + .label{
+    display: none;
+}
+#activity-master-record-modal select.disabled{
+    background-color: #D3D3D3;
+}

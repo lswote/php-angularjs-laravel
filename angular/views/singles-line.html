@@ -1,0 +1,36 @@
+<div class="singles" ng-show="match.line_type === 'singles'">
+    <div class="player">
+        <input type="checkbox" ng-checked="selectedUsers.indexOf(match.pair_one.id) > -1"
+               ng-click="toggleSelectedUsers(match.pair_one.id, match.pair_one.sex, match.id, false, 'pair_one', false, match.pair_one_id, match)"
+               ng-disabled="disableCheckbox(match.pair_one.id, match.pair_one.sex, match.id, match.pair_one_id)">
+        <span class="name" ng-class="{'empty-slot': !match.pair_one}">
+            {{match.pair_one ? match.pair_one.first_name + ' ' + match.pair_one.last_name : 'Empty Slot'}}
+        </span>
+        <span class="time" ng-show="match.pair_one">
+            {{eventUsers[findArrayIndex(eventUsers, 'id', match.pair_one.id)]['events'][0]['pivot']['preferred_start_time'] ? parseTime(eventUsers[findArrayIndex(eventUsers, 'id', match.pair_one.id)]['events'][0]['pivot']['preferred_start_time']) : 'All'}}
+        </span>
+        <span class="ranking" ng-show="match.pair_one">
+            {{participantRankings[findArrayIndex(participantRankings, 'id', match.pair_one.id)]['pivot']['ranking'] || '0.00'}}
+        </span>
+        <span class="match" ng-show="match.pair_one">
+            1
+        </span>
+    </div>
+    <div class="player">
+        <input type="checkbox" ng-checked="selectedUsers.indexOf(match.pair_two.id) > -1"
+               ng-click="toggleSelectedUsers(match.pair_two.id, match.pair_two.sex, match.id, false, 'pair_two', false, match.pair_two_id, match)"
+               ng-disabled="disableCheckbox(match.pair_two.id, match.pair_two.sex, match.id, match.pair_two_id)">
+        <span class="name" ng-class="{'empty-slot': !match.pair_two}">
+            {{match.pair_two ? match.pair_two.first_name + ' ' + match.pair_two.last_name : 'Empty Slot'}}
+        </span>
+        <span class="time" ng-show="match.pair_two">
+            {{eventUsers[findArrayIndex(eventUsers, 'id', match.pair_two.id)]['events'][0]['pivot']['preferred_start_time'] ? parseTime(eventUsers[findArrayIndex(eventUsers, 'id', match.pair_two.id)]['events'][0]['pivot']['preferred_start_time']) : 'All'}}
+        </span>
+        <span class="ranking" ng-show="match.pair_two">
+            {{participantRankings[findArrayIndex(participantRankings, 'id', match.pair_two.id)]['pivot']['ranking'] || '0.00'}}
+        </span>
+        <span class="match"ng-show="match.pair_two">
+            2
+        </span>
+    </div>
+</div>

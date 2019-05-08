@@ -1,0 +1,71 @@
+<form id="update-match-schedule-modal" ng-controller="updateMatchScheduleModalController" ng-submit="updateMatches()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Update Match Schedule for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table>
+			<tr>
+				<th>
+					Round
+				</th>
+				<th>
+					Date
+				</th>
+				<th>
+					Opponent
+				</th>
+				<th>
+					Where
+				</th>
+				<th>
+					Directions
+				</th>
+			</tr>
+			<tr ng-repeat="match in matches" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td class="col-one">
+					{{match.round}}
+				</td>
+				<td class="col-two">
+					{{match.date}}
+				</td>
+				<td class="col-three">
+					<typeahead class="item" items="opponents" prompt="Opponent" title="display" model="match.opponent" ng-click="resetUpdateMatchScheduleErrors()" on-select="displayDirections(match.index)" inputclass="search-opponent" divclass="view-opponent">
+				</td>
+				<td class="col-four">
+					<select ng-model="match.where" ng-click="resetUpdateMatchScheduleErrors()">
+						<option value="" disabled selected>
+                            H/A
+                        </option>
+						<option value="H">
+                            H
+                        </option>
+						<option value="A">
+                            A
+                        </option>
+					</select>
+				</td>
+				<td class="col-five">
+					<pre>{{match.directions}}</pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+    <div class="error" ng-show="showUpdateMatchScheduleErrors.bothNeedSelecting">
+		Both Opponent and Where must be selected for round {{round}}
+    </div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+		</button>
+		<button class="submit-button" type="button" ng-click="updateMatchesExit()">
+			SAVE & EXIT
+		</button>
+	</div>
+</form>

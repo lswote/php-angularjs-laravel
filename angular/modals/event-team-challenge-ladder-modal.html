@@ -1,0 +1,76 @@
+<div id="event-team-challenge-ladder-modal" ng-controller="eventTeamChallengeLadderModalController">
+    <div>
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class="title event-name" ng-if="selectedEvent.event_sub_type === 'singles'">
+            Participants you can challenge in {{selectedEvent.name}}
+        </div>
+        <div class="title event-name" ng-if="selectedEvent.event_sub_type === 'doubles'">
+            Teams you can challenge in {{selectedEvent.name}}
+        </div>
+        <div ng-show="show_challengers && challengers.length > 0">
+            <div ng-show="selectedEvent.event_sub_type === 'singles'">
+                {{rules.num_team_challenges - challengers[0].challenges}} remaining challenges available
+            </div>
+            <div ng-show="selectedEvent.event_sub_type === 'doubles'">
+                <table class='match-results-table'>
+                    <tr><th>Pick the challenging team you are on</th></tr>
+                    <tr ng-repeat="challenger in challengers | orderBy: 'rank'">
+                        <td>
+                            <input name="challenger_id" ng-model="challenger_index" type="radio" value="{{challenger.index}}" ng-click="process_doubles_challenger(challenger.index)">
+                            <label>{{challenger.name}}</label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="no-results-found" ng-show="!getDataInProgress && challengers.length === 0">
+                0 remaining challenges available
+        </div>
+        <div ng-show="show_challengees && challengees.length > 0">
+            <div class="input-section">
+                <table ng-show="!getDataInProgress">
+                    <tr>
+                        <th class='col-one'>
+                            RANK
+                        </th>
+                        <th class='col-two'>
+                            <span ng-if="selectedEvent.event_sub_type === 'singles'">PARTICIPANT</span>
+                            <span ng-if="selectedEvent.event_sub_type === 'doubles'">TEAM</span>
+                        </th>
+                        <th class='col-three'>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="challengee in challengees | orderBy: 'rank'">
+                        <td class='col-one'>
+                            {{challengee.rank}}
+                        </td>
+                        <td class='col-four'>
+                            {{challengee.name}}
+                        </td>
+                        <td class='col-three' ng-show="challengee.show_challenge">
+                            <button type="button" ng-show="show_issue_challenge" ng-click="issueChallenge(challenger, challengee)"> 
+
+                                ISSUE CHALLENGE
+                            </button> 
+                        </td>
+                    </tr>
+                </table>
+                <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getDataInProgress">
+                <div class="no-results-found" ng-show="!getDataInProgress && challengees.length === 0">
+                    No challenges
+                </div>
+                <div class="error" ng-show="showEventTeamChallengeLadderErrors.createFailed">
+                    {{create_failure_reason}}
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="cancel-button" type="button" ng-click="toggleModal()">
+                CLOSE
+                <span ng-show="callSuccess">
+                    &#10004;
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

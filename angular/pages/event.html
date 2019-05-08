@@ -1,0 +1,686 @@
+<div ng-controller="eventController">
+    <form id="event" class="page-form page-outer-container" ng-submit="completeEventSetup()" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Event Setup
+            </div>
+            <div class="step step-one">
+                <div class="subtitle">
+                    <span class="step-label">
+                        Step 1
+                    </span>
+                    <span class="event-name">
+                        {{event.name}}
+                    </span>
+                    <span class="event-format">
+                        - {{event.eventType}}
+                    </span>
+                </div>
+                <div class="more-info-text">
+                    Tell us a little more about this event
+                </div>
+                <div class="first-row">
+                    <div class="select-container first" ng-if="event.eventType !== 'multifacility'">
+                        <select required ng-model="eventConfig.teamsPerLine" ng-disabled="viewOnly">
+                            <option value="{{teams}}" ng-repeat="teams in teamsPerLineOptions">
+                                {{teams}}
+                            </option>
+                        </select>
+                        <span class="label">
+                            TEAMS / LINE
+                        </span>
+                    </div>
+                    <div class="select-container first" ng-if="event.eventType === 'multifacility'">
+                        <select required ng-model="event.eventSubType" ng-disabled="viewOnly">
+                            <option value="" disabled selected>
+                                Type of Multi-Facility League
+                            </option>
+                            <option value="alta">
+                                Alta
+                            </option>
+                            <option value="usta">
+                                USTA
+                            </option>
+                            <option value="multi">
+                                Multi
+                            </option>
+                        </select>
+                        <span class="label">
+                            MULTI-FACILITY LEAGUE TYPE
+                        </span>
+                    </div>
+                    <div class="select-container second">
+                        <select required ng-model="eventConfig.typeOfPlay" ng-disabled="viewOnly">
+                            <option value="gender">
+                                Gender
+                            </option>
+                            <option value="mixed">
+                                Mixed
+                            </option>
+                        </select>
+                        <span class="label">
+                            TYPE OF PLAY
+                        </span>
+                    </div>
+                </div>
+                <div class="second-row" ng-if="event.eventType !== 'multifacility'">
+                    <div class="select-container small not-last">
+                        <select required ng-model="eventConfig.combPlay" ng-disabled="viewOnly">
+                            <option value="" disabled selected ng-show="eventConfig.typeOfPlay === 'gender'">
+                                Comb Play
+                            </option>
+                            <option value="1" ng-show="eventConfig.typeOfPlay === 'gender'">
+                                Yes
+                            </option>
+                            <option value="0">
+                                No
+                            </option>
+                        </select>
+                        <span class="label">
+                            COMB PLAY
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.combPlay">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container not-last">
+                        <input type="number" min="1" max="20" placeholder="Playing Surfaces ({{event.numOfFacilitySurfaces}} Max)" ng-model="eventConfig.maxSurfaces"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            PLAYING SURFACES ({{event.numOfFacilitySurfaces}} Max)
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.maxSurfaces">
+                            Required ({{event.numOfFacilitySurfaces}} Max)
+                        </div>
+                    </div>
+                    <div class="select-container small not-last">
+                        <select required ng-model="eventConfig.singlesOnly" ng-disabled="viewOnly">
+                            <option value="1">
+                                Yes
+                            </option>
+                            <option value="0" ng-hide="eventConfig.teamsPerLine > 2">
+                                No
+                            </option>
+                        </select>
+                        <span class="label">
+                            SINGLES ONLY
+                        </span>
+                    </div>
+                    <div class="input-container not-last">
+                        <input type="number" min="0" max="50" placeholder="# of Single Women Lines" ng-model="eventConfig.singleWomenLines"
+                               ng-disabled="viewOnly || eventConfig.singlesOnly === '1'" required>
+                        <span class="label">
+                            # OF SINGLE WOMEN LINES
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.singleWomenLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" min="0" max="50" placeholder="# of Single Men Lines" ng-model="eventConfig.singleMenLines"
+                               ng-disabled="viewOnly || eventConfig.singlesOnly === '1'" required>
+                        <span class="label">
+                            # OF SINGLE MEN LINES
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.singleMenLines">
+                            Required
+                        </div>
+                    </div>
+                </div>
+                <div class="second-row" ng-if="event.eventType === 'multifacility'">
+                    <div class="input-container small not-last">
+                        <input type="number" min="0" max="50" placeholder="# of WD" ng-model="eventConfig.doubleWomenLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF WD
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.doubleWomenLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container small not-last">
+                        <input type="number" min="0" max="50" placeholder="# of WS" ng-model="eventConfig.singleWomenLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF WS
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.singleWomenLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container small not-last">
+                        <input type="number" min="0" max="50" placeholder="# of MD" ng-model="eventConfig.doubleMenLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF MD
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.doubleMenLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container small not-last">
+                        <input type="number" min="0" max="50" placeholder="# of MS" ng-model="eventConfig.singleMenLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF MS
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.singleMenLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container small not-last">
+                        <input type="number" min="0" max="50" placeholder="# of XD" ng-model="eventConfig.doubleComboLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF XD
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.doubleComboLines">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container small">
+                        <input type="number" min="0" max="50" placeholder="# of XS" ng-model="eventConfig.singleComboLines"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            # OF XS
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.singleComboLines">
+                            Required
+                        </div>
+                    </div>
+                </div>
+                <div class="third-row" ng-show="event.eventType === 'league'">
+                    <div class="league-sitting-label">
+                        League Settings
+                    </div>
+                    <div class="input-container not-last">
+                        <input type="number" min="0" max="50" placeholder="Women Sitting Per Round Per Team" ng-model="eventConfig.womenSittingPerRound"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            WOMEN SITTING PER ROUND PER TEAM
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.womenSittingPerRound">
+                            Required
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" min="0" max="50" placeholder="Men Sitting Per Round Per Team" ng-model="eventConfig.menSittingPerRound"
+                               ng-disabled="viewOnly">
+                        <span class="label">
+                            MEN SITTING PER ROUND PER TEAM
+                        </span>
+                        <div class="error" ng-show="showEventConfigErrors.menSittingPerRound">
+                            Required
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons-row">
+                    <div class="item">
+                        <div class="tag">
+                            #WOMEN
+                        </div>
+                        <div class="button">
+                            {{femaleCount}}
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="tag">
+                            #MEN
+                        </div>
+                        <div class="button">
+                            {{maleCount}}
+                        </div>
+                    </div>
+                    <div class="item" ng-show="event.eventType !== 'multifacility'">
+                        <div class="tag">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? 'NET WOMEN LINES' : "#MAX WOMEN'S GRPS"}}
+                        </div>
+                        <div class="button">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? netWomenLines : womenLines}}
+                        </div>
+                    </div>
+                    <div class="item" ng-show="event.eventType !== 'multifacility'">
+                        <div class="tag">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? 'NET MEN LINES' : "#MAX MEN'S GRPS"}}
+                        </div>
+                        <div class="button">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? netMenLines: menLines}}
+                        </div>
+                    </div>
+                    <div class="item" ng-show="event.eventType !== 'multifacility'">
+                        <div class="tag">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? 'NET TOTAL LINES' : "#MAX TOT GRPS"}}
+                        </div>
+                        <div class="button">
+                            {{event.eventType === 'league' || event.eventType === 'round robin' ? netTotalLines: totalLines}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step step-two" ng-if="event.eventType !== 'multifacility'">
+                <div class="subtitle">
+                    <span class="step-label">
+                        Step 2
+                    </span>
+                    <span class="event-name">
+                        Select a playing surface for your event
+                    </span>
+                </div>
+                <div class="more-info-text">
+                    On the right hand side below, choose the combination of playing surfaces and start times that work for your event based on the number of teams.
+                    <br>
+                    Note: For a social event, all players are viewed as playing on one team
+                </div>
+                <div class="charts">
+                    <div class="lines-per-team">
+                        <div class="chart-title">
+                            Lines Per Team
+                        </div>
+                        <table>
+                            <tr class="header-row">
+                                <th>
+                                    #TEAMS
+                                </th>
+                                <th>
+                                    #WOMEN LINES
+                                </th>
+                                <th>
+                                    #MEN LINES
+                                </th>
+                                <th>
+                                    #ADDT'L WOMEN
+                                </th>
+                                <th>
+                                    #ADDT'L MEN
+                                </th>
+                                <th>
+                                    #COMB LINES
+                                </th>
+                                <th>
+                                    #TOT LINES / TEAM
+                                </th>
+                                <th>
+                                    #ADDT'L PLAYERS
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in perTeamLines" ng-class="{'disabled': !item.totalLines && item.totalLines !== 0}">
+                                <td>
+                                    {{item.totalTeams}}
+                                </td>
+                                <td>
+                                    {{item.womenLines}}
+                                </td>
+                                <td>
+                                    {{item.menLines}}
+                                </td>
+                                <td>
+                                    {{item.additionalWomen}}
+                                </td>
+                                <td>
+                                    {{item.additionalMen}}
+                                </td>
+                                <td>
+                                    {{item.combLines}}
+                                </td>
+                                <td>
+                                    {{item.totalLines}}
+                                </td>
+                                <td>
+                                    {{item.additionalPlayers}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="num-of-start-times">
+                        <div class="chart-title">
+                            Number of Start Times
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-label">
+                                <div class="text">
+                                    PLAYING
+                                </div>
+                                <div class="text">
+                                    SURFACES
+                                </div>
+                            </div>
+                            <table>
+                                <tr class="header-row">
+                                    <th>
+                                        1
+                                    </th>
+                                    <th>
+                                        2
+                                    </th>
+                                    <th>
+                                        3
+                                    </th>
+                                    <th>
+                                        4
+                                    </th>
+                                    <th>
+                                        5
+                                    </th>
+                                </tr>
+                                <tr ng-repeat="item in perTeamSurfaces" ng-class="{'disabled': (!item.oneStartTime && item.oneStartTime !== 0) || event.eventType === 'ladder'}">
+                                    <td ng-class="{'not-available': item.oneStartTime > eventConfig.maxSurfaces, 'selected': 1 === event.numOfStartTimes && item.totalTeams === selectedTeamCount}">
+                                        <div ng-class="{'selected': 1 === event.numOfStartTimes && item.totalTeams === selectedTeamCount, 'can-be-clicked': event.eventType !== 'social'}"
+                                             ng-click="!viewOnly && event.eventType !== 'social' && selectStartTimesTeamCountCombo(1, item.totalTeams)">
+                                            {{(!item.oneStartTime && item.oneStartTime !== 0) || event.eventType === 'ladder' ? '' : item.oneStartTime}}
+                                        </div>
+                                    </td>
+                                    <td ng-class="{'not-available': item.twoStartTime > eventConfig.maxSurfaces, 'selected': 2 === event.numOfStartTimes && item.totalTeams === selectedTeamCount}">
+                                        <div ng-class="{'selected': 2 === event.numOfStartTimes && item.totalTeams === selectedTeamCount, 'can-be-clicked': event.eventType !== 'social'}"
+                                             ng-click="!viewOnly && event.eventType !== 'social' && selectStartTimesTeamCountCombo(2, item.totalTeams)">
+                                            {{(!item.twoStartTime && item.twoStartTime !== 0) || event.eventType === 'ladder' ? '' : item.twoStartTime}}
+                                        </div>
+                                    </td>
+                                    <td ng-class="{'not-available': item.threeStartTime > eventConfig.maxSurfaces, 'selected': 3 === event.numOfStartTimes && item.totalTeams === selectedTeamCount}">
+                                        <div ng-class="{'selected': 3 === event.numOfStartTimes && item.totalTeams === selectedTeamCount, 'can-be-clicked': event.eventType !== 'social'}"
+                                             ng-click="!viewOnly && event.eventType !== 'social' && selectStartTimesTeamCountCombo(3, item.totalTeams)">
+                                            {{(!item.threeStartTime && item.threeStartTime !== 0) || event.eventType === 'ladder' ? '' : item.threeStartTime}}
+                                        </div>
+                                    </td>
+                                    <td ng-class="{'not-available': item.fourStartTime > eventConfig.maxSurfaces, 'selected': 4 === event.numOfStartTimes && item.totalTeams === selectedTeamCount}">
+                                        <div ng-class="{'selected': 4 === event.numOfStartTimes && item.totalTeams === selectedTeamCount, 'can-be-clicked': event.eventType !== 'social'}"
+                                             ng-click="!viewOnly && event.eventType !== 'social' && selectStartTimesTeamCountCombo(4, item.totalTeams)">
+                                            {{(!item.fourStartTime && item.fourStartTime !== 0) || event.eventType === 'ladder' ? '' : item.fourStartTime}}
+                                        </div>
+                                    </td>
+                                    <td ng-class="{'not-available': item.fiveStartTime > eventConfig.maxSurfaces, 'selected': 5 === event.numOfStartTimes && item.totalTeams === selectedTeamCount}">
+                                        <div ng-class="{'selected': 5 === event.numOfStartTimes && item.totalTeams === selectedTeamCount, 'can-be-clicked': event.eventType !== 'social'}"
+                                             ng-click="!viewOnly && event.eventType !== 'social' && selectStartTimesTeamCountCombo(5, item.totalTeams)">
+                                            {{(!item.fiveStartTime && item.fiveStartTime !== 0) || event.eventType === 'ladder' ? '' : item.fiveStartTime}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step step-three">
+                <div class="subtitle">
+                    <span class="step-label">
+                        Step {{event.eventType !== 'multifacility' ? '3' : '2'}}
+                    </span>
+                    <span class="event-name">
+                        Additional Parameters
+                    </span>
+                </div>
+                <div class="more-info-text">
+                    Almost finished.  Just a few more questions
+                </div>
+                <div class="inputs">
+                    <div class="column first">
+                        <div class="select-container">
+                            <select required ng-model="eventConfig.numOfRounds" ng-disabled="viewOnly || event.eventType === 'social'">
+                                <option value="" disabled selected>
+                                    No. Of Rounds
+                                </option>
+                                <option value="{{rounds}}" ng-repeat="rounds in numberRounds">
+                                    {{rounds}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                NO. OF ROUNDS
+                            </span>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'social'">
+                            <select required ng-model="eventConfig.roundsIntervalMetric" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    Round Interval Metric
+                                </option>
+                                <option value="days">
+                                    Days
+                                </option>
+                                <option value="minutes">
+                                    Minutes
+                                </option>
+                            </select>
+                            <span class="label">
+                                ROUND INTERVAL METRIC
+                            </span>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'social'">
+                            <select required ng-model="eventConfig.roundsInterval" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    Round Interval
+                                </option>
+                                <option ng-if="eventConfig.roundsIntervalMetric === 'minutes'" value="{{interval}}" ng-repeat="interval in roundsMinutesIntervals">
+                                    {{interval}}
+                                </option>
+                                <option ng-if="eventConfig.roundsIntervalMetric === 'days'" value="{{interval}}" ng-repeat="interval in roundsDaysIntervals">
+                                    {{interval}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                ROUND INTERVAL
+                            </span>
+                        </div>
+                        <div class="input-container">
+                            <input class="date" type="text" placeholder="Start Date" ng-model="eventConfig.startDate" ng-disabled="event.eventType === 'social' || viewOnly"
+                                   pick-a-date="startDateObject" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+                            <span class="label">
+                               START DATE
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.startDate">
+                                Required
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="1st Line Start Time" ng-model="eventConfig.startTime" ng-disabled="event.eventType === 'social'" ng-if="!viewOnly"
+                                   pick-a-time="startTimeObject" pick-a-time-options="{interval: 15, clear: ''}">
+                            <input type="text" placeholder="1st Line Start Time" disabled ng-model="eventConfig.startTime" ng-if="viewOnly">
+                            <span class="label">
+                                1ST LINE START TIME
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.startTime">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="eventConfig.standardLineDuration" ng-disabled="viewOnly || event.eventType === 'social'">
+                                <option value="" disabled selected>
+                                    Standard Line Duration
+                                </option>
+                                <option value="{{duration}}" ng-repeat="duration in standardLineDurations">
+                                    {{duration}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                STANDARD LINE DURATION
+                            </span>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType === 'league' || event.eventType === 'ladder'">
+                            <select required ng-model="eventConfig.hasPlayoff" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    Has Playoff
+                                </option>
+                                <option value="1">
+                                    Yes
+                                </option>
+                                <option value="0">
+                                    No
+                                </option>
+                            </select>
+                            <span class="label">
+                                HAS PLAYOFF
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.hasPlayoff">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="select-container" ng-if="event.eventType === 'multifacility'">
+                            <select required ng-model="event.numOfStartTimes" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    No. Of Start Times
+                                </option>
+                                <option value="{{startTimes}}" ng-repeat="startTimes in numberStartTimes">
+                                    {{startTimes}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                NO. OF START TIMES
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.numOfStartTimes">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType === 'multifacility'">
+                            <select required ng-model="eventConfig.hasPlayoff" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    No. Of Playoff Rounds
+                                </option>
+                                <option value="{{i}}" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]">
+                                    {{i}}
+                                </option>
+                            </select>
+                            <span class="label">
+                                NO. OF PLAYOFF ROUNDS
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.hasPlayoff">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'multifacility'">
+                            <select required ng-model="eventConfig.ranked" ng-disabled="viewOnly">
+                                <option value="0">
+                                    Not Ranked
+                                </option>
+                                <option value="1">
+                                    Ranked
+                                </option>
+                            </select>
+                            <span class="label">
+                                RANKED?
+                            </span>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'social' && event.eventType !== 'multifacility'">
+                            <select required ng-model="eventConfig.teamAssignmentMethod" ng-disabled="viewOnly || eventConfig.ranked === '0'">
+                                <option value="" disabled selected>
+                                    Team Assignment Method
+                                </option>
+                                <option value="grouping">
+                                    Grouping
+                                </option>
+                                <option value="pairing">
+                                    Pairing
+                                </option>
+                                <option value="import">
+                                    Import
+                                </option>
+                            </select>
+                            <span class="label">
+                                TEAM ASSIGNMENT METHOD
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.teamAssignmentMethod">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'social' && event.eventType !== 'multifacility'">
+                            <select required ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    Pattern of Play
+                                </option>
+                                <option value="1" ng-show="event.eventType !== 'round robin'">
+                                    Yes
+                                </option>
+                                <option value="0">
+                                    No
+                                </option>
+                            </select>
+                            <span class="label">
+                                PATTERN OF PLAY
+                            </span>
+                        </div>
+                        <div class="select-container" ng-if="event.eventType !== 'social' && event.eventType !== 'multifacility'">
+                            <select required ng-model="eventConfig.rotateStartTime" ng-disabled="viewOnly">
+                                <option value="" disabled selected>
+                                    Rotate Start Time
+                                </option>
+                                <option value="1" ng-show="event.eventType !== 'round robin'">
+                                    Yes
+                                </option>
+                                <option value="0">
+                                    No
+                                </option>
+                            </select>
+                            <span class="label">
+                                ROTATE START TIME
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.rotateStartTime">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="eventConfig.sets" ng-disabled="viewOnly">
+                                <option value="" disabled>
+                                    Competition Scoring Format
+                                </option>
+                                <option value="1">
+                                    1
+                                </option>
+                                <option value="3">
+                                    3
+                                </option>
+                                <option value="5">
+                                    5
+                                </option>
+                            </select>
+                            <span class="label">
+                                COMPETITION SCORING FORMAT
+                            </span>
+                            <div class="error" ng-show="showEventConfigErrors.sets">
+                                Required
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-model="eventConfig.lineScoringFormat" ng-disabled="viewOnly">
+                                <option value="wl">
+                                    Win / Loss
+                                </option>
+                                <option value="points">
+                                    Points
+                                </option>
+                            </select>
+                            <span class="label">
+                                LINE SCORING FORMAT
+                            </span>
+                        </div>
+                        <div class="select-container">
+                            <select required ng-disabled="viewOnly">
+                                <option value="high">
+                                    High
+                                </option>
+                                <option value="low">
+                                    Low
+                                </option>
+                            </select>
+                            <span class="label">
+                                POINT
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress || viewOnly}" ng-disabled="callInProgress || viewOnly">
+                    Submit
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

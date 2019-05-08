@@ -1,0 +1,113 @@
+<table>
+	<tr class="accepted-challenges">
+		<th colspan=2>
+			<label>Accepted challenges waiting to be played</label>
+		</th>
+	</tr>
+	<tbody ng-repeat="challenge in accepted | orderBy: ['challenger', 'challengee']">
+		<tr ng-show="!getAcceptedChallengesInProgress && accepted.length > 0">
+			<th class="column1">
+				CHALLENGER
+			</th>
+			<th class="column3">
+				OPPONENT
+			</th>
+		</tr>
+		<tr ng-show="challenge.show">
+			<td>
+				#{{challenge.challenger_ranking}} {{challenge.challenger}}
+			</td>
+			<td>
+				#{{challenge.challengee_ranking}} {{challenge.challengee}}
+			</td>
+		</tr>
+		<tr ng-show="!getAcceptedChallengesInProgress && accepted.length > 0">
+			<th class="column4">
+				ACCEPTED DATE 
+			</th>
+			<th class="column5">
+				PLAY BY DATE
+			</th>
+		</tr>
+		<tr ng-show="challenge.show">
+			<td>
+				{{challenge.accepted_date}}
+			</td>
+			<td>
+				{{challenge.play_by_date}}
+			</td>
+		</tr>
+		<tr ng-show="challenge.show">
+			<td class="button-td" colspan=2 ng-show="showReportButton">
+				<button type="button" ng-click="toggleReportChallengeScore(unplayed_challenge_data, challenge.id)"> 
+					REPORT SCORE
+				</button> 
+			</td>
+		<tr class="no-accepted-found" ng-show="!getUnacceptedChallengesInProgress && accepted.length === 0">
+			<td colspan=2>
+				<label class="no-challenges">No accepted challenges</label>
+			</td>
+		</tr>
+		<tr ng-show="getUnacceptedChallengesInProgress">
+			<td colspan=2>
+				<img src="/images/spinning-wheel.gif" class="loading-icon">
+			</td>
+		</tr>
+	</tbody>
+	<tr class="unaccepted-challenges">
+		<th colspan=2>
+			<label>Challenges waiting to be accepted</label>
+		</th>
+	</tr>
+	<tbody ng-repeat="challenge in unaccepted | orderBy: ['challenger', 'challengee']">
+		<tr ng-show="!getUnacceptedChallengesInProgress && unaccepted.length > 0">
+			<th class="column1">
+				CHALLENGER
+			</th>
+			<th class="column3">
+				OPPONENT
+			</th>
+		</tr>
+		<tr ng-show="challenge.show">
+			<td>
+				#{{challenge.challenger_ranking}} {{challenge.challenger}}
+			</td>
+			<td>
+				#{{challenge.challengee_ranking}} {{challenge.challengee}}
+			</td>
+		</tr>
+		<tr ng-show="!getUnacceptedChallengesInProgress && unaccepted.length > 0">
+			<th class="column4">
+				CHALLENGED DATE
+			</th>
+			<th class="column5">
+				ACCEPT BY DATE
+			</th>
+		</tr>
+		<tr ng-show="challenge.show">
+			<td>
+				{{challenge.challenge_date}}
+			</td>
+			<td>
+				{{challenge.accept_by_date}}
+			</td>
+		</tr>
+		<tr>
+			<td class="button-td" colspan=2 ng-show="showReportButton">
+				<button type="button" ng-click="toggleReportChallengeScore(unaccepted_challenge_data, challenge.id)"> 
+					REPORT SCORE
+				</button> 
+			</td>
+		</tr>
+		<tr ng-show="getUnacceptedChallengesInProgress">
+			<td colspan=2>
+				<img src="/images/spinning-wheel.gif" class="loading-icon">
+			</td>
+		</tr>
+		<tr ng-show="!getUnacceptedChallengesInProgress && unaccepted.length === 0">
+			<td colspan=2>
+				<label class="no-challenges">No waiting challenges</label>
+			</td>
+		</tr>
+	</tbody>
+</table>

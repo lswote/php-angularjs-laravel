@@ -1,0 +1,50 @@
+#accept-challenge-ladder-modal .error{
+    font-size: 18px;
+}
+#accept-challenge-ladder-modal .column1{
+    width: 30%;
+}
+#accept-challenge-ladder-modal .column2{
+    width: 30%;
+}
+#accept-challenge-ladder-modal .column3{
+    width: 20%;
+}
+#accept-challenge-ladder-modal .column4{
+    width: 20%;
+}
+#accept-challenge-ladder-modal .selection{
+    margin-top: 20px;
+}
+#accept-challenge-ladder-modal .no-challenges{
+    font-size: 18px;
+}
+#accept-challenge-ladder-modal table{
+    margin-top: 10px;
+    width: 100%;
+}
+#accept-challenge-ladder-modal table tr td{
+    text-align: left;
+}
+#accept-challenge-ladder-modal table tr th{
+    text-align: left;
+}
+#accept-challenge-ladder-modal .buttons button{
+    width: 33%;
+}
+#accept-challenge-ladder-modal label{
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 18px;
+    font-weight: 600;
+}
+#accept-challenge-ladder-modal input:not([type="checkbox"]){
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    height: 25px;
+    width: 25px;
+    outline: none;
+}

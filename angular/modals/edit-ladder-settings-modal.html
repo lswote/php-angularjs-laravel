@@ -1,0 +1,46 @@
+<form id='edit-ladder-settings-modal' ng-controller="editLadderSettingsModalController" ng-submit="saveLadderSettings()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Edit Ladder Settings for {{selectedEvent.name}}
+    </div>
+    <div>
+        Enter participant settings for the event
+    </div>
+    <div class="input-section">
+            <table>
+                <tr>
+                    <td>
+                        <label>Receive summary report?</label>
+                    </td>
+                    <td colspan=2>
+                        <select class="summary-select" ng-model="settings.receive_daily_summary">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr ng-show="user.privilege === 'facility leader'">
+                    <td class="col1">
+                        <button class="double" type="button" ng-click="requestSummary()">
+                            REQUEST SUMMARY REPORT NOW
+                        </button>
+                    </td>
+					<td class="col2">
+						<input type="number" min="1" ng-model="settings.days">
+                    </td>
+					<td class="col3">
+						DAYS
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit">
+            DONE
+        </button>
+    </div>
+</form>

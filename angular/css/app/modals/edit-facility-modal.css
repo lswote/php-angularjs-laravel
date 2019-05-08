@@ -1,0 +1,47 @@
+#edit-facility-modal .view-parent{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#edit-facility-modal .view-parent:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#edit-facility-modal .search-parent{
+    margin-top: 30px;
+}
+#edit-facility-modal input.search-parent{
+    display: inline-block;
+}
+#edit-facility-modal{
+    padding-top: 20px;
+}
+#edit-facility-modal .found-facilities{
+    margin-top: 20px;
+}
+#edit-facility-modal .found-facilities .found-facility{
+    position: relative;
+    padding: 20px 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#edit-facility-modal .found-facilities .found-facility.not-last{
+    border-bottom: 1px solid #d9dee8;
+}
+#edit-facility-modal .found-facilities .found-facility i:first-of-type{
+    margin-right: 50px;
+    color: #626673;
+}
+#edit-facility-modal .found-facilities .found-facility i:last-of-type{
+    position: absolute;
+    right: 5px;
+    color: #2b7aff;
+}
+#edit-facility-modal input, #edit-facility-modal select{
+	margin-top: 30px;
+}

@@ -1,0 +1,56 @@
+#edit-participant-contact-info-modal .error{
+	font-size: 18px;
+}
+#edit-participant-contact-info-modal .input-section{
+	padding-top: 20px;
+}
+#edit-participant-contact-info-modal .input-section table{
+	width: 100%;
+}
+#edit-participant-contact-info-modal .input-section table th{
+	text-align: left;		 
+}
+#edit-participant-contact-info-modal .search-section{
+	padding-top: 20px;
+}
+#edit-participant-contact-info-modal .search-section table{
+	width: 100%;
+	background: #ebeff2;
+}
+#edit-participant-contact-info-modal .search-section table tr th{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	
+}
+#edit-participant-contact-info-modal .search-section table tr td{
+	padding-top: 20px;
+	vertical-align: top;
+	padding-bottom: 20px;
+}
+#edit-participant-contact-info-modal .edit-participant{
+	width: 100%;
+	padding: 5px;
+	color: #2879ff;
+	background-color: white;
+	cursor: pointer;
+	margin: 0px;
+	font-weight: 600;
+	display: inline-block;
+}
+#edit-participant-contact-info-modal .edit-participant:hover{
+	color: white;
+	background-color: #2879ff;
+}
+#edit-participant-contact-info-modal .search-participant{
+	margin-top: 0px;
+	display: inline-block;
+	color: #2879ff;
+}
+#edit-participant-contact-info-modal #participant-name{
+	padding-top: 30px;
+	color: #2879ff;
+}
+#edit-participant-contact-info-modal .field-select{
+	border-color: #bfc7d9;
+	background-color: white
+}

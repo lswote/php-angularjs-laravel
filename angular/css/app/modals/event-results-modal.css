@@ -1,0 +1,111 @@
+#event-results-modal .title{
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+#event-results-modal .match-info div{
+    width: 100%;
+}
+#event-results-modal .match-info div select{
+    display: inline-block;
+    width: 18%;
+    margin-right: 40px;
+    text-transform: capitalize;
+}
+#event-results-modal .line{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+#event-results-modal .line.not-last{
+    border-bottom: 1px solid #c1c9da;
+}
+#event-results-modal .line select, #event-results-modal .line input{
+    display: inline-block;
+    margin: 0;
+}
+#event-results-modal .line select{
+    border-color: #bfc7d9;
+}
+#event-results-modal .left{
+    width: 75%;
+}
+#event-results-modal .right{
+    width: 25%;
+    padding-top: 10px;
+}
+#event-results-modal .left .row-one .meta{
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    height: 70px;
+    margin-right: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+}
+#event-results-modal .left.doubles .row-one .meta{
+    top: -25px;
+}
+#event-results-modal .left .row-one .time{
+    display: block;
+    height: 70px;
+}
+#event-results-modal .left .row-one .users{
+    display: inline-block;
+    width: 30%;
+}
+#event-results-modal .left .row-one .users .second-user{
+    position: relative;
+    top: 15px;
+}
+#event-results-modal .left .row-one .vs{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#event-results-modal .left.doubles .row-one .vs{
+    position: relative;
+    top: -15px
+}
+#event-results-modal .left .row-two .winner-label{
+    margin-left: 14px;
+    margin-right: 40px;
+    color: #8f929b;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+}
+#event-results-modal .left .row-two input{
+    position: relative;
+    top: 10px;
+    width: 25px;
+    margin-left: 15%;
+}
+#event-results-modal .left .row-two input.first{
+    margin-left: 13%;
+}
+#event-results-modal .left .row-two input.second{
+    margin-left: 38%;
+}
+#event-results-modal .right .score{
+    margin-bottom: 20px
+}
+#event-results-modal .right .score input{
+    width: 20%;
+    text-align: center;
+}
+#event-results-modal .right .score .dash{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#event-results-modal .buttons{
+    border-top: none;
+}
+#event-results-modal .buttons .error{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

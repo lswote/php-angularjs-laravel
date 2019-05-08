@@ -1,0 +1,43 @@
+#playing-surfaces-modal .title{
+    margin-bottom: 20px;
+}
+#playing-surfaces-modal .match-info{
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+}
+#playing-surfaces-modal .subtitle{
+    display: inline-block;
+    width: calc(50% - 5px);
+    margin-bottom: 20px;
+    color: #6c6f7b;
+    font-size: 12px;
+    font-weight: 600;
+}
+#playing-surfaces-modal .surface{
+    height: 60px;
+}
+#playing-surfaces-modal .surface span{
+    color: #384348;
+    font-size: 14px;
+    font-weight: 600;
+}
+#playing-surfaces-modal input[type="checkbox"]{
+    margin-right: 20px;
+}
+#playing-surfaces-modal input[type="checkbox"]:checked{
+    background-color: #2979ff;
+}
+#playing-surfaces-modal .event-surface-number{
+    display: inline-block;
+    width: 120px !important;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    padding: 5px;
+    color: #384348;
+    font-size: 14px;
+    font-weight: 600;
+    border: 3px solid #bfc7d9;
+    border-radius: 10px;
+    text-align: center;
+}

@@ -1,0 +1,98 @@
+#send-team-member-lineup-modal .recipients{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#send-team-member-lineup-modal .recipient{
+    margin-right: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    color: white;
+    background-color: #626673;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#send-team-member-lineup-modal .error{
+	font-size: 18px;
+}
+#send-team-member-lineup-modal .title{
+	margin-bottom: 20px;
+}
+#send-team-member-lineup-modal .input-section{
+	text-align: left;
+}
+#send-team-member-lineup-modal .input-section table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#send-team-member-lineup-modal .input-section table.rounds{
+	margin-top: 15px;
+}
+#send-team-member-lineup-modal .input-section select{
+	background: white;
+}
+#send-team-member-lineup-modal .radio-buttons label{
+	display: inline;
+}
+#send-team-member-lineup-modal .radio-buttons input:not([type="checkbox"]){
+	display: inline;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+    background-color: white;
+}
+#send-team-member-lineup-modal .found-participants{
+	position: relative;
+}
+#send-team-member-lineup-modal .found-participant{
+	display: block;
+	width: 100%;
+	padding: 5px;
+	color: #2879ff;
+	background-color: white;
+	cursor: pointer;
+}
+#send-team-member-lineup-modal .found-participant:hover{
+	color: white;
+	background-color: #2879ff;
+}
+#send-team-member-lineup-modal .found-participant .username{
+	color: #2879ff;
+	font-weight: 600;
+}
+#send-team-member-lineup-modal .found-participant:hover .username, #send-team-member-lineup-modal .found-participant:hover .selected{
+	color: white;
+}
+#send-team-member-lineup-modal .found-participant .selected{
+	color: #626673;
+}
+#send-team-member-lineup-modal .message{
+    width: calc(100% - 40px);
+    margin: 30px 0 20px -1px;
+}
+#send-team-member-lineup-modal .container label{
+	display: inline;
+	padding-left: 5px;
+}
+#send-team-member-lineup-modal .container input{
+	display: inline;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+    background-color: white;
+}
+#send-team-member-lineup-modal .radio-container{
+	margin-top: 10px;
+}

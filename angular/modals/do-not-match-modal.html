@@ -1,0 +1,42 @@
+<form id="do-not-match-modal" ng-controller="doNotMatchModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Don't Play With
+    </div>
+    <div class="event-name">
+        {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <table ng-show="!doNotMatchInProgres && doNotMatchRequests.length > 0">
+            <tr>
+                <th>
+                    USER 1
+                </th>
+                <th>
+                    USER 2
+                </th>
+                <th class="delete-request"></th>
+            </tr>
+            <tr ng-repeat="request in doNotMatchRequests | orderBy: '-created_at'">
+                <td>
+                    {{request.pair_one.email}}
+                </td>
+                <td>
+                    {{request.pair_two.email}}
+                </td>
+                <td class="delete-request">
+                    <i class="fa fa-trash" ng-click="deleteRequest(request.id); $event.stopPropagation()"></i>
+                </td>
+            </tr>
+        </table>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="doNotMatchInProgres">
+        <div class="no-results-found" ng-show="!doNotMatchInProgres && doNotMatchRequests.length === 0">
+            No don't play with requests
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="button" ng-click="toggleModal()">
+            CLOSE
+        </button>
+    </div>
+</form>

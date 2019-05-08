@@ -1,0 +1,79 @@
+<form id="send-custom-email-modal" ng-controller="sendCustomEmailModalController" ng-submit="sendCustomEmail()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Send Email To {{mail_target}} For {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table>
+			<tr ng-if="showModalView.sendCustomEmailFlag === 'members'">
+				<td class="radio-buttons">
+					<label>
+                        Send To All Members
+                    </label>
+                    <input type="radio" ng-model="sendCustomEmailObject.member_type" value="all">&nbsp;&nbsp;&nbsp;
+					<label>
+                        Send To Select Members
+                    </label>
+                    <input type="radio" ng-model="sendCustomEmailObject.member_type" value="select">
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<div class="input-container" ng-if="sendCustomEmailObject.member_type === 'select'">
+						<input type="text" placeholder="Team member" ng-model="sendCustomEmailObject.username" ng-click="resetSendCustomEmailErrors()">
+						<span class="label">
+							TEAM MEMBER
+						</span>
+						<div class="found-participants">
+							<a class="found-participant" ng-repeat="participant in foundParticipants | orderBy: 'username'"
+							   ng-click="toggleFoundParticipant(participant); $event.stopPropagation()">
+								{{participant.first_name}} {{participant.last_name}}
+								<span class="username">
+									{{participant.username}}
+								</span>
+								<span class="selected" ng-show="participant.alreadySelected">
+									&#10004;
+								</span>
+							</a>
+						</div>
+			            <div class="modal-toggle recipients">
+			                <div class="modal-toggle recipient" ng-repeat="recipient in selectedParticipants" ng-click="toggleFoundParticipant(recipient)">
+			                    {{recipient.first_name}} {{recipient.last_name}}
+			                </div>
+			            </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<input class="subject" name="name" type="text" placeholder="Subject" ng-model="sendCustomEmailObject.subject" ng-click="resetSendCustomEmailErrors()">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<textarea class="body" placeholder="Enter message here" ng-model="sendCustomEmailObject.body" ng-click="resetSendCustomEmailErrors()"></textarea>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="error" ng-show="showSendCustomEmailErrors.noSubject">
+	    No subject entered
+	</div>
+	<div class="error" ng-show="showSendCustomEmailErrors.noBody">
+		No message entered
+	</div>
+	<div class="error" ng-show="showSendCustomEmailErrors.noRecipients">
+		No recipients entered
+	</div>
+	<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="sendCustomEmailInProgress">
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SEND
+		</button>
+	</div>
+</form>

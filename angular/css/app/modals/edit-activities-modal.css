@@ -1,0 +1,73 @@
+#edit-activities-modal{
+    padding-top: 60px;
+}
+#edit-activities-modal .search-section{
+    margin-top: 10px;
+    margin-bottom: 10px;
+	padding-bottom: 0px;
+}
+#edit-activities-modal .added-activities{
+    position: relative;
+}
+#edit-activities-modal .added-activity{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+}
+#edit-activities-modal .added-activity:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#edit-activities-modal .added-activity span{
+    color: #626673;
+}
+#edit-activities-modal .added-activity:hover span{
+    color: white;
+}
+#edit-activities-modal .activities{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#edit-activities-modal .activity{
+    margin-right: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    color: white;
+    background-color: #626673;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#edit-activities-modal .no-activities-added{
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+}
+#edit-activities-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 8px 8px;
+}
+#edit-activities-modal .view-participant{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#edit-activities-modal .view-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}

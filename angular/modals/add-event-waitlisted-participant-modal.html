@@ -1,0 +1,31 @@
+<form id="add-event-waitlisted-participant-modal" ng-controller="addEventWaitlistedParticipantModalController" ng-submit="addEventWaitlistedParticipant()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Event Waitlisted Participant
+    </div>
+    <div class="input-section">
+        <div class="input-container">
+            <input type="email" placeholder="E-mail" ng-model="addEventWaitlistedParticipantObject.email">
+            <span class="label">
+                EMAIL
+            </span>
+        </div>
+        <div class="error" ng-show="showAddEventWaitlistedParticipantErrors.email">
+            Required
+        </div>
+        <div class="error" ng-show="showAddEventWaitlistedParticipantErrors.emailNotFound">
+            No user found with matching e-mail
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

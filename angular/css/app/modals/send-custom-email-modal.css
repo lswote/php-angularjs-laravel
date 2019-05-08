@@ -1,0 +1,84 @@
+#send-custom-email-modal .recipients{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#send-custom-email-modal .recipient{
+    margin-right: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    color: white;
+    background-color: #626673;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#send-custom-email-modal .error{
+	font-size: 18px;
+}
+#send-custom-email-modal .title{
+	margin-bottom: 20px;
+}
+#send-custom-email-modal .input-section{
+	text-align: left;
+}
+#send-custom-email-modal .input-section table{
+	width: 100%;
+}
+#send-custom-email-modal .input-section select{
+	background: white;
+}
+#send-custom-email-modal .input-section textarea{
+	width: calc(100% - 30px);
+	height: 350px;
+}
+#send-custom-email-modal .radio-buttons{
+	padding-top: 10px;
+}
+#send-custom-email-modal .radio-buttons label{
+	display: inline;
+	vertical-align: top;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18px;
+}
+#send-custom-email-modal .radio-buttons input:not([type="checkbox"]){
+	display: inline;
+	margin-top: 0px;
+	width: inherit;
+	left: auto;
+	right: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+#send-custom-email-modal .found-participants{
+	position: relative;
+}
+#send-custom-email-modal .found-participant{
+	display: block;
+	width: 100%;
+	padding: 5px;
+	color: #2879ff;
+	background-color: white;
+	cursor: pointer;
+}
+#send-custom-email-modal .found-participant:hover{
+	color: white;
+	background-color: #2879ff;
+}
+#send-custom-email-modal .found-participant .username{
+	color: #2879ff;
+	font-weight: 600;
+}
+#send-custom-email-modal .found-participant:hover .username, #send-custom-email-modal .found-participant:hover .selected{
+	color: white;
+}
+#send-custom-email-modal .found-participant .selected{
+	color: #626673;
+}
+#send-custom-email-modal .subject{
+    margin-bottom: 15px;
+}

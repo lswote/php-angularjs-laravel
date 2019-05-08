@@ -1,0 +1,41 @@
+<form id="print-multi-scorecards-modal" ng-controller="printMultiScorecardsModalController" ng-submit="generateScorecard()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Generate Scorecard for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<div class="select-container">
+			<select required ng-model="printMultiScorecardsObject.round" convert-to-number>
+				<option value=null disabled selected>Select Round</option>
+				<option ng-repeat="match in matches" value="{{match.round}}">Round {{match.round}} - {{match.date}}</option>
+			</select>
+			<span class="label">
+				Round
+			</span>
+		</div>
+		<div class="select-container">
+			<select required ng-model="printMultiScorecardsObject.size">
+				<option value="small">
+					8.5" x 11"
+				</option>
+				<option value="medium">
+					8.5" x 14"
+				</option>
+				<option value="large">
+					8.5" x 11" (2 Sheets)
+				</option>
+			</select>
+			<span class="label">
+				Size
+			</span>
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+			GENERATE
+		</button>
+	</div>
+</form>

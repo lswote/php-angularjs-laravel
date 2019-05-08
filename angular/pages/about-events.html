@@ -1,0 +1,89 @@
+<div id="about-events" ng-controller="aboutEventsController">
+  <div class="dashboard-image tint" ng-style="{'background-image': 'url('+ facility.image_url +')'}">
+    <div class="title">
+      Events - About
+    </div>
+    <div class="text">
+      Describe what this page is about
+    </div>
+  </div>
+  <div class="dashboard-container">
+    <div class="page-form page-outer-container">
+      <div class="page-container">
+        <div class="title">
+          Events
+        </div>
+        <div class="subtitle">
+          Describe what events are
+        </div>
+        <div class="paged-view">
+          <a ng-click="selectedEvent=1" class="paged-link" ng-class="{'inactive': selectedEvent != 1}" href="#">Ladder</a>
+          <a ng-click="selectedEvent=2" class="paged-link" ng-class="{'inactive': selectedEvent != 2}" href="#">League</a>
+          <a ng-click="selectedEvent=3" class="paged-link" ng-class="{'inactive': selectedEvent != 3}" href="#">Multi-Facility Event</a>
+          <a ng-click="selectedEvent=4" class="paged-link" ng-class="{'inactive': selectedEvent != 4}" href="#">Round Robin</a>
+          <a ng-click="selectedEvent=5" class="paged-link" ng-class="{'inactive': selectedEvent != 5}" href="#">Ryder Cup</a>
+          <a ng-click="selectedEvent=6" class="paged-link" ng-class="{'inactive': selectedEvent != 6}" href="#">Social</a>
+          <a ng-click="selectedEvent=7" class="paged-link" ng-class="{'inactive': selectedEvent != 7}" href="#">Tournament</a>
+          <hr/>
+          <div>
+            <ul class="list-content-window" ng-show="selectedEvent == 1">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Participants issue challenges, challengers accept or deny challenge</li>
+              <li>Matches are played, scores are reported, ranking is adjusted</li>
+              <li>Matches are between two participants and either signles or doubles</li>
+              <li>Start and end dates determine duration</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 2">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Based on initial input system sets schedule, dates of play, starting times for each event and match and "table/court/playing surface" for each match</li>
+              <li>Line-ups can be adjusted based on participant availibility</li>
+              <li>As scores are updated standings are updated</li>
+              <li>Playoff seedings are set at end of regular season and playoffs occur</li>
+              <li>Matches are between two to five teams, either singles or doubles, length of league depends on number of teams</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 3">
+              <li>Facility leader creates ALTA, USTA or Other "season" for captain</li>
+              <li>Captains upload/enter their rosters, enter match dates, failities</li>
+              <li>Participants enter availibility</li>
+              <li>Captains set line-ups and use e-mail to send out line-ups</li>
+              <li>System will alert if line-up violates movement rules for an "ALTA" event</li>
+              <li>Copy team to "League event" fro each team if running a "multi-facility" league</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 4">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Based on initial input system sets schedule, dates of play, starting times for each event and match and "table/court/playing surface" for each match</li>
+              <li>Line-ups are set based on sign ups</li>
+              <li>As matches are completed, standings are updated</li>
+              <li>Matches are between two teams, either singles or doubles, over a day or two</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 5">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Based on initial input system sets schedule, dates of play, starting times for each event and match and "table/court/playing surface" for each match</li>
+              <li>Line-ups are set based on sign ups</li>
+              <li>As matches are completed, standings are updated</li>
+              <li>Matches are between two teams, either singles or doubles, over a day or two</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 6">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Based on initial input system sets schedule, dates of play, starting times for each event and match and "table/court/playing surface" for each match</li>
+              <li>Matches are between two to five teams, either singles or doubles, usually a one day activity</li>
+              <li>Individual event or a series of events</li>
+            </ul>
+            <ul class="list-content-window" ng-show="selectedEvent == 7">
+              <li>Interested participants sign up</li>
+              <li>System puts participants on teams based on ranking and gender if using factors, otherwise random</li>
+              <li>Based on initial input system sets schedule, dates of play, starting times for each event and match and "table/court/playing surface" for each match</li>
+              <li>Line-ups are set based on sign ups</li>
+              <li>As scores are updated brackets can be updated</li>
+              <li>Matches are between two to five teams, either singles or doubles, usually a one day activity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

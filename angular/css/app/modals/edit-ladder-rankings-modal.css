@@ -1,0 +1,104 @@
+#edit-ladder-rankings-modal .col-one{
+    width: 6%;
+    text-align: center;
+}
+#edit-ladder-rankings-modal .col-two{
+    width: 28%;
+    text-align: left;
+}
+#edit-ladder-rankings-modal .col-three{
+    width: 23%;
+    text-align: center;
+}
+#edit-ladder-rankings-modal .col-four{
+    width: 28%;
+    text-align: left;
+}
+#edit-ladder-rankings-modal .col-fill{
+    width: 5%;
+}
+#edit-ladder-rankings-modal button{
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#edit-ladder-rankings-modal .ranking-area{
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#edit-ladder-rankings-modal .ranking-player label{
+    font-size: 22px;
+    font-weight: 600;
+}
+#edit-ladder-rankings-modal .ranking-select{
+    border-color: #bfc7d9;
+    background-color: white
+}
+#edit-ladder-rankings-modal .ranking button{
+    height: 45px;
+    width: 50px;
+    padding: 5px 15px;
+    border: 3px solid #626673;
+    border-radius: 5px;
+    outline: none;
+}
+#edit-ladder-rankings-modal .add-team button{
+    height: 40px;
+    width: 250px;
+    padding: 0px 0px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#edit-ladder-rankings-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 8px 8px;
+}
+#edit-ladder-rankings-modal .radio-buttons{
+    padding-top: 20px;
+}
+#edit-ladder-rankings-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#edit-ladder-rankings-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}
+#edit-ladder-rankings-modal .edit-section input:not([type="checkbox"]){
+    color: white;
+    background-color: #2879ff;
+}
+#edit-ladder-rankings-modal .view-player{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#edit-ladder-rankings-modal .view-player:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#edit-ladder-rankings-modal .search-player{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#edit-ladder-rankings-modal .error{
+    font-size: 18px;
+}
+#edit-ladder-rankings-modal .input-player1{
+    padding-top: 10px;
+}
+#edit-ladder-rankings-modal .input-player2{
+    padding-top: 10px;
+}

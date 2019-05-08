@@ -1,0 +1,5 @@
+# https://editorconfig.org/
+# 4 space indentation
+[*]
+indent_style = space
+indent_size = 4

@@ -1,0 +1,53 @@
+#withdraw-event-team-from-ladder-modal .active{
+	background-color: #aaaaaa;
+}
+#withdraw-event-team-from-ladder-modal .error{
+    font-size: 18px;
+}
+#withdraw-event-team-from-ladder-modal .radio-buttons{
+    padding-top: 20px;
+}
+#withdraw-event-team-from-ladder-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#withdraw-event-team-from-ladder-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}
+#withdraw-event-team-from-ladder-modal .pair-div{
+    padding-left: 30px;
+}
+#withdraw-event-team-from-ladder-modal .pair-div span{
+    padding-left: 0px;
+    font-size: 18px;
+}
+#withdraw-event-team-from-ladder-modal .view-team{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#withdraw-event-team-from-ladder-modal .view-team:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#withdraw-event-team-from-ladder-modal .search-team{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#withdraw-event-team-from-ladder-modal #team-name{
+    padding-top: 30px;
+    color: #2879ff;
+}
+#withdraw-event-team-from-ladder-modal .field-select{
+    border-color: #bfc7d9;
+    background-color: white
+}

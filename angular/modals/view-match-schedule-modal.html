@@ -1,0 +1,50 @@
+<form id="view-match-schedule-modal" ng-controller="viewMatchScheduleModalController">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		View Match Schedule for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table>
+			<tr>
+				<th>
+					Round
+				</th>
+				<th>
+					Date
+				</th>
+				<th>
+					Opponent
+				</th>
+				<th>
+					Where
+				</th>
+				<th>
+					Directions
+				</th>
+			</tr>
+			<tr ng-repeat="match in matches" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td class="col-one">
+					{{match.round}}
+				</td>
+				<td class="col-two">
+					{{match.date}}
+				</td>
+				<td class="col-three">
+					<pre>{{match.opponent}}</pre>
+				</td>
+				<td class="col-four">
+					{{match.where}}
+				</td>
+				<td class="col-five">
+					<label ng-show="match.url != ''">Click <a href="{{match.url}}" target="_blank"><b>here</b></a> for Google Map</label>
+					<pre>{{match.directions}}</pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+	</div>
+</form>

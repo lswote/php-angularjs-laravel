@@ -1,0 +1,74 @@
+<div ng-controller="eventStandingsController">
+    <div id="event-standings" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Standings For {{event.name}}
+            </div>
+            <div class="subtitle">
+                Regular season and playoff standings
+            </div>
+            <div class="filters">
+                <select class="date-filter" ng-model="filters.startDate">
+                    <option class="type" value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                        {{formatDate(round.date)}}
+                    </option>
+                </select>
+                <span>
+                    to
+                </span>
+                <select class="date-filter" ng-model="filters.endDate">
+                    <option class="type" value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                        {{formatDate(round.date)}}
+                    </option>
+                </select>
+                <span class="enter-results modal-toggle" ng-click="toggleEventResultsModal('add', event)"
+                      ng-if="event.started === 1 && (user.privilege === 'facility leader' || findArrayIndex(event.event_leaders, 'id', user.id) !== false)">
+                    Enter Results
+                </span>
+                <span class="matches-schedule modal-toggle" ng-click="toggleMatchLineTimesModal()">
+                    Matches Schedule
+                </span>
+            </div>
+            <table class="standings">
+                <tr>
+                    <th class="team">
+                        TEAM
+                    </th>
+                    <th class="total">
+                        TOTAL
+                    </th>
+                    <th class="round" ng-repeat="round in roundDates | orderBy: orderRounds" ng-style="{'width': 'calc((100% - 200px) /' + roundDates.length + ')'}"
+                        ng-show="round.date >= filters.startDate && round.date <= filters.endDate">
+                        {{formatDate(round.date)}}
+                    </th>
+                </tr>
+                <tr ng-repeat="team in teams | orderBy: '-totalScore'">
+                    <td class="{{team.name}} team" ng-style="{'color': team.name}">
+                        {{team.name}}
+                    </td>
+                    <td class="total">
+                        {{team.totalScore}}
+                    </td>
+                    <td class="round" ng-class="{'no-match': !team.matches[findArrayIndex(team.matches, 'date', round.date)]}"
+                        ng-repeat="round in roundDates | orderBy: orderRounds" ng-style="{'width': 'calc((100% - 200px) /' + roundDates.length + ')'}"
+                        ng-show="round.date >= filters.startDate && round.date <= filters.endDate">
+                        {{team.matches[findArrayIndex(team.matches, 'date', round.date)].score || 0}}
+                        - {{team.matches[findArrayIndex(team.matches, 'date', round.date)].opposing_team_name || 'N/A'}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

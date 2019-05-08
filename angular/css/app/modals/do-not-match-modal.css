@@ -1,0 +1,33 @@
+#do-not-match-modal .title{
+    margin-bottom: 20px;
+}
+#do-not-match-modal input, #do-not-match-modal select{
+    margin-top: 30px;
+}
+#do-not-match-modal .event-name{
+    font-weight: 800;
+}
+#do-not-match-modal table{
+    width: 100%;
+    margin-left: -8px;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+}
+#do-not-match-modal table th, #do-not-match-modal table td{
+    width: 33%;
+    text-align: left;
+}
+#do-not-match-modal table th{
+    color: #76767e;
+}
+#do-not-match-modal table .delete-request{
+    margin-left: 8px;
+    font-size: 20px;
+    text-align: right;
+    cursor: pointer;
+}
+#do-not-match-modal table .delete-request i{
+    position: relative;
+    right: -8px;
+}

@@ -1,0 +1,54 @@
+<form id="return-team-to-ladder-modal" ng-controller="returnTeamToLadderModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title event-name" ng-show="selectedEvent.event_sub_type === 'singles'">
+        Return Player To Ladder
+    </div>
+    <div class="title event-name" ng-show="selectedEvent.event_sub_type !== 'singles'">
+        Return Team To Ladder
+    </div>
+    <div ng-show="selectedEvent.event_sub_type === 'singles'">
+        Select player to return to ladder
+    </div>
+    <div ng-show="selectedEvent.event_sub_type !== 'singles'">
+        Select team to return to ladder
+    </div>
+    <div class="input-class">
+        <table ng-show="records.length > 0">
+            <tr>
+                <th class="column1">
+                    Player
+                </th>
+                <td class="column2">
+                </td>
+            </tr>
+            </tr>
+            <tr ng-repeat="record in sorted_records = (records | orderBy: ['player']) track by $index">
+                <td class="column1">
+                    {{record.player}}
+                </td>
+                <td class="column2">
+                    <button type="button" ng-click="confirmReturnToLadder($index)">
+                        Return To Ladder
+                    </button> 
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div class="no-accepted-found" ng-show="records.length === 0">
+            <div ng-show="selectedEvent.event_sub_type === 'singles'">
+                No Players found
+            </div>
+            <div ng-show="selectedEvent.event_sub_type !== 'singles'">
+                No Teams found
+            </div>
+        </div>
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getDataInProgress">
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="button" ng-click="toggleModal()">
+            CLOSE
+        </button>
+    </div>
+</form>

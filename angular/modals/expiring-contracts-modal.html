@@ -1,0 +1,62 @@
+<form id="expiring-contracts-modal" ng-controller="expiringContractsModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Expiring Contracts
+    </div>
+    <div class="before-date-container">
+        <div class="input-container">
+            <input class="date" type="text" placeholder="Before Date" ng-model="beforeDate" pick-a-date="beforeDateObject"
+                   pick-a-date-options="{format: 'yyyy-mm-dd'}">
+            <span class="sub-label">
+                Expire before:
+            </span>
+        </div>
+    </div>
+    <div class="input-section">
+        <table ng-show="!getExpiringContractsInProgress && expiringContractsToShow.length > 0">
+            <tr>
+                <th>
+                    FACILITY NAME
+                </th>
+                <th>
+                    EXPIRATION DATE
+                </th>
+                <th>
+                    FACILITY LEADER NAME
+                </th>
+                <th>
+                    FACILITY LEADER EMAIL
+                </th>
+            </tr>
+            <tr ng-repeat="contract in expiringContractsToShow | orderBy: 'contract_expiration_date'">
+                <td>
+                    {{contract.name}}
+                </td>
+                <td>
+                    {{formatDate(contract.contract_expiration_date)}}
+                </td>
+                <td>
+                    {{contract.facility_leaders.length > 0 ? contract.facility_leaders[0]['first_name'] + ' ' + contract.facility_leaders[0]['last_name'] : ''}}
+                </td>
+                <td>
+                    {{contract.facility_leaders.length > 0 ? contract.facility_leaders[0]['email'] : ''}}
+                </td>
+            </tr>
+        </table>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getExpiringContractsInProgress">
+        <div class="no-results-found" ng-show="!getExpiringContractsInProgress && expiringContractsToShow.length === 0">
+            No results found
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

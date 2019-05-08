@@ -1,0 +1,83 @@
+<div class="dropdown" ng-class="{'expand-downwards': event.event_type === 'league' || event.event_type === 'round robin' || facility.disable_image_banner === 1}">
+    <div>
+        <div class="subtitle" ng-if="canEditEvent(event) || isCaptain(event)">
+            Event Focused
+        </div>
+        <div class="listing" ng-if="canEditEvent(event)">
+            <a class="item modal-toggle" ng-click="toggleCloseEventModal()"
+               ng-show="selectedEventStatus === 'current'">
+                Close event
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'current' && event.event_type === 'league'">
+                Assign participants to teams
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'current' && event.event_type === 'league'">
+                Conduct team draw
+            </a>
+            <a class="item" ng-if="showDeleteRecreateEventLink(event, selectedEventStatus)">
+				Delete / recreate event keeping participant
+            </a>
+            <a class="item modal-toggle" ng-click="toggleEditEventModal()" ng-show="selectedEventStatus !== 'past'">
+                Edit event setup
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past' && event.event_type === 'round robin'">
+                Edit event rules
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past' && event.event_type === 'round robin'">
+                Edit dates of play
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'upcoming' && event.event_type === 'league'">
+                Edit "pattern of play" for week(s)
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'upcoming' && event.event_type === 'league'">
+                Edit regular season schedule
+            </a>
+            <a href="/event/{{selectedEvent.id}}/substitutes" class="item"
+               ng-show="selectedEventStatus !== 'past' && event.event_type === 'league'">
+                Edit sub availability
+            </a>
+            <a class="item" ng-show="selectedEventStatus === 'upcoming' && event.event_type === 'league'">
+                Edit team assignments with import
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past' && (event.event_type === 'league' || event.event_type === 'round robin')">
+                Edit team colors, names
+            </a>
+            <a class="item" ng-show="selectedEventStatus !== 'past'">
+                Edit type of play for each line
+            </a>
+            <a class="item modal-toggle" ng-click="toggleRegenerateLinesModal()"
+               ng-show="selectedEventStatus !== 'past' && selectedEvent.comb_play !== null">
+                Regenerate lines
+            </a>
+        </div>
+        <a href="/event/{{selectedEvent.id}}/lineups" target="_self" class="item"
+           ng-show="!canEditEvent(event) && isCaptain(event) && selectedEventStatus === 'current' && (event.event_type === 'league' || event.event_type === 'round robin')">
+            Edit lineups
+        </a>
+        <a class="item" ng-show="selectedEventStatus !== 'past' && event.event_type === 'league' && (canEditEvent(event) || isCaptain(event))">
+            Random reshuffle lines
+        </a>
+        <a class="item modal-toggle" ng-click="toggleEditParticipantContactInfoModal(true)" ng-show="selectedEventStatus === 'upcoming' && event.event_type === 'league' && isCaptain(event)">
+            Update participant contact information
+        </a>
+        <div class="subtitle" ng-if="canEditEvent(event)">
+            Participant Focused
+        </div>
+        <div class="listing">
+            <a class="item modal-toggle" ng-click="toggleDoNotMatchModal()" ng-if="canEditEvent(event)">
+                Edit participant "don't play with" file
+            </a>
+            <a class="item modal-toggle" ng-click="toggleEditParticipantContactInfoModal(true)"
+               ng-if="(canEditEvent(event) || isCaptain(event)) && selectedEventStatus === 'current' && event.event_type === 'league'">
+                Edit participant contact information
+            </a>
+            <a class="item" ng-if="canEditEvent(event) && selectedEventStatus === 'upcoming' && event.event_type === 'league'">
+                Edit participant teams / lines
+            </a>
+            <a class="item" ng-hide="selectedEventStatus === 'past' || (event.event_type === 'round robin' && selectedEventStatus === 'upcoming')"
+               ng-if="canEditEvent(event) && event.event_type !== 'social'">
+                Reset line-ups
+            </a>
+        </div>
+    </div>
+</div>

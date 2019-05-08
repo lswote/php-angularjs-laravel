@@ -1,0 +1,44 @@
+<form id="tiebreak-modal" ng-controller="tiebreakModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        View Tiebreak Results
+    </div>
+    <div class="event-name">
+        {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <table ng-show="!getTeamsInProgress && teams.length > 0">
+            <tr>
+                <th>
+                    TEAM
+                </th>
+                <th>
+                    SETS LOST
+                </th>
+                <th>
+                    GAMES LOST
+                </th>
+            </tr>
+            <tr ng-repeat="team in teams | orderBy: ['-sets_lost', '-games_lost']">
+                <td class="team-name" ng-style="{'color': team.name}">
+                    {{team.name}}
+                </td>
+                <td>
+                    {{team.sets_lost}}
+                </td>
+                <td>
+                    {{team.games_lost}}
+                </td>
+            </tr>
+        </table>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getTeamsInProgress">
+        <div class="no-results-found" ng-show="!getTeamsInProgress && teams.length === 0">
+            No teams
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="button" ng-click="toggleModal()">
+            CLOSE
+        </button>
+    </div>
+</form>

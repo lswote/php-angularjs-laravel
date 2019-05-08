@@ -1,0 +1,6 @@
+#print-scorecards-modal .title{
+    margin-bottom: 20px;
+}
+#print-scorecards-modal input, #print-scorecards-modal select{
+    margin-top: 30px;
+}

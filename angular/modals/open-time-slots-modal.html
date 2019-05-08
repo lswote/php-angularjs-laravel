@@ -1,0 +1,85 @@
+<form id="open-time-slots-modal" ng-controller="openTimeSlotsModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Open Time Slots For {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <table>
+            <tr>
+                <th class="description">
+                    DESCRIPTION
+                </th>
+                <th>
+                    TOTAL
+                </th>
+                <th>
+                    WOMEN
+                </th>
+                <th>
+                    MEN
+                </th>
+                <th>
+                    MIXED
+                </th>
+            </tr>
+            <tr>
+                <td class="description">
+                    Total Participants Signed Up
+                </td>
+                <td>
+                    {{rsvpedParticipants}}
+                </td>
+                <td>
+                    {{femaleRsvpedParticipants}}
+                </td>
+                <td>
+                    {{maleRsvpedParticipants}}
+                </td>
+            </tr>
+            <tr>
+                <td class="description">
+                    Open Slots In Partially Filled Lines
+                </td>
+                <td>
+                    {{openSlots}}
+                </td>
+                <td>
+                    {{femaleOpenSlots}}
+                </td>
+                <td>
+                    {{maleOpenSlots}}
+                </td>
+                <td>
+                    {{comboOpenSlots}}
+                </td>
+            </tr>
+            <tr>
+                <td class="description">
+                    Open Courts With No Assignments
+                </td>
+                <td>
+                    {{openCourtsWithNoAssignments}}
+                </td>
+            </tr>
+            <tr>
+                <td class="description">
+                    No. Of Participants On Waitlist
+                </td>
+                <td>
+                    {{waitlistedParticipants}}
+                </td>
+                <td>
+                    {{femaleWaitlistedParticipants}}
+                </td>
+                <td>
+                    {{maleWaitlistedParticipants}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            Close
+        </button>
+    </div>
+</form>

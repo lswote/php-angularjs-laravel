@@ -1,0 +1,74 @@
+#view-participants-ladder-modal .error{
+    font-size: 18px;
+}
+#view-participants-ladder-modal .input-section{
+    padding-top: 20px;
+}
+#view-participants-ladder-modal .input-section table{
+    width: 100%;
+}
+#view-participants-ladder-modal .input-section table th{
+    text-align: left;         
+}
+#view-participants-ladder-modal .search-section{
+    padding-top: 20px;
+}
+#view-participants-ladder-modal .search-section table{
+    width: 100%;
+    background: #ebeff2;
+}
+#view-participants-ladder-modal .search-section table tr th{
+    padding-top: 20px;
+    vertical-align: top;
+    padding-bottom: 20px;
+    
+}
+#view-participants-ladder-modal .search-section table tr td{
+    padding-top: 20px;
+    vertical-align: top;
+    padding-bottom: 20px;
+}
+#view-participants-ladder-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#view-participants-ladder-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}
+#view-participants-ladder-modal .pair-div{
+    padding-left: 30px;
+}
+#view-participants-ladder-modal .pair-div span{
+    padding-left: 0px;
+    font-size: 18px;
+}
+#view-participants-ladder-modal .view-participant{
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-block;
+}
+#view-participants-ladder-modal .view-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#view-participants-ladder-modal .search-participant{
+    margin-top: 0px;
+    display: inline-block;
+    color: #2879ff;
+}
+#view-participants-ladder-modal #participant-name{
+    padding-top: 30px;
+    color: #2879ff;
+}
+#view-participants-ladder-modal .field-select{
+    border-color: #bfc7d9;
+    background-color: white
+}

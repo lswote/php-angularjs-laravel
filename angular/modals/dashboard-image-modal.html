@@ -1,0 +1,43 @@
+<form id="dashboard-image-modal" ng-controller="dashboardImageModalController" ng-submit="uploadImage()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Background Image
+    </div>
+    <div class="input-section">
+        <div>
+            <label ng-class="{'no-file-selected': uploadImageObject.inputFileText === 'No file selected'}" class="file-input-container">
+                {{uploadImageObject.inputFileText}}
+                <input id="file-input" type="file" accept="image/*">
+            </label>
+            <div class="error" ng-show="showUploadImageErrors.file">
+                No file selected
+            </div>
+            <div class="error" ng-show="showUploadImageErrors.fileType">
+                File type not supported
+            </div>
+            <div class="error" ng-show="showUploadImageErrors.size">
+                File cannot be larger than 10MB
+            </div>
+        </div>
+        <span>
+            or
+        </span>
+        <div class="disable-banner">
+            <input type="checkbox" ng-checked="disableImage === 1" ng-click="toggleDisableImage()">
+            <span>
+                Disable banner
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

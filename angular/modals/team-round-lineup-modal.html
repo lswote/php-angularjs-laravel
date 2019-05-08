@@ -1,0 +1,66 @@
+<form id="team-round-lineup-modal" ng-controller="teamRoundLineupModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        View Team Lineup For Round
+    </div>
+    <div class="match-info">
+        <select ng-model="selectedRoundDate">
+            <option value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                {{formatDate(round.date)}}
+            </option>
+        </select>
+    </div>
+    <div class="input-section">
+        <div class="labels">
+            <span class="line-number">
+                LINE
+            </span>
+            <span class="team-participant">
+                PLAYER 1
+            </span>
+            <span class="team-participant">
+                PLAYER 2
+            </span>
+        </div>
+        <div class="line" ng-repeat="line in lines" ng-show="line.round_date === selectedRoundDate && line.match_teams.indexOf(selectedTeam) > -1">
+            <span class="line-number">
+                {{matchLineStartTimes[line.id]}}
+            </span>
+            <span class="team-participant">
+                <div class="singles" ng-show="line.line_type === 'singles'">
+                    {{line.selected_team ? line.selected_team.first_name + ' ' + line.selected_team.last_name : 'Not Assigned'}}
+                </div>
+                <div class="doubles" ng-show="line.line_type === 'doubles'">
+                    <div>
+                        {{line.selected_team.user_one ? line.selected_team.user_one.first_name + ' ' + line.selected_team.user_one.last_name : 'Not Assigned'}}
+                    </div>
+                </div>
+            </span>
+            <span class="team-participant">
+                <div class="doubles" ng-show="line.line_type === 'doubles'">
+                    <div>
+                        {{line.selected_team.user_two ? line.selected_team.user_two.first_name + ' ' + line.selected_team.user_two.last_name : 'Not Assigned'}}
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div class="not-in-playoffs"
+             ng-show="roundDates[findArrayIndex(roundDates, 'date', selectedRoundDate)].number < 0 &&
+                      playoffTeams[roundDates[findArrayIndex(roundDates, 'date', selectedRoundDate)].number].indexOf(selectedTeam) === -1">
+            <span class="line-number">
+                -
+            </span>
+            <span class="team-participant">
+                Not Currently In Playoff Round
+            </span>
+            <span class="team-participant">
+                Not Currently In Playoff Round
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+    </div>
+</form>

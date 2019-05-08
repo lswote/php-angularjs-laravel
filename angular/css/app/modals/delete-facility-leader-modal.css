@@ -1,0 +1,25 @@
+#delete-facility-leader-modal .error{
+    font-size: 18px;
+}
+#delete-facility-leader-modal .title{
+    margin-bottom: 20px;
+}
+#delete-facility-leader-modal .input-container label{
+	display: inline;
+}
+#delete-facility-leader-modal select{
+    margin-top: 30px;
+}
+#delete-facility-leader-modal .radio-buttons{
+    margin-top: 15px;
+}
+#delete-facility-leader-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#delete-facility-leader-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}

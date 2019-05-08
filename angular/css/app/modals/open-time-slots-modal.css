@@ -1,0 +1,19 @@
+#open-time-slots-modal .title{
+    margin-bottom: 20px;
+}
+#open-time-slots-modal table{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+}
+#open-time-slots-modal table th, #open-time-slots-modal table td{
+    width: 15%;
+    text-align: left;
+}
+#open-time-slots-modal table .description{
+    width: 25%
+}
+#open-time-slots-modal table th{
+    color: #76767e;
+}

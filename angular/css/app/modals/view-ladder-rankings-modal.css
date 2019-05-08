@@ -1,0 +1,43 @@
+#view-ladder-rankings-modal .col-one{
+    width: 6%;
+    text-align: center;
+}
+#view-ladder-rankings-modal .col-two{
+    width: 28%;
+    text-align: left;
+}
+#view-ladder-rankings-modal .col-three{
+    width: 23%;
+    text-align: center;
+}
+#view-ladder-rankings-modal .col-four{
+    width: 28%;
+    text-align: left;
+}
+#view-ladder-rankings-modal .col-fill{
+    width: 5%;
+}
+#view-ladder-rankings-modal button{
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#view-ladder-rankings-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 8px 8px;
+}
+#view-ladder-rankings-modal .radio-buttons{
+    padding-top: 20px;
+}
+#view-ladder-rankings-modal .radio-buttons div label{
+    display: inline;
+    padding-left: 10px;
+    font-size: 18px;
+}
+#view-ladder-rankings-modal .radio-buttons div input:not([type="checkbox"]){
+    display: inline;
+    width: auto;
+    height: auto;
+}

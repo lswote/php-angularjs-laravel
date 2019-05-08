@@ -1,0 +1,106 @@
+<form id="send-team-member-lineup-modal" ng-controller="sendTeamMemberLineupModalController" ng-submit="sendTeamMemberLineup()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Email line-ups to team members for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table>
+			<tr>
+				<td class="radio-buttons">
+					<input type="radio" id="all" ng-model="sendTeamMemberLineupObject.member_type" value="all"><label for="all"> Send to all members</label>
+				</td>
+				<td class="radio-buttons">
+					<input type="radio" id="select" ng-model="sendTeamMemberLineupObject.member_type" value="select"><label for="select"> Send to select members</label>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<div class="input-container" ng-if="sendTeamMemberLineupObject.member_type === 'select'">
+						<input type="text" placeholder="Team member" ng-model="sendTeamMemberLineupObject.username" ng-click="resetSendTeamMemberLineupErrors()">
+						<span class="label">
+							TEAM MEMBER
+						</span>
+						<div class="found-participants">
+							<a class="found-participant" ng-repeat="participant in foundParticipants | orderBy: 'username'"
+							   ng-click="toggleFoundParticipant(participant); $event.stopPropagation()">
+								{{participant.first_name}} {{participant.last_name}}
+								<span class="username">
+									{{participant.username}}
+								</span>
+								<span class="selected" ng-show="participant.alreadySelected">
+									&#10004;
+								</span>
+							</a>
+						</div>
+			            <div class="modal-toggle recipients">
+			                <div class="modal-toggle recipient" ng-repeat="recipient in selectedParticipants" ng-click="toggleFoundParticipant(recipient)">
+			                    {{recipient.first_name}} {{recipient.last_name}}
+			                </div>
+			            </div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<textarea class="message" placeholder="Enter opptional message here" ng-model="sendTeamMemberLineupObject.message" ng-click="resetSendTeamMemberLineupErrors()"></textarea>
+				</td>
+			</tr>
+		</table>
+		<table class="rounds">
+			<tr>
+				<th>
+					Round
+				</th>
+				<th>
+					Date
+				</th>
+				<th>
+					Opponent
+				</th>
+				<th>
+					Where
+				</th>
+			</tr>
+			<tr ng-repeat="match in matches" ng-class-odd="'odd'" ng-class-even="'even'">
+				<td class="col-one container">
+					<input type="radio" id="radio{{match.round}}" name="round_number" value="{{match.round}}" ng-model="sendTeamMemberLineupObject.round"><label for="radio{{match.round}}">{{match.round}}</label>
+				</td>
+				<td class="col-two">
+					{{match.date}}
+				</td>
+				<td class="col-three">
+					<pre>{{match.opponent}}</pre>
+				</td>
+				<td class="col-four">
+					{{match.where}}
+				</td>
+			</tr>
+		</table>
+		<table class="radio-container">
+			<tr>
+				<td class="radio-buttons">
+					<input type="radio" id="lineup" ng-model="sendTeamMemberLineupObject.directions" value="0"><label for="lineup"> Line-up only</label>
+				</td>
+				<td class="radio-buttons">
+					<input type="radio" id="directions" ng-model="sendTeamMemberLineupObject.directions" value="1"><label for="directions">Line-up and Away directions </label>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="error" ng-show="showSendTeamMemberLineupErrors.noRecipients">
+		No recipients entered
+	</div>
+	<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="sendTeamMemberLineupInProgress">
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SEND
+		</button>
+	</div>
+</form>

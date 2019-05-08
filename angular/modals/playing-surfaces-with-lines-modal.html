@@ -1,0 +1,136 @@
+<form id="playing-surfaces-with-lines-modal" ng-controller="playingSurfacesWithLinesModalController" ng-submit="updateSurfaceAssignments()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Playing Surfaces With Lines
+    </div>
+    <div class="match-info">
+        <div ng-if="selectedEvent.event_type !== 'league'">
+            {{selectedEvent.name}} - Tennis
+        </div>
+        <div ng-if="selectedEvent.event_type === 'league'">
+            <select ng-model="filters.roundDate">
+                <option value="" disabled selected>
+                    Round Date
+                </option>
+                <option value="">
+                    All
+                </option>
+                <option value="{{round.date}}" ng-repeat="round in roundDates | orderBy: orderRounds">
+                    {{formatDate(round.date)}}
+                </option>
+            </select>
+            <select ng-model="filters.matchNumber">
+                <option value="" disabled selected>
+                    Match
+                </option>
+                <option value="">
+                    All
+                </option>
+                <option value="{{matchNumber}}" ng-repeat="matchNumber in roundMatchNumbers" ng-show="filters.roundDate">
+                    {{matchNumber}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="input-section">
+        <div class="non-league" ng-if="selectedEvent.event_type !== 'league'">
+            <div class="labels">
+                <span class="subtitle">
+                    Line
+                </span>
+                <span class="subtitle">
+                    Playing Surface
+                </span>
+                <span class="subtitle">
+                    Start Time
+                </span>
+            </div>
+            <div class="line" ng-repeat="line in lines | orderBy: ['start_time', 'id']">
+                <span class="line-type-number">
+                    {{line.line_type_number}}
+                </span>
+                <span>
+                    <select class="event-surface-number" ng-model="line.event_surface_number" ng-change="resetDropdown(line.id, line.event_surface_number, line.start_time)">
+                        <option value=""></option>
+                        <option value="{{surface.pivot.event_surface_number}}" ng-repeat="surface in surfaces">
+                            {{surface.pivot.event_surface_number}}
+                        </option>
+                    </select>
+                </span>
+                <span class="start-time">
+                    {{line.start_time_formatted}}
+                </span>
+            </div>
+        </div>
+        <div class="league" ng-if="selectedEvent.event_type === 'league'">
+            <div class="labels">
+                <span class="subtitle">
+                    Date
+                </span>
+                <span class="subtitle">
+                    Round
+                </span>
+                <span class="subtitle">
+                    Match
+                </span>
+                <span class="subtitle">
+                    Line
+                </span>
+                <span class="subtitle">
+                    Line Number
+                </span>
+                <span class="subtitle">
+                    Playing Surface
+                </span>
+                <span class="subtitle">
+                    Start Time
+                </span>
+            </div>
+            <div class="line" ng-repeat="line in lines | orderBy: orderLines" ng-show="showLine(line)">
+                <span class="round-date">
+                    {{formatDate(line.round_date)}}
+                </span>
+                <span class="round-number">
+                    {{line.round_number > 0 ? line.round_number : 'Playoff ' + -line.round_number.toString()}}
+                </span>
+                <span class="match-number">
+                    {{line.round_match_number}}
+                </span>
+                <span class="line-number">
+                    {{line.round_match_line_number}}
+                </span>
+                <span class="line-number">
+                    {{line.line_type_number}}
+                </span>
+                <span>
+                    <select class="event-surface-number" ng-model="line.event_surface_number" ng-change="resetDropdown(line)">
+                        <option value=""></option>
+                        <option value="{{surface.pivot.event_surface_number}}" ng-repeat="surface in surfaces" ng-if="linesWithEmergencySurfaces.indexOf(line.id) === -1">
+                            {{surface.pivot.event_surface_number}}
+                        </option>
+                        <option value="{{surface.pivot.event_surface_number}}" ng-repeat="surface in emergencySurfaces"
+                                ng-if="linesWithEmergencySurfaces.indexOf(line.id) > -1">
+                            {{surface.pivot.event_surface_number}}
+                        </option>
+                    </select>
+                    <input type="checkbox" title="Emergency Surface Needed" ng-checked="linesWithEmergencySurfaces.indexOf(line.id) > -1"
+                           ng-click="toggleEmergencySurface(line.id)">
+                </span>
+                <span class="start-time">
+                    {{line.start_time_formatted}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            SAVE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

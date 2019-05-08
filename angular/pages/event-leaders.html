@@ -1,0 +1,63 @@
+<div ng-controller="eventLeadersController">
+    <div id="event-leaders" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Event Leaders
+            </div>
+            <div class="subtitle">
+                {{selectedEvent.name}}
+            </div>
+            <table ng-show="!getEventLeadersInProgress">
+                <tr>
+                    <th>
+                        FIRST NAME
+                    </th>
+                    <th>
+                        LAST NAME
+                    </th>
+                    <th>
+                        EMAIL
+                    </th>
+                    <th>
+                        USERNAME
+                    </th>
+                    <th>
+                        PHONE
+                    </th>
+                    <th class="delete-event-leader"></th>
+                </tr>
+                <tr ng-repeat="leader in eventLeaders">
+                    <td>
+                        {{leader.first_name}}
+                    </td>
+                    <td>
+                        {{leader.last_name}}
+                    </td>
+                    <td>
+                        {{leader.email}}
+                    </td>
+                    <td>
+                        {{leader.username}}
+                    </td>
+                    <td>
+                        {{leader.phone}}
+                    </td>
+                    <td class="delete-event-leader" ng-if="user.privilege === 'facility leader'">
+                        <i class="fa fa-trash" ng-click="deleteEventLeader(leader.id)" ng-show="user.id !== leader.id"></i>
+                    </td>
+                </tr>
+            </table>
+            <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getEventLeadersInProgress">
+            <div class="no-results-found" ng-show="!getEventLeadersInProgress && eventLeaders.length === 0">
+                No event leaders found
+            </div>
+            <div class="add-event-leader modal-toggle" ng-click="toggleAddEventLeaderModal()">
+                <i class="fa fa-plus-square-o"></i>
+                ADD EVENT LEADER
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

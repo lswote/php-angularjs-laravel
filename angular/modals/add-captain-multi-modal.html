@@ -1,0 +1,46 @@
+<form id="add-captain-multi-modal" ng-controller="addCaptainMultiModalController" ng-submit="editCaptain()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Edit Captain for {{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<div class="input-container">
+			<table>
+				<tr>
+					<th class='col-one'>
+						FULL NAME
+					</th>
+					<th class='col-two'>
+						EMAIL
+					</th>
+					<th class='col-three'>
+						ROLE
+					</th>
+				</tr>
+				<tr>
+					<td class='col-one'>
+						<typeahead class="item" items="items" prompt="Full name of captain" title="name" model="name" ng-click="resetAddCaptainMultiErrors()"
+                                   inputclass="search-captain" divclass="view-captain">
+					</td>
+					<td class='col-two'>
+						{{email}}
+					</td>
+					<td class='col-three'>
+						C
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="error" ng-show="showAddCaptainMultiErrors.username">
+			Valid user required
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			SAVE
+		</button>
+	</div>
+</form>

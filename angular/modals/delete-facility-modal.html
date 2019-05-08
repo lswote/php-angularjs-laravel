@@ -1,0 +1,35 @@
+<form id="delete-facility-modal" ng-controller="deleteFacilityModalController" ng-submit="deleteFacility()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Delete Facility And Its Records
+    </div>
+    <div class="input-section">
+        <div class="select-container">
+            <select required ng-model="deleteFacilityObject.facilityId">
+                <option value="" disabled selected>
+                    Facility
+                </option>
+                <option value="{{facility.id}}" ng-repeat="facility in facilities">
+                    {{facility.name}}
+                </option>
+            </select>
+            <span class="label">
+                FACILITY
+            </span>
+        </div>
+        <div class="error" ng-show="showDeleteFacilityErrors.facilityId">
+            Required
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            DELETE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

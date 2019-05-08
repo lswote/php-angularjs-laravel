@@ -1,0 +1,24 @@
+#import-participants-activities-modal .title{
+    margin-bottom: 20px;
+}
+#import-participants-activities-modal .file-input-container{
+    padding-left: 15px;
+    border: 2px solid #626673;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 40px;
+    cursor: pointer;
+}
+#import-participants-activities-modal .file-input-container.no-file-selected{
+    border-color: #bfc7d9;
+}
+#import-participants-activities-modal .file-input-container input{
+    display: none;
+}
+#import-participants-activities-modal .imported-count{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+}

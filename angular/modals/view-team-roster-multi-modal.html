@@ -1,0 +1,78 @@
+<form id="view-team-roster-multi-modal" ng-controller="viewTeamRosterMultiModalController">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Team Roster
+	</div>
+	<div class="">
+		{{selectedEvent.name}}
+	</div>
+	<div class="input-section">
+		<table ng-show="!getParticipantsInProgress && (male_participants.length > 0 || female_participants.length > 0)">
+			<tr>
+				<th>
+					NAME
+				</th>
+				<th>
+					GENDER
+				</th>
+				<th>
+					USERNAME
+				</th>
+				<th>
+					EMAIL
+				</th>
+				<th>
+					PHONE
+				</th>
+			</tr>
+			<tr ng-repeat="participant in male_participants | orderBy: 'name'">
+				<td>
+					{{participant.name}}
+				</td>
+				<td>
+					{{participant.gender}}
+				</td>
+				<td>
+					{{participant.username}}
+				</td>
+				<td>
+					<label>{{participant.email}}</label>
+				</td>
+				<td>
+					<label>{{participant.phone}}</label>
+				</td>
+			</tr>
+			<tr ng-show="male_participants.length > 0 && female_participants.length > 0">
+				<td colspan=5>
+					<hr>
+				</td>
+			</tr>
+			<tr ng-repeat="participant in female_participants | orderBy: 'name'">
+				<td>
+					{{participant.name}}
+				</td>
+				<td>
+					{{participant.gender}}
+				</td>
+				<td>
+					{{participant.username}}
+				</td>
+				<td>
+					<label>{{participant.email}}</label>
+				</td>
+				<td>
+					<label>{{participant.phone}}</label>
+				</td>
+			</tr>
+		</table>
+		<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getParticipantsInProgress">
+		<div class="no-results-found" ng-show="!getParticipantsInProgress && participants.length === 0">
+			No participants
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CLOSE
+		</button>
+	</div>
+</form>

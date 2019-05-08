@@ -1,0 +1,21 @@
+#edit-participant-modal{
+    padding-top: 60px;
+}
+#edit-participant-modal .found-participants{
+    margin-top: 20px;
+}
+#edit-participant-modal .found-participants .found-participant{
+    position: relative;
+    padding: 20px 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#edit-participant-modal .found-participants .found-participant.not-last{
+    border-bottom: 1px solid #d9dee8;
+}
+#edit-participant-modal .found-participants .found-participant i:last-of-type{
+    position: absolute;
+    top: 20px;
+    right: 2px;
+    color: #2b7aff;
+}

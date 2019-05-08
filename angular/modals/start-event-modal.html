@@ -1,0 +1,20 @@
+<form id="start-event-modal" ng-controller="startEventModalController" ng-submit="startEvent()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Start Event
+    </div>
+    <div class="input-section">
+        Are you sure you want to start {{selectedEvent.name}}?
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            START EVENT
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

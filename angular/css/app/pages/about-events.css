@@ -1,0 +1,17 @@
+#about-events .paged-view{
+    margin-top: 25px;
+}
+#about-events .paged-link{
+    padding-right: 25px;
+}
+#about-events .inactive{
+    color: #848590;
+}
+#about-events .list-content-window{
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+#about-events .list-content-window > li{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

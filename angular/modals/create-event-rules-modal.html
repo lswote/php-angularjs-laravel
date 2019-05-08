@@ -1,0 +1,285 @@
+<form id="create-event-rules-modal" ng-controller="createEventRulesModalController" ng-submit="createEventRules()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div ng-show="showLadderRules">
+		<div class="title">
+			Create {{selectedEvent.name}} Rules
+		</div>
+		<div class="input-section">
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.numSets">
+					<option value="" disabled selected>
+						Number of Sets
+					</option>
+					<option value="1">
+						1
+					</option>
+					<option value="3">
+						3
+					</option>
+					<option value="5">
+						5
+					</option>
+				</select>
+				<span class="label">
+					No. of "sets" for each challenge
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.numSets">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="No. opponent challenges" ng-model="ladderRulesObject.numOppChallenges" min="1">
+				<span class="label">
+				 	No. of opponent challenges allowed
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.numOppChallenges">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="No. team challenges" ng-model="ladderRulesObject.numTeamChallenges" min="1">
+				<span class="label">
+					No. of challenges a player/team can issue
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.numTeamChallenges">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="No. spots can challenge up" ng-model="ladderRulesObject.numSpotsUp" min="1">
+				<span class="label">
+				  No. of spots can challenge up
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.numSpotsUp">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="No. spots can challenge down" ng-model="ladderRulesObject.numSpotsDown" min="1">
+				<span class="label">
+					No. of spots can challenge down
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.numSpotsDown">
+				Required
+			</div>
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.allowChallengeNext">
+					<option value="" disabled selected>
+						Allow to challenge "next in line"
+					</option>
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</select>
+				<span class="label">
+					Allow to challenge "next in line"
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.allowChallengeNext">
+				Required
+			</div>
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.switchOrJump">
+					<option value="" disabled selected>
+						Switch or Jump Above if lower ranked team wins
+					</option>
+					<option value="s">Switch</option>
+					<option value="j">Jump Above</option>
+				</select>
+				<span class="label">
+					 Switch or Jump Above if lower ranked team wins challenge
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.switchOrJump">
+				Required
+			</div>
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.denyChallengeRank">
+					<option value="" disabled selected>
+						Deny challenge result in change in rank
+					</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+				<span class="label">
+					Does denying a challenge result in change in ranking?
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.denyChallengeRank">
+				Required
+			</div>
+			<div class="select-container">
+			<select ng-model="ladderRulesObject.denyAcceptRank">
+				<option value="" disabled selected>
+					Not accepting challenge result in change in rank
+				</option>
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</select>
+			<span class="label">
+				Does not accepting a challenge result in change in ranking?
+			</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.denyAcceptRank">
+				Required
+			</div>
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.withdrawalRank">
+					<option value="" disabled selected>
+						Withdrawal after accepting result in change in rank
+					</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+				<span class="label">
+					Does withdrawal after accepting result in change in ranking?
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.withdrawalRank">
+				Required
+			</div>
+			<div class="select-container">
+				<select ng-model="ladderRulesObject.acceptNotPlayedRank">
+					<option value="" disabled selected>
+						Accepting and not playing result in change in rank
+					</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+				<span class="label">
+					Does accepting and not playing result in change in ranking?
+				  </span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.acceptNotPlayedRank">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="Days to accept challenge" ng-model="ladderRulesObject.daysAcceptChallenge" min="1">
+				<span class="label">
+					Days to accept a challenge
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.daysAcceptChallenge">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="Days to play challenge" ng-model="ladderRulesObject.daysPlayChallenge" min="1">
+				<span class="label">
+					Days to play a challenge
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.daysPlayChallenge">
+				Required
+			</div>
+			<div class="input-container">
+				<input type="number" placeholder="Days after completed challenge before issuing rechallenge" ng-model="ladderRulesObject.daysAfterCompleted" min="1">
+				<span class="label">
+					Days after completed challenge before issuing rechallenge
+				</span>
+			</div>
+			<div class="error" ng-show="showLadderRulesErrors.daysAfterCompleted">
+				Required
+			</div>
+		</div>
+	</div>
+	<div ng-show="showEventRules">
+		<div class="title">
+			Edit Event Rules
+		</div>
+		<div>
+			Rules for {{selectedEvent.name}}
+		</div>
+		<div class="input-section">
+			<div class="select-container" ng-hide="(selectedEvent.event_type === 'social' || selectedEvent.event_type === 'multifacility') && eventObject.rounds === null">
+				<select ng-model="eventObject.rounds" convert-to-number ng-disabled="selectedEvent.event_type === 'social' || selectedEvent.event_type === 'multifacility'">
+					<option value=null disabled selected>
+						No. Of Rounds
+					</option>
+					<option value="{{rounds}}" ng-repeat="rounds in numberRounds">
+						{{rounds}}
+					</option>
+				</select>
+				<span class="label">
+					NO. OF ROUNDS
+				</span>
+				<div class="error" ng-show="showEventRulesErrors.rounds">
+					Required
+				</div>
+			</div>
+			<div class="select-container" ng-hide="selectedEvent.event_type === 'multifacility' && eventObject.sets === null">
+				<select ng-model="eventObject.sets" convert-to-number ng-disabled="selectedEvent.event_type === 'multifacility'">
+					<option value=null disabled>
+						Competition Scoring Format
+					</option>
+					<option value="1">
+						1
+					</option>
+					<option value="3">
+						3
+					</option>
+					<option value="5">
+						5
+					</option>
+				</select>
+				<span class="label">
+					COMPETITION SCORING FORMAT
+				</span>
+				<div class="error" ng-show="showEventRulesErrors.sets">
+					Required
+				</div>
+			</div>
+			<div class="select-container" ng-hide="selectedEvent.event_type === 'multifacility' && eventObject.lineScoringFormat === null">
+				<select ng-model="eventObject.lineScoringFormat" convert-to-number ng-disabled="selectedEvent.event_type === 'multifacility'">
+					<option value=null disabled selected>
+						Line Scoring Format
+					</option>
+					<option value="wl">
+						Win / Loss
+					</option>
+					<option value="points">
+						Points
+					</option>
+				</select>
+				<span class="label">
+					LINE SCORING FORMAT
+				</span>
+				<div class="error" ng-show="showEventRulesErrors.lineScoringFormat">
+					Required
+				</div>
+			</div> 
+			<div class="select-container" ng-hide="(selectedEvent.event_type === 'social' || selectedEvent.event_type === 'multifacility') && eventObject.standardLineDuration === null">
+				<select ng-model="eventObject.standardLineDuration" convert-to-number ng-disabled="selectedEvent.event_type === 'social' || selectedEvent.event_type === 'multifacility'">
+					<option value=null disabled selected>
+						Standard Line Duration
+					</option>
+					<option value="{{duration}}" ng-repeat="duration in standardLineDurations">
+						{{duration}}
+					</option>
+				</select>
+				<span class="label">
+					STANDARD LINE DURATION
+				</span>
+				<div class="error" ng-show="showEventRulesErrors.standardLineDuration">
+					Required
+				</div>
+			</div>
+			<div class="textarea-container">
+				<textarea class="textarea" ng-model="eventObject.notes"></textarea>
+				<span class="label">
+					ADDITIONAL RULES/NOTES
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+			DONE
+			<span ng-show="callSuccess">
+			&#10004;
+		</span>
+		</button>
+	</div>
+</form>

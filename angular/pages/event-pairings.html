@@ -1,0 +1,93 @@
+<div ng-controller="eventPairingsController">
+    <div id="event-pairings" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Round Robin & Tournament Pairings
+            </div>
+            <div class="subtitle">
+                {{event.name}}
+            </div>
+            <div class="filters">
+                <select class="date-filter" ng-model="filters.startLine">
+                    <option value="" disabled selected>
+                        Line Type
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in femaleLines">
+                        {{line}}
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in maleLines">
+                        {{line}}
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in comboLines">
+                        {{line}}
+                    </option>
+                </select>
+                <span>
+                    to
+                </span>
+                <select class="date-filter" ng-model="filters.endLine">
+                    <option value="" disabled selected>
+                        Line Type
+                    </option>
+                    <option value="">
+                        All
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in femaleLines" ng-show="line.substr(0, 2) === filters.startLine.substr(0, 2)">
+                        {{line}}
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in maleLines" ng-show="line.substr(0, 2) === filters.startLine.substr(0, 2)">
+                        {{line}}
+                    </option>
+                    <option value="{{line}}" ng-repeat="line in comboLines" ng-show="line.substr(0, 2) === filters.startLine.substr(0, 2)">
+                        {{line}}
+                    </option>
+                </select>
+            </div>
+            <div class="pairings">
+                <div class="header">
+                    <span class="team">
+                        Team
+                    </span>
+                    <span class="line" ng-repeat="line in femaleLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)">
+                        {{line}}
+                    </span>
+                    <span class="line" ng-repeat="line in maleLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)">
+                        {{line}}
+                    </span>
+                    <span class="line" ng-repeat="line in comboLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)">
+                        {{line}}
+                    </span>
+                </div>
+                <div class="team-pairings" ng-repeat="team in teams">
+                    <span class="team" ng-style="{'color': team.name}">
+                        {{team.name}}
+                    </span>
+                    <team-pairing-line class="line" toggle-selected-users="toggleSelectedUsers" disable-checkbox="disableCheckbox"
+                                       line="team.lines[findArrayIndexMultipleKeys(team.lines, ['line_play_type', 'line_play_type_number'], [line.substr(0, 2).toLowerCase(), line.substr(2)])]"
+                                       ng-repeat="line in femaleLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)"></team-pairing-line>
+                    <team-pairing-line class="line" toggle-selected-users="toggleSelectedUsers" disable-checkbox="disableCheckbox"
+                                       line="team.lines[findArrayIndexMultipleKeys(team.lines, ['line_play_type', 'line_play_type_number'], [line.substr(0, 2).toLowerCase(), line.substr(2)])]"
+                                       ng-repeat="line in maleLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)"></team-pairing-line>
+                    <team-pairing-line class="line" toggle-selected-users="toggleSelectedUsers" disable-checkbox="disableCheckbox"
+                                       line="team.lines[findArrayIndexMultipleKeys(team.lines, ['line_play_type', 'line_play_type_number'], [line.substr(0, 2).toLowerCase(), line.substr(2)])]"
+                                       ng-repeat="line in comboLines" ng-style="{'width': 'calc((100% - 230px) /' + allLines.length + ')'}" ng-hide="hideLine(line)"></team-pairing-line>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

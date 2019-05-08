@@ -1,0 +1,131 @@
+<div id="admin" ng-controller="adminController">
+    <div class="dashboard-image tint" ng-style="{'background-image': 'url('+ facility.image_url +')'}" ng-show="facility.image_url">
+        <div class="title">
+            My Admin
+        </div>
+    </div>
+    <div class="admin-container" ng-show="user.privilege === 'facility leader'">
+        <div class="admin-box page-container">
+            <div class="column">
+                <div class="subtitle">
+                    View
+                </div>
+                <a>
+                    My profile
+                </a>
+                <a>
+                    My history
+                </a>
+                <a>
+                    My upcoming events
+                </a>
+                <a>
+                    Other participants' history
+                </a>
+                <a>
+                    View about various events
+                </a>
+                <div class="subtitle">
+                    Edit
+                </div>
+                <a class="modal-toggle" ng-click="toggleChangePasswordModal()">
+                    Change my password
+                </a>
+                <a>
+                    Edit event master ToDo list
+                </a>
+                <a href="/facility/{{user.facility_id}}/activities" target="_self" class="item">
+                    Edit facility activity records
+                </a>
+                <a>
+                    Edit my profile
+                </a>
+                <a class="modal-toggle" ng-click="toggleEditActivitiesModal()">
+                    Edit participant activity profile
+                </a>
+                <a>
+                    Edit participant activity ranking
+                </a>
+                <a class="modal-toggle" ng-click="toggleEditParticipantModal()">
+                    Edit participant record(s)
+                </a>
+            </div>
+            <div class="column">
+                <div class="subtitle">
+                    Add / Delete
+                </div>
+                <a class="modal-toggle" ng-click="toggleAddFacilityLeaderModal()">
+                    Add additional facility leader
+                </a>
+                <a class="modal-toggle" ng-click="toggleAddFacilityParticipantModal()">
+                    Add participant
+                </a>
+                <a>
+                    Delete participant
+                </a>
+                <a class="modal-toggle" ng-click="toggleImportParticipantsModal('facilities')">
+                    Import participant records
+                </a>
+                <a class="modal-toggle" ng-click="toggleImportParticipantsActivitiesModal()">
+                    Import participant activity records
+                </a>
+                <div class="subtitle">
+                    Output
+                </div>
+                <a class="modal-toggle" ng-click="toggleDownloadParticipantsActivitiesModal()">
+                    Download participant activity file
+                </a>
+                <a class="modal-toggle" ng-click="toggleDownloadParticipantsImportModal()">
+                    Download participant event response template file
+                </a>
+                <a class="modal-toggle" ng-click="toggleExportParticipantsActivitiesModal()">
+                    Export participant activity to .csv
+                </a>
+                <a class="item modal-toggle" ng-click="toggleExportParticipantsModal('facility')">
+                    Export participant records to .csv
+                </a>
+                <div class="subtitle">
+                    Email
+                </div>
+                <a>
+                    Email username to participant
+                </a>
+                <a>
+                    Email to get activity interest
+                </a>
+                <a>
+                    Email on activity interest change
+                </a>
+                <a>
+                    Email password reset
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="admin-container" ng-show="user.privilege === 'participant'">
+        <div class="admin-box page-container">
+            <div class="column">
+                <a>
+                    My history
+                </a>
+                <a>
+                    My upcoming events
+                </a>
+                <a class="modal-toggle" ng-click="toggleChangePasswordModal()">
+                    Change my password
+                </a>
+            </div>
+            <div class="column">
+                <a class="modal-toggle" ng-click="toggleEditActivitiesModal()">
+                    Edit my activities
+                </a>
+                <a>
+                    Edit my profile
+                </a>
+                <a>
+                    Other participant history(s)
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+#view-completed-ladder-results-modal .search-section{
+	padding-top: 20px;
+}
+#view-completed-ladder-results-modal .search-section table{
+	width: 100%;
+	background: #ebeff2;
+}
+#view-completed-ladder-results-modal .search-section table tr td{
+	padding-top: 20px;
+	vertical-align: top;
+	padding-bottom: 20px;
+}
+#view-completed-ladder-results-modal .search-box{
+	width: 50%;
+}
+#view-completed-ladder-results-modal .field-change{
+	width: 50%;
+}
+#view-completed-ladder-results-modal .error{
+	font-size: 18px;
+}
+#view-completed-ladder-results-modal .col-one{
+	width: 32%;
+	text-align: left;
+}
+#view-completed-ladder-results-modal .col-two{
+	width: 46%;
+	text-align: left;
+}
+#view-completed-ladder-results-modal .col-three{
+	width: 22%;
+	text-align: left;
+}
+#view-completed-ladder-results-modal table{
+	width: 100%;
+	font-size: 18px;
+	font-weight: 400;
+	border-spacing: 8px 8px;
+}
+#view-completed-ladder-results-modal .range-button{
+    padding: 6px 6px 6px 6px;
+}
+#view-completed-ladder-results-modal .field-select{
+	border-color: #bfc7d9;
+	background-color: white
+}
+#view-completed-ladder-results-modal th input:not([type="number"]) {
+	width: 135px;
+	border-color: #bfc7d9;
+}

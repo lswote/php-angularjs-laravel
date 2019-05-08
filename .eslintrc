@@ -1,0 +1,21 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 5
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true
+    },
+    "rules": {
+        "quotes": ["error", "single"],
+        "indent": ["error", 4],
+        "keyword-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": false
+            }
+        ],
+        "space-before-blocks": ["error", "never"],
+    }
+}

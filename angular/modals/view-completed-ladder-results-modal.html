@@ -1,0 +1,69 @@
+<div id="view-completed-ladder-results-modal" ng-controller="viewCompletedLadderResultsModalController">
+	<div>
+		<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+		<div class="title event-name">
+			View Scores for Completed Matches
+		</div>
+		<div>
+			Recent {{selectedEvent.name}} ladder matches
+		</div>
+		<div>
+			<div class="search-section">
+				<table>
+					<tr>
+						<td class="search-box">
+							<input class="item" type="text" placeholder="Search for name" ng-model="name">
+						</td>
+						<th class="field-change">
+							<select class="field-select" ng-model="time_frame" ng-change="getChallenges()" ng-show="show_selection">
+								<option value="30">30 Days</option>
+								<option value="90">90 Days</option>
+								<option value="all">Show All Entries</option>
+							</select>
+                            <input class="date" type="text" ng-model="begin_range_date" pick-a-date="begin_range_date_display" pick-a-date-options="{format: 'yyyy-mm-dd'}" required ng-show="show_date_range">
+                            <input class="date" type="text" ng-model="end_range_date" pick-a-date="end_range_date_display" pick-a-date-options="{format: 'yyyy-mm-dd'}" required ng-show="show_date_range">
+							<button class="range-button" type="button" ng-click="getChallenges()" ng-show="show_date_range">
+								SET RANGE
+							</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+			<div class="input-section">
+				<table ng-show="!getChallengesInProgress && challenges.length > 0">
+					<tr>
+						<th class='col-one'>
+							DATE
+						</th>
+						<th class='col-two'>
+							MATCH
+						</th>
+						<th class='col-three'>
+							RESULTS
+						</th>
+					</tr>
+					<tr ng-repeat="challenge in challenges | orderBy: ['-date','name']">
+						<td>
+							{{challenge.date}}
+						</td>
+						<td>
+							{{challenge.name}}
+						</td>
+						<td>
+							{{challenge.results}}
+						</td>
+					</tr>
+				</table>
+				<img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getChallengesInProgress">
+				<div class="no-results-found" ng-show="!getChallengesInProgress && challenges.length === 0">
+					No matches
+				</div>
+			</div>
+			<div class="buttons">
+				<button class="cancel-button" type="button" ng-click="toggleModal()">
+					CLOSE
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

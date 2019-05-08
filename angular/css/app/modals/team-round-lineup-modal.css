@@ -1,0 +1,36 @@
+#team-round-lineup-modal .title{
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+#team-round-lineup-modal .match-info{
+    width: 100%;
+    padding-left: 0;
+}
+#team-round-lineup-modal .match-info select{
+    width: 150px;
+    margin-left: 10px;
+}
+#team-round-lineup-modal .labels, #team-round-lineup-modal .line, #team-round-lineup-modal .not-in-playoffs{
+    width: 100%;
+}
+#team-round-lineup-modal .labels span, #team-round-lineup-modal .line span, #team-round-lineup-modal .not-in-playoffs span{
+    display: inline-block;
+    padding-left: 15px;
+}
+#team-round-lineup-modal .labels{
+    font-weight: 600;
+}
+#team-round-lineup-modal .line, #team-round-lineup-modal .not-in-playoffs{
+    margin-top: 20px;
+    font-style: italic;
+}
+#team-round-lineup-modal .not-in-playoffs .line-number{
+    position: relative;
+    top: -15px;
+}
+#team-round-lineup-modal .line-number{
+    width: 10%;
+}
+#team-round-lineup-modal .team-participant{
+    width: calc(40% - 23px);
+}

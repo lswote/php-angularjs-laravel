@@ -1,0 +1,69 @@
+#print-to-dos-modal .odd{
+	background-color: white;
+}
+#print-to-dos-modal .even{
+	background-color: #ebeff2;
+}
+#print-to-dos-modal .header{
+	display: flex;
+	position: relative;
+	align-items: center;
+	height: 50px;
+	width: calc(100% - 10px);
+	padding: 5px 5px;
+	background-color: #ebeff2;
+	border-bottom: 1px solid #c7cfde;
+}
+#print-to-dos-modal .header input{
+	height: 25px;
+	width: 60px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+#print-to-dos-modal .header select{
+	height: 40px;
+	width: 150px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#print-to-dos-modal .select-container select{
+	width: 125px;
+}
+#print-to-dos-modal .from{
+	margin-left: 25px;
+}
+#print-to-dos-modal .status{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+#print-to-dos-modal .size{
+	margin-left: 20px;
+}
+#print-to-dos-modal .header button{
+	position: absolute;
+	right: 30px;
+	height: 40px;
+	width: 180px;
+	line-height: 0.5;
+}
+#print-to-dos-modal .even{
+	background-color: #ebeff2;
+}
+#print-to-dos-modal table{
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 20px;
+}
+#print-to-dos-modal table th, #print-to-dos-modal table td{
+	padding-right: 20px;
+}
+#print-to-dos-modal table th{
+	color: #90949b;
+	font-size: 14px;
+	font-weight: 600;
+	text-align: left;
+}
+#print-to-dos-modal .white, #print-to-dos-modal .tan, #print-to-dos-modal .yellow, #print-to-dos-modal .cyan{
+	text-shadow: 1px 1px 1px darkslategrey;
+}

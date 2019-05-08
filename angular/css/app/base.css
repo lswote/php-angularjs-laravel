@@ -1,0 +1,336 @@
+*{
+    color: #273238;
+    font-family: 'Titillium Web', sans-serif;
+}
+html, body{
+    height: 100%;
+}
+body{
+    margin: 0;
+    background-color: #ebeff2;
+}
+a{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+a:visited{
+    text-decoration: none;
+}
+input:not([type="checkbox"]), select, textarea{
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    outline: none;
+}
+textarea{
+    padding: 10px 15px;
+}
+select:not(:valid){
+    color: #757579;
+}
+input:not([type="checkbox"]):focus, select:focus, textarea:focus{
+    border-color: #2879fe;
+}
+input:not([type="checkbox"]):not(:placeholder-shown):not(:focus):not([disabled]), select:not(:focus):valid, textarea:not(:placeholder-shown):not(:focus){
+    border-color: #626673;
+}
+input[disabled]{
+    background-color: white;
+}
+input[type="checkbox"]{
+    position: relative;
+    top: 8px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid #c0c7d9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input[type="checkbox"]:checked{
+    background-color: #4cb04e;
+}
+input[type="checkbox"][disabled]{
+    background-color: #E0E0E0;
+}
+.input-container, .select-container, .textarea-container{
+    position: relative;
+}
+.input-container .label, .select-container .label, .textarea-container .label{
+    display: none;
+    position: absolute;
+    top: -7px;
+    left: 43px;
+    padding-left: 7px;
+    padding-right: 7px;
+    color: #2879fe;
+    background-color: white;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 50;
+}
+input:focus + .label, select:focus + .label, textarea:focus + .label{
+    display: block;
+    border-color: #2879fe;
+}
+input:not(:placeholder-shown):not(:focus) + .label, input:not(:placeholder-shown):not(:focus) + div + .label, select:not(:focus):valid + .label,
+select:not(:focus)[disabled] + .label, textarea:not(:placeholder-shown):not(:focus) + .label{
+    display: block;
+    color: #626673;
+    border-color: #626673;
+}
+#overlay .input-container .label, #overlay .select-container .label, #overlay .textarea-container .label{
+    left: 11px;
+}
+input{
+    z-index: 25;
+}
+input.date, input.time{
+    cursor: pointer;
+}
+input:disabled{
+    color: #757579;
+}
+label{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+form input:not([type="checkbox"]), form select, form textarea{
+    display: block;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+}
+form input{
+    height: 30px;
+}
+form select{
+    height: 44px;
+}
+textarea{
+    resize: vertical;
+}
+button{
+    padding: 15px 25px;
+    color: white;
+    background-color: #2879ff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+button.disabled{
+    background-color: #a6a6a6 !important;
+    cursor: not-allowed;
+}
+.form-header{
+    padding: 15px;
+    color: white;
+    background-color: #283b91;
+    text-align: left;
+    font-size: 16px;
+}
+.form-body{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.error{
+    margin-left: 5px;
+    color: red;
+    font-size: 12px;
+}
+.error div{
+    color: red;
+}
+.loading-icon, .no-results-found{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.loading-icon{
+    display: block;
+    width: 80px;
+}
+.no-results-found{
+    width: 280px;
+    font-style: italic;
+    text-align: center;
+}
+#logged-out-content .background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/coeds.png") no-repeat center fixed;
+    background-size: cover;
+    z-index: -1;
+}
+#logged-in-content{
+    position: relative;
+    min-height: 100%;
+}
+#navigation{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    min-height: 100%;
+    max-width: 85%;
+    z-index: 500;
+}
+.page-form .page-container{
+    display: block;
+    margin-bottom: 120px;
+}
+.page-form .title{
+    color: #2979ff;
+    font-size: 36px;
+    font-weight: 400;
+}
+.page-form .buttons-container{
+    position: fixed;
+    bottom: 0;
+    height: 55px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+    border-top: 1px solid #bfc7d9;
+    z-index: 200;
+}
+.page-form .buttons{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(80% + 80px);
+    max-width: 1180px;
+}
+.page-form .buttons button{
+    float: right;
+    height: 50px;
+    width: 200px;
+}
+.page-form .buttons .submit-button:nth-child(2), .page-form .buttons .submit-button:nth-child(4){
+    margin-right: 20px;
+}
+.page-form .buttons button.cancel-button{
+    color: #616672;
+    margin-right: 20px;
+    background-color: white;
+    border: 3px solid #616672;
+    line-height: 1;
+}
+.page-outer-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+.page-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    max-width: 1100px;
+    margin-bottom: 45px;
+    padding: 35px 40px;
+    background-color: white;
+    border: 1px solid #dddddf;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.page-container .column{
+    width: 50%;
+    min-width: 300px;
+}
+.page-container .column .subtitle{
+    margin-bottom: 20px;
+    padding-top: 15px;
+    font-weight: 600;
+}
+.page-container .column a{
+    display: block;
+    margin-bottom: 10px;
+    color: #626671;
+}
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    z-index: 1000;
+}
+.clear{
+    clear:both;
+}
+@media(max-width: 720px){
+    .page-form .page-container{
+        margin-bottom: 40px;
+    }
+    .page-form .buttons-container{
+        position: static;
+        height: auto;
+    }
+    .page-form .buttons{
+        text-align: center;
+        width: 90%;
+    }
+    .page-form .buttons button{
+        float: none;
+        width: 90%;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+    }
+}
+@media(max-width: 680px){
+    form input{
+        width: calc(100% - 70px);
+    }
+    .error{
+        width: calc(100% - 70px);
+    }
+    #navigation{
+        position: absolute;
+        height: 100%;
+        z-index: 100;
+    }
+    #logged-in-body{
+        z-index: 50;
+    }
+}
+@media(max-width: 480px){
+    .page-container{
+        font-size: 12px;
+    }
+}
+@media(max-width: 420px){
+    .page-container .column{
+        min-width: 250px;
+    }
+}
+
+
+a.item, .admin-box a{
+    background-color: #F0F0F0;
+}
+a.item.modal-toggle, a.item[href], .admin-box a.modal-toggle, .admin-box a[href]{
+    background-color: white;
+}

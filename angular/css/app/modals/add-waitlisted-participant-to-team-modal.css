@@ -1,0 +1,34 @@
+#add-waitlisted-participant-to-team-modal .title{
+    margin-bottom: 20px;
+}
+#add-waitlisted-participant-to-team-modal input, #add-waitlisted-participant-to-team-modal select{
+    margin-top: 30px;
+}
+#add-waitlisted-participant-to-team-modal .found-participants{
+    position: relative;
+}
+#add-waitlisted-participant-to-team-modal .found-participant{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    color: #2879ff;
+    background-color: white;
+    cursor: pointer;
+}
+#add-waitlisted-participant-to-team-modal .found-participant:hover{
+    color: white;
+    background-color: #2879ff;
+}
+#add-waitlisted-participant-to-team-modal .found-participant .username{
+    color: #2879ff;
+    font-weight: 600;
+}
+#add-waitlisted-participant-to-team-modal .found-participant:hover .username, #add-waitlisted-participant-to-team-modal .found-participant:hover .selected{
+    color: white;
+}
+#add-waitlisted-participant-to-team-modal .found-participant .selected{
+    color: #626673;
+}
+#add-waitlisted-participant-to-team-modal .event-teams select{
+    text-transform: capitalize;
+}

@@ -1,0 +1,30 @@
+<form id='edit-ladder-start-date-modal' ng-controller="editLadderStartDateModalController" ng-submit="saveStartDate()">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<div class="title">
+		Edit Ladder Start Date for {{selectedEvent.name}}
+	</div>
+	<div>
+		Change the date that challenges can begin being issued
+	</div>
+	<div class="input-section">
+		<div ng-show="show_editable">
+			<input class="date" type="text" placeholder="Select Date" ng-focus="resetEditLadderStartDateErrors()" ng-model="event.start_date" pick-a-date="event.display_start_date" pick-a-date-options="{format: 'yyyy-mm-dd'}" required>
+		</div>
+		<div ng-show="show_noneditable">
+			<input type="text" readonly="readonly" ng-model="event.start_date">
+		</div>
+	</div>
+	<div class="errors">
+		<div class="error" ng-show="showEditLadderStartDateErrors.start_date">
+			Valid start date must be selected
+		</div>
+	</div>
+	<div class="buttons">
+		<button class="cancel-button" type="button" ng-click="toggleModal()">
+			CANCEL
+		</button>
+		<button class="submit-button" type="submit">
+			DONE
+		</button>
+	</div>
+</form>

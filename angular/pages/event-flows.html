@@ -1,0 +1,54 @@
+<div id="event-flows" ng-controller="eventFlowsController">
+  <div class="dashboard-image tint" ng-style="{'background-image': 'url('+ facility.image_url +')'}">
+    <div class="title">
+      Event Flows
+    </div>
+    <div class="text">
+      Description for section
+    </div>
+  </div>
+  <div class="dashboard-container">
+    <div class="page-form page-outer-container">
+      <div class="page-container">
+        <div class="title">
+          Flows
+        </div>
+        <div class="subtitle">
+          Description for section
+        </div>
+        <div class="paged-view">
+          <a ng-click="selectedEvent=1" class="paged-link" ng-class="{'inactive': selectedEvent != 1}" href="#">Ladder</a>
+          <a ng-click="selectedEvent=2" class="paged-link" ng-class="{'inactive': selectedEvent != 2}" href="#">League</a>
+          <a ng-click="selectedEvent=3" class="paged-link" ng-class="{'inactive': selectedEvent != 3}" href="#">Multi-Facility Event</a>
+          <a ng-click="selectedEvent=4" class="paged-link" ng-class="{'inactive': selectedEvent != 4}" href="#">Round Robin</a>
+          <a ng-click="selectedEvent=5" class="paged-link" ng-class="{'inactive': selectedEvent != 5}" href="#">Ryder Cup</a>
+          <a ng-click="selectedEvent=6" class="paged-link" ng-class="{'inactive': selectedEvent != 6}" href="#">Social</a>
+          <a ng-click="selectedEvent=7" class="paged-link" ng-class="{'inactive': selectedEvent != 7}" href="#">Tournament</a>
+          <hr/>
+          <div>
+            <div class="paged-content-window" ng-show="selectedEvent == 1">
+              <img src="/images/flows/ladderflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 2">
+              <img src="/images/flows/leagueflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 3">
+              <img src="/images/flows/multifacilityflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 4">
+              <img src="/images/flows/roundrobinflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 5">
+              <img src="/images/flows/rydercupflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 6">
+              <img src="/images/flows/socialflow.png"/>
+            </div>
+            <div class="paged-content-window" ng-show="selectedEvent == 7">
+              <img src="/images/flows/tournamentflow.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

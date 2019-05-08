@@ -1,0 +1,70 @@
+#event-team-challenge-ladder-modal .error{
+    font-size: 18px;
+}
+#event-team-challenge-ladder-modal .col-one{
+    width: 32%;
+    text-align: left;
+}
+#event-team-challenge-ladder-modal .col-two{
+    width: 40%;
+    text-align: left;
+}
+#event-team-challenge-ladder-modal .col-three{
+    width: 22%;
+    text-align: left;
+}
+#event-team-challenge-ladder-modal .error{
+    font-size: 18px;
+}
+#event-team-challenge-ladder-modal .buttons{
+    margin-top: 20px;
+}
+#event-team-challenge-ladder-modal button{
+    margin-bottom: 5px;
+    height: 40px;
+    width: 135px;
+    padding: 0px 0px;
+}
+#event-team-challenge-ladder-modal {
+    padding-top: 20px;
+}
+#event-team-challenge-ladder-modal table{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    border-spacing: 0px 0px;
+}
+#event-team-challenge-ladder-modal .input-section table{
+    margin-top: 10px;
+    width: 100%;
+}
+#event-team-challenge-ladder-modal th input:not([type="number"]) {
+    width: 135px;
+    border-color: #bfc7d9;
+}
+#event-team-challenge-ladder-modal .match-results-table{
+    height: 55px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #bfc7d9;
+}
+#event-team-challenge-ladder-modal .match-results-table tr th{
+    text-align: left;
+}
+#event-team-challenge-ladder-modal .match-results-table label{
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+#event-team-challenge-ladder-modal .match-results-table input:not([type="checkbox"]){
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    outline: none;
+}

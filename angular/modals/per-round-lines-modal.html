@@ -1,0 +1,38 @@
+<form id="per-round-lines-modal" ng-controller="perRoundLinesModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Per Round Line Types
+    </div>
+    <div class="match-info">
+        {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <div class="labels">
+            <span class="subtitle">
+                Line Number
+            </span>
+            <span class="subtitle">
+                Play Type
+            </span>
+            <span class="subtitle">
+                Line Type
+            </span>
+        </div>
+        <div class="line" ng-repeat="line in lines | orderBy: sortByLineType">
+            <span>
+                {{$index + 1}}
+            </span>
+            <span>
+                {{line.line_type}}
+            </span>
+            <span>
+                {{line.line_play_type.toUpperCase()}}
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+    </div>
+</form>

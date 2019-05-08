@@ -1,0 +1,57 @@
+<form id='withdraw-event-team-from-ladder-modal' ng-controller="withdrawEventTeamFromLadderModalController" ng-submit="withdrawTeamFromLadder()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Withdraw Team From Ladder
+    </div>
+    <div>
+        Stop participating in ladder either temporarily or permanently
+    </div>
+    <div class="input-section">
+        <div class="radio-buttons">
+            <table>
+                <tr>
+                    <td>
+                        <div><input name="withdraw_scope" ng-model="withdraw_scope" type="radio" value="team_only" ng-click="set_withdraw_scope()" checked><label>Remove teams only</label></div>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <div><input name="withdraw_scope" ng-model="withdraw_scope" type="radio" value="both" ng-click="set_withdraw_scope()"><label>Remove participant and teams</label></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+		<typeahead class="item" items="items" prompt="Name of either player on the team" title="name" model="name" ng-click="itemClick()" on-select="display_pairs()" inputclass="search-team" divclass="view-team" ng-show="user.privilege !== 'participant'" />
+        <div class="radio-buttons">
+            <div>
+                <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="dropped" checked><label>Remove from ladder</label>
+            </div>
+            <div>
+                <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="out"><label>Temporarily remove from ladder</label>
+           </div>
+           <div class="pair-div" ng-show="possible_pairs.show">
+               <span ng-show="show_label_team">These are the teams {{possible_pairs.username}} is on.  Check all you wish to withdraw.</span>
+               <span ng-show="show_label_both">These are the teams {{possible_pairs.username}} is on.  They will all be withdrawn along with participant.</span>
+               <div ng-repeat="pair in possible_pairs.pairs">
+                   <input ng-show="show_checkbox" name="pairs" type="checkbox" value="{{pair.id}}" ng-model="pair.selected"><label>{{pair.name}}</label>
+               </div>
+           </div>
+        <div class="error" ng-show="showWithdrawEventTeamFromLadderErrors.noPairsSelected">
+            At least one team must be selected.
+        </div>
+        <div class="error" ng-show="showWithdrawEventTeamFromLadderErrors.noTeams">
+            That player is not on any teams for this event.
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit">
+            DONE
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

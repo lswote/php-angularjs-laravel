@@ -1,0 +1,21 @@
+<form id="pick-facility-activities-modal" ng-controller="pickFacilityActivitiesModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Choose Facility to Edit
+    </div>
+    <div class="input-section">
+        <div class="select-container">
+            <select required ng-model="selectedFacilityId">
+                <option value="" disabled selected>
+                    Facility
+                </option>
+                <option value="{{facility.id}}" ng-repeat="facility in facilities">
+                    {{facility.name}}
+                </option>
+            </select>
+            <span class="label">
+                Facility
+            </span>
+        </div>
+    </div>
+</form>

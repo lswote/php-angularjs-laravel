@@ -1,0 +1,74 @@
+<form id="add-sub-to-lineup-modal" ng-controller="addSubToLineupModalController" ng-submit="addSubstitute()">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Substitute To Lineup For {{selectedEvent.name}}
+    </div>
+    <div class="input-section">
+        <div ng-show="!getAvailabilityInProgress">
+            <div class="select-container">
+                <select class="selected-team" required ng-model="selectedTeamId">
+                    <option value="" selected>
+                        Team
+                    </option>
+                    <option value="{{team.id}}" ng-repeat="team in teams">
+                        {{team.name}}
+                    </option>
+                    <option value="" disabled ng-show="teams.length === 0">
+                        No Teams Found
+                    </option>
+                </select>
+                <span class="label">
+                    TEAM
+                </span>
+                <div class="error" ng-show="addSubToLineupErrors.selectedTeamId">
+                    Required
+                </div>
+            </div>
+            <div class="select-container event-teams">
+                <select required ng-model="selectedRoundDate">
+                    <option value="" selected>
+                        Round Date
+                    </option>
+                    <option value="{{date}}" ng-repeat="date in roundDates">
+                        {{formatDate(date)}}
+                    </option>
+                </select>
+                <span class="label">
+                    ROUND DATE
+                </span>
+                <div class="error" ng-show="addSubToLineupErrors.selectedRoundDate">
+                    Required
+                </div>
+            </div>
+            <div class="select-container">
+                <select required ng-model="selectedAvailabilityId">
+                    <option value="" selected>
+                        Select Substitute
+                    </option>
+                    <option value="{{availability.id}}" ng-repeat="availability in subsAvailability"
+                            ng-if="availability.date === selectedRoundDate && availability.status === 'available'">
+                        {{availability.user.first_name}} {{availability.user.last_name}}
+                    </option>
+                </select>
+                <span class="label">
+                    SELECT SUBSTITUTE
+                </span>
+                <div class="error" ng-show="addSubToLineupErrors.selectedAvailabilityId">
+                    Required
+                </div>
+            </div>
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getAvailabilityInProgress">
+    </div>
+    <div class="buttons">
+        <button class="cancel-button" type="button" ng-click="toggleModal()">
+            CANCEL
+        </button>
+        <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-disabled="callInProgress">
+            ADD
+            <span ng-show="callSuccess">
+                &#10004;
+            </span>
+        </button>
+    </div>
+</form>

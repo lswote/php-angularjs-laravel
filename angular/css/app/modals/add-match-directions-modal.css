@@ -1,0 +1,19 @@
+#add-match-directions-modal .error{
+	font-size: 18px;
+}
+#add-match-directions-modal .title{
+    margin-bottom: 20px;
+}
+#add-match-directions-modal .input-section{
+    text-align: left;
+}
+#add-match-directions-modal .input-section table{
+	width: 100%;
+}
+#add-match-directions-modal .input-section select{
+	background: white;
+}
+#add-match-directions-modal .input-section textarea{
+	width: calc(100% - 30px);
+	height: 350px;
+}

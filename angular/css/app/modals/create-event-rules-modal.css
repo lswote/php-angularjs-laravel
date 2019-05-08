@@ -1,0 +1,11 @@
+#create-event-rules-modal .title{
+    margin-bottom: 20px;
+}
+#create-event-rules-modal input, #create-event-rules-modal select, #create-event-rules-modal textarea{
+    margin-top: 30px;
+}
+#create-event-rules-modal .textarea{
+    height: 150px;
+    resize: none;
+    width: calc(100% - 30px);
+}

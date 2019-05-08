@@ -1,0 +1,94 @@
+<div ng-controller="eventPlayoffController">
+    <div id="event-playoff" class="page-form page-outer-container" ng-show="displayEventForm">
+        <div class="page-container">
+            <div class="title">
+                Playoff Seeding For {{event.name}}
+            </div>
+            <div class="playoff-bracket">
+                <div class="round" ng-repeat="round in rounds | orderBy: '-'" ng-style="{width: roundWidth + '%'}">
+                    <div class="header">
+                        {{-round !== rounds.length ? 'ROUND' + -round : 'FINALS'}}
+                    </div>
+                    <div class="matches">
+                        <div class="match" ng-repeat="match in playoffMatches" ng-if="match.round === round">
+                            <div class="team-container">
+                                <select class="team" ng-class="{'team-selected': match.team_one.name}"
+                                        ng-style="{'color': match.team_one.name ? match.team_one.name : '#273238',
+                                                   'border-color': match.team_one.name === match.winning_team_name ? '#2879fe' : '#c0c7d9'}"
+                                        ng-model="match.team_one.name">
+                                    <option value="">
+                                        Select Team
+                                    </option>
+                                    <option value="{{team.name}}" ng-repeat="team in teamScores" ng-show="round === -1 && showTeam(-1, team.name)">
+                                        {{team.name}}
+                                    </option>
+                                    <option value="{{innerMatch.winning_team_name}}" ng-repeat="innerMatch in playoffMatches | orderBy: 'winning_team_name'"
+                                            ng-show="!(teamScores.length === 6 && round === -2) && round !== -1 && innerMatch.round === (round + 1) && innerMatch.winning_team_name && showTeam(round, innerMatch.winning_team_name)">
+                                        {{innerMatch.winning_team_name}}
+                                    </option>
+                                    <option value="{{team.name}}" ng-repeat="team in teamScores | orderBy: 'name'"
+                                            ng-show="teamScores.length === 6 && round === -2 && showTeam(round, team.name)">
+                                        {{team.name}}
+                                    </option>
+                                </select>
+                                <i class="fa fa-check" ng-click="selectWinningTeam(match.id, match.team_one.id, match.team_one.name)" ng-show="match.team_one.name"></i>
+                            </div>
+                            <div class="team-container">
+                                <select class="team" ng-class="{'team-selected': match.team_two.name}"
+                                        ng-style="{'color': match.team_two.name ? match.team_two.name : '#273238',
+                                                   'border-color': match.team_two.name === match.winning_team_name ? '#2879fe' : '#c0c7d9'}"
+                                        ng-model="match.team_two.name">
+                                    <option value="">
+                                        Select Team
+                                    </option>
+                                    <option value="{{team.name}}" ng-repeat="team in teamScores" ng-show="round === -1 && showTeam(-1, team.name)">
+                                        {{team.name}}
+                                    </option>
+                                    <option value="{{innerMatch.winning_team_name}}" ng-repeat="innerMatch in playoffMatches | orderBy: 'winning_team_name'"
+                                            ng-show="!(teamScores.length === 6 && round === -2) && round !== -1 && innerMatch.round === (round + 1) && innerMatch.winning_team_name && showTeam(round, innerMatch.winning_team_name)">
+                                        {{innerMatch.winning_team_name}}
+                                    </option>
+                                    <option value="{{team.name}}" ng-repeat="team in teamScores | orderBy: 'name'"
+                                            ng-show="teamScores.length === 6 && round === -2 && showTeam(round, team.name)">
+                                        {{team.name}}
+                                    </option>
+                                </select>
+                                <i class="fa fa-check"
+                                   ng-click="selectWinningTeam(match.id, match.team_two.id, match.team_two.name)"
+                                   ng-show="match.team_two.name"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="champions" ng-style="{width: roundWidth + '%'}">
+                    <div class="header">
+                        CHAMPIONS
+                    </div>
+                    <div class="matches">
+                        <div class="match">
+                            <i class="fa fa-trophy"></i>
+                            <div>
+                                {{returnChampionshipTeam()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="submit-button" type="submit" ng-class="{'disabled' : callInProgress}" ng-click="updatePlayoffMatches()" ng-disabled="callInProgress">
+                    Save
+                </button>
+                <a href="/">
+                    <button class="cancel-button" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="no-event-found" ng-show="displayEventForm === false">
+        No event found or you are not an event leader for this event
+    </div>
+</div>

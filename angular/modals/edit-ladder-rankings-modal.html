@@ -1,0 +1,154 @@
+<div id="edit-ladder-rankings-modal" ng-controller="editLadderRankingsModalController" ng-submit="updateMatchScores()">
+    <div ng-show="show_edit_ladder_rankings">
+        <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+        <div class="title">
+            {{selectedEvent.name}}
+        </div>
+        <div>
+            Current Ladder Rankings as of {{selectedEvent.start_date_string}}
+        </div>
+        <div class="add-team" ng-show="selectedEvent.event_sub_type !== 'singles'">
+            <button type="button" ng-click="addNewTeamMember()">
+                ADD NEW TEAM TO LADDER
+            </button>
+        </div>
+		<div>
+            <div class="edit-section">
+                <table>
+                    <tr>
+                        <th class='col-one'>
+                            RANK
+                        </th>
+                        <th class='col-fill'>
+                            
+                        </th>
+                        <th class='col-two'>
+                            PLAYERS
+                        </th>
+                        <th class='col-three'>
+                            RECORD
+                        </th>
+                        <th class='col-four'>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="record in records">
+                        <td class='ranking col-one'>
+                            <label ng-if="!record.drop_options">{{record.ladder_ranking}}</label>
+                            <button ng-if="record.drop_options" type="button" ng-click="editRank(record.index)">{{record.ladder_ranking}}</button>
+                        </td>
+                        <td class='col-fill'>
+                        </td>
+                        <td class='col-two'>
+                            {{record.player}}
+                        </td>
+                        <td class='col-three'>
+                            {{record.record}}
+                        </td>
+                        <td class='col-four' ng-show="record.drop_options">
+                            <button type="button" ng-click="showDropOptions(record.id, record.index)">
+                                DROP OPTIONS
+                            </button> 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="buttons">
+                <button class="cancel-button" type="button" ng-click="toggleModal()">
+                    CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="show_drop_options">
+        <form ng-submit="withdrawTeamFromLadder()">
+            <div class="title">
+                Drop Options for {{drop_data_player}}
+            </div>
+            <div class="radio-buttons">
+                <div>
+                    <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="dropped" checked><label>Remove from ladder</label>
+                </div>
+                <div>
+                    <input name="withdraw_type" ng-model="withdraw_type" type="radio" value="out"><label>Temporarily remove from ladder</label>
+               </div>
+            </div>
+            <div class="buttons">
+                <button class="cancel-button" type="button" ng-click="revertDisplay()">
+                    CANCEL
+                </button>
+                <button class="submit-button" type="submit">
+                    DROP
+                </button>
+            </div>
+        </form>
+    </div>
+    <div ng-show="show_add_new">
+        <form ng-submit="addNewTeamToLadder()">
+            <div class="title">
+                Add Team to Ladder
+            </div>
+            <div class="input-section">
+                <div class="input-player1">
+                    <typeahead class="item" items="items" prompt="Player #1 name" title="name" model="name1" ng-click="resetEditLadderRankingsErrors()" inputclass="search-player" divclass="view-player" />
+                </div>
+                <div class="input-player2">
+                    <typeahead class="item" items="items" prompt="Player #2 name" title="name" model="name2" ng-click="resetEditLadderRankingsErrors()" inputclass="search-player" divclass="view-player" />
+                </div>
+                <div class="error" ng-show="showEditLadderRankingsErrors.username1">
+                    Valid player #1 name Required
+                </div>
+                <div class="error" ng-show="showEditLadderRankingsErrors.username2">
+                    Valid player #2 name Required
+                </div>
+                <div class="error" ng-show="showEditLadderRankingsErrors.pairExists">
+                    These players have already been teamed on the ladder
+                </div>
+                <div class="error" ng-show="showEditLadderRankingsErrors.usernamesIdentical">
+                    Player #1 & #2 names can not be the same
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="cancel-button" type="button" ng-click="revertDisplay()">
+                    CANCEL
+                </button>
+                <button class="submit-button" type="submit">
+                    ADD TEAM
+                </button>
+            </div>
+        </form>
+    </div>
+    <div ng-show="show_edit_rank">
+        <div class="ranking-area">
+            <form ng-submit="changeRankings(ladder_rankings.old_rank)">
+                <div class="title">
+                    Change Rank
+                </div>
+                <div class="ranking-player">
+                    <label>{{ladder_rankings.player}}</label>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                Rank:
+                            </td>
+                            <td>
+                                <select class="ranking-select" ng-model="ladder_rankings.ladder_ranking">
+                                    <option ng-repeat="ranking in ladder_rankings.possible_ladder_rankings" value="{{ranking}}">{{ranking}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="buttons">
+                    <button class="cancel-button" type="button" ng-click="revertDisplay()">
+                        CANCEL
+                    </button>
+                    <button class="submit-button" type="submit">
+                        SAVE
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+<div>

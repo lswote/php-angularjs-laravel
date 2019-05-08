@@ -1,0 +1,48 @@
+<form id='add-event-team-to-ladder-modal' ng-controller="addEventTeamToLadderModalController" ng-submit="addTeamToLadder(false)">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title">
+        Add Team to Ladder
+    </div>
+    <div class="input-section">
+        <div class="input-player1">
+            <typeahead class="item" items="items" prompt="Player #1 name" title="name" model="name1" ng-click="itemClick()" inputclass="search-player" divclass="view-player" />
+        </div>
+        <div class="input-player2">
+            <typeahead class="item" items="items" prompt="Player #2 name" title="name" model="name2" ng-click="itemClick()" inputclass="search-player" divclass="view-player" />
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.username1">
+            Valid player #1 name Required
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.username2">
+            Valid player #2 name Required
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.pairExists">
+            These players have already been teamed on the ladder
+        </div>
+        <div class="error" ng-show="showAddEventTeamToLadderErrors.usernamesIdentical">
+            Player #1 & #2 names can not be the same
+        </div>
+    </div>
+    <table class='button-box'>
+        <tr>
+            <td>
+                <button class="cancel-button" type="button" ng-click="toggleModal()">
+                    CANCEL
+                </button>
+            </td>
+            <td>
+                <button class="submit-button" type="submit">
+                    ADD TEAM
+                    <span ng-show="callSuccess">
+                        &#10004;
+                    </span>
+                </button>
+            </td>
+            <td>
+                <button class="submit-button" type="button" ng-click="addTeamToLadderExit()">
+                    ADD TEAM & EXIT
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>

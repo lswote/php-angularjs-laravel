@@ -1,0 +1,191 @@
+<div id="dashboard" ng-controller="dashboardController">
+    <div class="dashboard-image tint" ng-style="{'background-image': 'url('+ facility.image_url +')'}" ng-show="facility.image_url && facility.disable_image_banner === 0">
+        <div class="title">
+            {{user.privilege === 'admin' ? 'System Admin' : 'My Dashboard'}}
+        </div>
+        <div class="text">
+            {{user.privilege === 'admin' ? 'Create and manage facilities' : 'View current and upcoming events'}}
+        </div>
+        <div class="upload-image-button modal-toggle" ng-click="toggleChangeImageModal()" ng-show="user.privilege === 'facility leader'">
+            &middot;&middot;&middot;
+        </div>
+    </div>
+    <div class="banner-hidden-upload-image-container" ng-show="user.privilege === 'facility leader' && facility.disable_image_banner === 1">
+        <div class="upload-image-button modal-toggle" ng-click="toggleChangeImageModal()">
+            &middot;&middot;&middot;
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <div class="admin" ng-show="user.privilege === 'admin'">
+            <div class="admin-box page-container">
+                <div class="column">
+                    <a class="modal-toggle" ng-click="toggleCreateFacilityModal()">
+                        Create Facility
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleEditFacilityModal()">
+                        Edit Facility
+                    </a>
+                    <a>
+                        Create Facility Activity File
+                    </a>
+                    <a class="modal-toggle" ng-click="togglePickFacilityActivitiesModal()">
+                        Edit Facility Activity File
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleAddFacilityLeaderModal()">
+                        Assign Facility Leader
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleDeleteFacilityLeaderModal()">
+                        Delete Facility Leaders
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleDeleteFacilityModal()">
+                        Delete Facility and Records
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleAddMatchDirectionsModal()">
+                        Add match opponent facility
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleEditMatchDirectionsModal()">
+                        Edit match opponent facility
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleDeleteMatchDirectionsModal()">
+                        Delete match opponent facility
+                    </a>
+                </div>
+                <div class="column">
+                    <a>
+                        Edit Event Master To Do Lists
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleActivityMasterRecordModal()">
+                        Edit / View / Create Activity Master Record
+                    </a>
+                    <a>
+                        Send Initial Password to Facility Admin
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleUploadEventDescriptionModal()">
+                        Upload Event Description
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleUploadEventProcessFlowModal()">
+                        Upload Event Process Flow
+                    </a>
+                    <a class="modal-toggle" ng-click="toggleExpiringContractsModal()">
+                        View / Print Expiring Contracts
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="non-admin" ng-controller="eventIconsController" ng-show="user.privilege !== 'admin'">
+            <div class="current-events box">
+                <div class="title">
+                    Current Events
+                </div>
+                <div class="current-events-listings">
+                    <div class="event" ng-class="{'not-last': ($index !== currentEvents.length - 1)}" ng-repeat="event in currentEvents | orderBy: 'start_date'">
+                        <span class="left">
+                            <a class="event-name">
+                                {{event.name}}
+                            </a>
+                            <span class="event-date">
+                                {{event.start_date_string}}
+                            </span>
+                        </span>
+                        <span class="right">
+                            <span class="event-format">
+                                {{event.event_type.substring(0, 2).toUpperCase()}}
+                            </span>
+                            <span class="event-icons">
+                                <span class="icon">
+                                    <i class="fa fa-eye" ng-click="toggleEyeDropdown(event, 'current')"></i>
+                                    <eye-dropdown ng-show="showEyeDropdown === event.id"></eye-dropdown>
+                                </span>
+                                <span class="icon">
+                                    <i class="fa fa-pencil" ng-click="togglePencilDropdown(event, 'current')"></i>
+                                    <pencil-dropdown ng-show="showPencilDropdown === event.id"></pencil-dropdown>
+                                </span>
+                                <span class="icon pencil-square">
+                                    <i class="fa fa-pencil-square-o"
+                                       ng-if="event.event_type !== 'multifacility' && event.event_type !== 'ladder' && (canEditEvent(event) || isCaptain(event))"
+                                       ng-click="togglePencilSquareDropdown(event, 'current')"></i>
+                                    <pencil-square-dropdown ng-show="showPencilSquareDropdown === event.id"></pencil-square-dropdown>
+                                </span>
+                                <span class="icon" ng-if="canEditEvent(event) || isCaptain(event) || (event.event_type === 'multifacility' && user.privilege === 'participant')">
+                                    <i class="fa fa-print" ng-click="togglePrinterDropdown(event, 'current')"></i>
+                                    <printer-dropdown ng-show="showPrinterDropdown === event.id"></printer-dropdown>
+                                </span>
+                                <span class="icon"
+                                      ng-if="(canEditEvent(event) || isCaptain(event)) || (event.event_type === 'multifacility' && isCaptain(event)) || event.event_type === 'ladder'">
+                                    <img src="/images/plus-minus-icon.png" ng-click="togglePlusSignDropdown(event, 'current')">
+                                    <plus-sign-dropdown ng-show="showPlusSignDropdown === event.id"></plus-sign-dropdown>
+                                </span>
+                                <span class="icon">
+                                    <i class="fa fa-envelope" ng-click="toggleEnvelopeDropdown(event, 'current')"></i>
+                                    <envelope-dropdown ng-show="showEnvelopeDropdown === event.id"></envelope-dropdown>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="no-results-found" ng-show="currentEvents.length === 0">
+                        No events found
+                    </div>
+                </div>
+            </div>
+            <div class="upcoming-events box">
+                <div class="title">
+                    Upcoming Events
+                    <button class="create modal-toggle" ng-click="toggleCreateEventModal()" ng-if="user.privilege === 'facility leader'">
+                        <i class="fa fa-plus"></i>
+                        <span>
+                            Create Event
+                        </span>
+                    </button>
+                </div>
+                <div class="upcoming-events-listings">
+                    <div class="event" ng-class="{'not-last': ($index !== upcomingEvents.length - 1)}" ng-repeat="event in upcomingEvents | orderBy: 'start_date'">
+                        <span class="left">
+                            <a class="event-name">
+                                {{event.name}}
+                            </a>
+                            <span class="event-date">
+                                {{event.start_date_string}}
+                            </span>
+                        </span>
+                        <span class="right">
+                            <span class="event-format">
+                                {{event.event_type.substring(0, 2).toUpperCase()}}
+                            </span>
+                            <span class="event-icons">
+                                <span class="icon">
+                                    <i class="fa fa-eye" ng-click="toggleEyeDropdown(event, 'upcoming')"></i>
+                                    <eye-dropdown ng-show="showEyeDropdown === event.id"></eye-dropdown>
+                                </span>
+                                <span class="icon">
+                                    <i class="fa fa-pencil" ng-click="togglePencilDropdown(event, 'upcoming')"></i>
+                                    <pencil-dropdown ng-show="showPencilDropdown === event.id"></pencil-dropdown>
+                                </span>
+                                <span class="icon pencil-square">
+                                    <i class="fa fa-pencil-square-o"
+                                       ng-if="event.event_type !== 'multifacility' && event.event_type !== 'ladder' && (canEditEvent(event) || isCaptain(event))"
+                                       ng-click="togglePencilSquareDropdown(event, 'upcoming')"></i>
+                                    <pencil-square-dropdown ng-show="showPencilSquareDropdown === event.id"></pencil-square-dropdown>
+                                </span>
+                                <span class="icon" ng-if="canEditEvent(event) || (event.event_type === 'multifacility' && isCaptain(event))">
+                                    <i class="fa fa-print" ng-click="togglePrinterDropdown(event, 'upcoming')"></i>
+                                    <printer-dropdown ng-show="showPrinterDropdown === event.id"></printer-dropdown>
+                                </span>
+                                <span class="icon" ng-if="canEditEvent(event) || (event.event_type === 'multifacility' && isCaptain(event))">
+                                    <img src="/images/plus-minus-icon.png" ng-click="togglePlusSignDropdown(event, 'upcoming')">
+                                    <plus-sign-dropdown ng-show="showPlusSignDropdown === event.id"></plus-sign-dropdown>
+                                </span>
+                                <span class="icon">
+                                    <i class="fa fa-envelope" ng-click="toggleEnvelopeDropdown(event, 'upcoming')"></i>
+                                    <envelope-dropdown ng-show="showEnvelopeDropdown === event.id"></envelope-dropdown>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="no-results-found" ng-show="upcomingEvents.length === 0">
+                        No events found
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+#print-multi-scorecards-modal .title{
+    margin-bottom: 20px;
+}
+#print-multi-scorecards-modal input, #print-multi-scorecards-modal select{
+    margin-top: 30px;
+}
+#print-multi-scorecards-modal .error{
+	font-size: 18px;
+}
+#print-multi-scorecards-modal .title{
+margin-bottom: 20px;
+}
+#print-multi-scorecards-modal select{
+    margin-top: 30px;
+}
+#print-multi-scorecards-modal .odd{
+    background-color: white;
+}
+#print-multi-scorecards-modal .even{
+    background-color: #ebeff2;
+}
+#print-multi-scorecards-modal .input-section{
+    text-align: left;
+}
+#print-multi-scorecards-modal .input-section table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#print-multi-scorecards-modal label{
+	display: inline;
+	padding-left: 5px;
+}
+#print-multi-scorecards-modal input{
+	display: inline;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+    background-color: white;
+}

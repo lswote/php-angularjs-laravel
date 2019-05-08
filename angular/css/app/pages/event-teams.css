@@ -1,0 +1,103 @@
+#event-teams .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-teams .swap-players{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-teams .swap-players select{
+    height: 40px;
+}
+#event-teams .swap-players .group-filter{
+    width: 12%;
+}
+#event-teams .swap-players span{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#event-teams .swap-players .gender-filter{
+    width: 20%;
+    margin-left: 25px;
+}
+#event-teams .swap-players button{
+    position: absolute;
+    right: 30px;
+    height: 40px;
+    width: 180px;
+    line-height: 0.5;
+}
+#event-teams .teams{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+#event-teams .teams .header{
+    width: 100%;
+}
+#event-teams .teams .header span{
+    color: #858790;
+}
+#event-teams .teams .header .name{
+    width: 35%;
+    margin-left: 68px;
+}
+#event-teams .teams .header .gender{
+    width: 12%;
+}
+#event-teams .teams .header .group-number{
+    width: 12%;
+}
+#event-teams .teams .header .team-name{
+    width: 18%;
+}
+#event-teams .teams .header .ranking{
+    width: 12%;
+}
+#event-teams .teams .header span, #event-teams .teams .team-group span{
+    display: inline-block;
+}
+#event-teams .teams .team-group{
+    width: 100%;
+    padding-top: 20px;
+}
+#event-teams .teams input{
+    margin-left: 25px;
+    margin-right: 20px;
+}
+#event-teams .teams .team-group .name{
+    width: 35%;
+}
+#event-teams .teams .team-group .name i{
+    margin-left: 10px;
+    color: #2879ff;
+    font-size: 14px;
+    font-weight: 600;
+}
+#event-teams .teams .team-group .gender{
+    width: 12%;
+    text-transform: capitalize;
+}
+#event-teams .teams .team-group .group-number{
+    width: 12%;
+}
+#event-teams .teams .team-group .team-name{
+    width: 18%;
+}
+#event-teams .teams .team-group .ranking{
+    width: 12%;
+}
+@media(max-width: 1142px){
+    #event-teams .teams{
+        justify-content: center;
+    }
+}
+#event-teams .buttons-container .buttons .submit-button:nth-child(2), #event-teams .buttons-container .buttons .submit-button:nth-child(4){
+    margin-right: 20px;
+}

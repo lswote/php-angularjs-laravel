@@ -1,0 +1,45 @@
+#print-match-directions-modal .error{
+	font-size: 18px;
+}
+#print-match-directions-modal .title{
+margin-bottom: 20px;
+}
+#print-match-directions-modal select{
+    margin-top: 30px;
+}
+#print-match-directions-modal .odd{
+    background-color: white;
+}
+#print-match-directions-modal .even{
+    background-color: #ebeff2;
+}
+#print-match-directions-modal .input-section{
+    text-align: left;
+}
+#print-match-directions-modal .input-section table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#print-match-directions-modal label{
+	display: inline;
+	padding-left: 5px;
+}
+#print-match-directions-modal input{
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+    background-color: white;
+}
+#print-match-directions-modal .container:hover input{
+	background-color: #ccc;
+}
+#print-match-directions-modal .container input:disabled{
+	background-color: #E0E0E0;
+}
+#print-match-directions-modal .container input:checked{
+	background-color: #4cb04e;
+}

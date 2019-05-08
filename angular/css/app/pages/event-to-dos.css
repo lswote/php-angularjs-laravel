@@ -1,0 +1,98 @@
+#event-to-dos .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-to-dos .add-to-do{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-to-dos .add-to-do input{
+    height: 25px;
+    width: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+}
+#event-to-dos .add-to-do select{
+    height: 40px;
+    width: 20%;
+    margin-left: 25px;
+}
+#event-to-dos .add-to-do button{
+    position: absolute;
+    right: 30px;
+    height: 40px;
+    width: 180px;
+    line-height: 0.5;
+}
+#event-to-dos .to-dos .label{
+    height: 20px;
+    width: 300px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding: 5px 15px;
+    border: 2px solid #bfc7d9;
+    border-radius: 5px;
+    line-height: 1.4;
+}
+#event-to-dos .before, #event-to-dos .during, #event-to-dos .after{
+    padding-bottom: 30px;
+}
+#event-to-dos .before, #event-to-dos .during{
+    border-bottom: 1px solid #cbd0df;
+}
+#event-to-dos table{
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+#event-to-dos table th, #event-to-dos table td{
+    padding-right: 20px;
+}
+#event-to-dos table th{
+    color: #90949b;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+#event-to-dos table input{
+    border-color: #bfc7d9;
+}
+#event-to-dos table .id{
+    width: 5%;
+}
+#event-to-dos table .description{
+    width: 35%;
+}
+#event-to-dos table .other-to-do-id{
+    width: 5%;
+}
+#event-to-dos table .days-to-from{
+    width: 5%;
+}
+#event-to-dos table .status{
+    width: 5%;
+}
+#event-to-dos table .due{
+    width: 10%;
+}
+#event-to-dos table .who{
+    width: 10%;
+}
+#event-to-dos table .days-remaining{
+    width: 10%;
+}
+#event-to-dos table .large{
+    width: 90%
+}
+#event-to-dos table .small{
+    width: 30px;
+}
+#event-to-dos table .medium{
+    width: 60px;
+}

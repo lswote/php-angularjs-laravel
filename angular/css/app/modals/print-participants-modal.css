@@ -1,0 +1,49 @@
+#print-participant-modal .fa-undo{
+    cursor: pointer;
+}
+
+#print-participant-modal .team-icon{
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    text-align: center;
+    margin: 0 auto;
+    border: .1em solid black;
+}
+
+#print-participant-modal .team-number{
+    top: 10px;
+    text-transform: capitalize;
+    position: relative;
+}
+
+#print-participant-modal .team-table{
+    border-collapse: separate;
+    border-spacing: 15px;
+    display: table;
+}
+
+#print-participant-modal .team-row{
+    transition: all .5s ease;
+    display: table-row;
+    margin-bottom: 15px;
+}
+
+#print-participant-modal .team-cell{
+    text-align: center;
+    display: table-cell;
+}
+
+#print-participant-modal .side-pad{
+    padding-right: 20px;
+    padding-left: 20px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+#print-participant-modal .black{
+  color: white;
+}
+#print-participant-modal .white, #print-participant-modal .tan, #print-participant-modal .yellow, #print-participant-modal .orange, #print-participant-modal .cyan{
+  color: black;
+}

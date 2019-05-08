@@ -1,0 +1,66 @@
+<form id="withdraw-challenges-ladder-modal" ng-controller="withdrawChallengesLadderModalController">
+    <i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+    <div class="title event-name">
+        Withdraw outstanding opponent challenges
+    </div>
+    <div>
+        Withdraw from any challenge you are a part of
+    </div>
+    <div class="accepted-challenges">
+        <table ng-show="!getAcceptedChallengesInProgress && accepted.length > 0">
+            <tr>
+                <th class="column1">
+                    CHALLENGER
+                </th>
+                <th class="column2">
+                </th>
+                <th class="column3">
+                    OPPONENT
+                </th>
+                <th class="column4">
+                    STATUS 
+                </th>
+                <th class="column5">
+                </th>
+            </tr>
+            </tr>
+            <tr ng-show="challenge.show" ng-repeat="challenge in sorted_accepted = (accepted | orderBy: ['challenger', 'challengee']) track by $index">
+                <td>
+                    {{challenge.challenger}}
+                </td>
+                <td>
+                    vs
+                </td>
+                <td>
+                    {{challenge.challengee}}
+                    <div>&#x1F6C8; Contact Details</div>
+                </td>
+                <td>
+                    <div class="status" ng-show="challenge.show_play_by">
+                        &#10004;Accepted<br>
+                        Expires {{challenge.play_by_date}}
+                    </div>
+                    <div class="status" ng-show="challenge.show_accept_by">
+                        Expires {{challenge.accept_by_date}}
+                    </div>
+                </td>
+                <td>
+                    <button type="button" ng-click="confirmAcceptedDelete($index)">
+                        WITHDRAW
+                    </button> 
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="unaccepted-label">
+        <div class="no-accepted-found" ng-show="!getUnacceptedChallengesInProgress && accepted.length === 0">
+            No challenges
+        </div>
+        <img src="/images/spinning-wheel.gif" class="loading-icon" ng-show="getUnacceptedChallengesInProgress">
+    </div>
+    <div class="buttons">
+        <button class="submit-button" type="button" ng-click="toggleModal()">
+            CLOSE
+        </button>
+    </div>
+</div>

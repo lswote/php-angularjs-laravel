@@ -1,0 +1,63 @@
+#event-standings .subtitle{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#event-standings .filters{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c7cfde;
+}
+#event-standings .filters .date-filter{
+    width: 12%;
+}
+#event-standings .filters span{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#event-standings .filters .matches-schedule, #event-standings .filters .enter-results{
+    position: absolute;
+    color: #2979ff;
+    cursor: pointer;
+}
+#event-standings .filters .matches-schedule{
+    right: 10px;
+}
+#event-standings .filters .enter-results{
+    right: 165px;
+}
+#event-standings table{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border-spacing: 8px 30px;
+    overflow-x: auto;
+}
+#event-standings table th, #event-standings table td{
+    text-align: left;
+}
+#event-standings table th{
+    color: #76767e;
+}
+#event-standings table .team{
+    min-width: 100px;
+    text-transform: capitalize;
+}
+#event-standings table .total{
+    min-width: 100px;
+}
+#event-standings table .round{
+    min-width: 135px;
+    text-transform: capitalize;
+}
+#event-standings table .round.no-match{
+    font-style: italic;
+}
+#event-standings .white, #event-standings .tan, #event-standings .yellow, #event-standings .cyan{
+  text-shadow: 1px 1px 1px darkslategrey;
+}

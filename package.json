@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "./node_modules/.bin/karma start ./angular/karma.conf.js --single-run",
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
+    "eslint": "^5.2.0",
+    "gulp": "^3.9.1",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
+    "karma-jasmine": "^1.1.2",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "laravel-elixir": "^5.0.0",
+    "phantomjs-prebuilt": "^2.1.16"
+  }
+}

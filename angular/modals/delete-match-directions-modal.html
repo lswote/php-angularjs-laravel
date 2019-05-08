@@ -1,0 +1,33 @@
+<div id="delete-match-directions-modal" ng-controller="deleteMatchDirectionsModalController">
+	<i class="exit-icon fa fa-times-circle-o" ng-click="toggleModal()"></i>
+	<form ng-submit="selectFacility()">
+		<div class="title">
+			Delete match facility
+		</div>
+		<div class="select-section">
+			<table>
+				<tr>
+					<th class='col-one'>
+						FACILITY NAME
+					</th>
+				</tr>
+				<tr>
+					<td class='col-one'>
+						<typeahead class="item" items="items" prompt="Type facility name" title="name" model="name" ng-click="resetDeleteMatchDirectionsErrors()" inputclass="search-captain" divclass="view-facility" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="error" ng-show="showDeleteMatchDirectionsErrors.noFacility">
+			No name entered
+		</div>
+		<div class="buttons">
+			<button class="cancel-button" type="button" ng-click="toggleModal()">
+				CANCEL
+			</button>
+			<button class="submit-button" type="submit">
+				DELETE
+			</button>
+		</div>
+	</form>
+</div>
